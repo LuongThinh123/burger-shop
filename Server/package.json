@@ -28,7 +28,9 @@
   },
   "homepage": "https://github.com/LuongThinh123/burger-shop#readme",
   "dependencies": {
-    "express": "^4.18.1"
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "mongoose": "^6.6.2"
   },
   "devDependencies": {
     "morgan": "^1.10.0",

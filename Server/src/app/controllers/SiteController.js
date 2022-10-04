@@ -1,6 +1,8 @@
+const Course = require("../model/Courses");
+
 const SiteController = {
   // [GET] /
-  index: (req, res) => {
+  index: (req, res, next) => {
     res.send("Home");
   },
 
