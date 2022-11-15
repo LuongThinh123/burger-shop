@@ -1,0 +1,9 @@
+.inner {
+  display: flex;
+  padding: 0 var(--default-content-layout-padding);
+  justify-content: space-between;
+  align-items: flex-start;
+  width: var(--default-layout-width);
+  margin: 48px 0;
+  //   width: 100%;
+}

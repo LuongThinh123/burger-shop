@@ -7,7 +7,7 @@ const CoursesController = {
       const courses = await Course.find({});
       res.status(200).json(courses);
     } catch (err) {
-      res.status(404).json({ message: "Lỗi cmnr" });
+      res.status(404).json({ message: "Lỗi" });
     }
   },
   //[GET] /courses/:slug

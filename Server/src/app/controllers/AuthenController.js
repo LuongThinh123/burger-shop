@@ -1,0 +1,137 @@
+const User = require("../model/User");
+const RefreshToken = require("../model/RefreshToken");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+
+const AuthenController = {
+  register: async (req, res) => {
+    try {
+      const salt = await bcrypt.genSalt(10);
+      const hashed = await bcrypt.hash(req.body.password, salt);
+
+      const newUser = await User({
+        username: req.body.username,
+        email: req.body.email,
+        password: hashed,
+      });
+
+      const user = await newUser.save();
+      res.status(200).json(user);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
+
+  generateAccessToken: (user) => {
+    return jwt.sign(
+      {
+        id: user.id,
+        admin: user.admin,
+      },
+      process.env.JWT_ACCESS_KEY,
+      { expiresIn: "20s" }
+    );
+  },
+
+  generateRefreshToken: (user) => {
+    return jwt.sign(
+      {
+        id: user.id,
+        admin: user.admin,
+      },
+      process.env.JWT_REFRESH_KEY,
+      { expiresIn: "20s" }
+    );
+  },
+
+  login: async (req, res) => {
+    try {
+      const user = await User.findOne({ username: req.body.username });
+      if (!user) {
+        return res.status(404).json("Wrong username");
+      }
+      const validPassword = await bcrypt.compare(
+        req.body.password,
+        user.password
+      );
+      if (!validPassword) {
+        return res.status(404).json("Wrong password");
+      }
+      if (user && validPassword) {
+        const accessToken = AuthenController.generateAccessToken(user);
+
+        const refreshToken = AuthenController.generateRefreshToken(user);
+
+        const newRefreshToken = await RefreshToken({
+          userId: user.id,
+          refreshToken: refreshToken,
+        });
+
+        await newRefreshToken.save();
+
+        res.cookie("refreshToken", refreshToken, {
+          httpOnly: true,
+          secure: false,
+          path: "/",
+          sameSite: "strict",
+        });
+
+        const { password, ...others } = user._doc;
+        res.status(200).json({ ...others, accessToken });
+      }
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
+
+  requestRefreshToken: async (req, res) => {
+    const refreshTokenRequest = req.cookies.refreshToken;
+    if (!refreshTokenRequest)
+      return res.status(404).json("You are not authenticated");
+
+    const isTokenMatch = await RefreshToken.findOne({
+      refreshToken: refreshTokenRequest,
+    });
+
+    if (!isTokenMatch) return res.status(404).json("Token is not valid");
+
+    jwt.verify(
+      refreshTokenRequest,
+      process.env.JWT_REFRESH_KEY,
+      async (err, user) => {
+        if (err) {
+          // await RefreshToken.deleteOne({ refreshToken: refreshTokenRequest });
+          res.status(404).json("Token is not valid :((");
+        }
+
+        const newAccessToken = AuthenController.generateAccessToken(user);
+        const newRefreshToken = AuthenController.generateRefreshToken(user);
+
+        await RefreshToken.updateOne(
+          {
+            refreshToken: refreshTokenRequest,
+          },
+          { refreshToken: newRefreshToken }
+        );
+
+        res.cookie("refreshToken", newRefreshToken, {
+          httpOnly: true,
+          secure: false,
+          path: "/",
+          sameSite: "strict",
+        });
+        res.status(200).json({ accessToken: newAccessToken });
+      }
+    );
+  },
+
+  logout: async (req, res) => {
+    res.clearCookie("refreshToken");
+    await RefreshToken.deleteOne({
+      refreshToken: req.cookies.refreshToken,
+    });
+    res.status(200).json("Logout successfully");
+  },
+};
+
+module.exports = AuthenController;

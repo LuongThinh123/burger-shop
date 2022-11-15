@@ -1,0 +1,93 @@
+.shop_sidebar {
+  width: 22%;
+  margin-right: 32px;
+  --shop-category-default-height: 38px;
+}
+
+.sidebar_header {
+  margin: 7px 0;
+  height: var(--shop-category-default-height);
+  line-height: var(--shop-category-default-height);
+  background-color: var(--primary);
+
+  .header {
+    padding-left: 10px;
+    font-size: 1.8rem;
+    color: var(--white);
+  }
+}
+
+.category_list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  .category {
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+    padding: 18px 0;
+    border-bottom: 1px solid #ccc;
+
+    .category-name {
+      padding: 0 4px;
+      cursor: pointer;
+      flex: 1;
+      // &:hover {
+      //   color: var(--primary);
+      // }
+    }
+
+    .category-checkbox {
+      // background-color: var(--lightGray);
+      width: 15px;
+      height: 15px;
+      border-radius: 3px;
+      outline: none;
+      border: 2px solid var(--gray);
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+  }
+}
+
+.food-recomend {
+  .recomend-box {
+    margin-top: 15px;
+  }
+}
+
+.recomend-item {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+
+  .recomend-img {
+    width: 58px;
+    height: 58px;
+    display: flex;
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 5px;
+      object-fit: cover;
+    }
+  }
+
+  .item-information {
+    margin-left: 10px;
+  }
+}
+
+.item-link {
+  color: var(--black);
+  font-weight: bold;
+  font-size: 1.6rem;
+}
+
+.price {
+  margin-top: 2px;
+  font-size: 1.6rem;
+  color: var(--gray);
+}

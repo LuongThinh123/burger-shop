@@ -1,0 +1,135 @@
+.login_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h1 {
+    margin-bottom: 20px;
+  }
+}
+
+.login_body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .feild {
+    display: flex;
+    height: 55px;
+    width: 346px;
+    margin: 16px 0;
+
+    input {
+      height: 100%;
+      width: 100%;
+      font-size: 1.6rem;
+      padding-left: 12px;
+      border: 2px solid var(--primary);
+      border-radius: 50px;
+    }
+  }
+
+  .signIn_btn {
+    margin-top: 18px;
+    width: 160px;
+    border-radius: 50px;
+    span {
+      font-size: 1.8rem;
+    }
+  }
+}
+
+.login_options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 12px 0;
+  width: 100%;
+
+  .rememberMe_checkbox {
+    display: flex;
+    align-items: center;
+    width: auto;
+    cursor: pointer;
+    input {
+      width: 14px;
+      height: 14px;
+      accent-color: var(--primary);
+    }
+    .checkbox_title {
+      margin-left: 8px;
+      font-size: 1.7rem;
+    }
+  }
+
+  .forgot_password_link {
+    color: var(--gray);
+    font-weight: bold;
+    .forgot_password_title {
+      font-size: 1.7rem;
+    }
+  }
+}
+
+.register_navigate {
+  .question {
+    font-size: 1.8rem;
+  }
+}
+
+.register_link {
+  .title {
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: var(--primary);
+  }
+}
+
+.connect_options {
+  margin: 15px 0 5px 0;
+  .connect_facebook,
+  .connect_google {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.2s all ease-in;
+
+    span {
+      font-size: 1.7rem;
+      font-weight: bold;
+    }
+  }
+
+  .connect_facebook {
+    width: 250px;
+    height: 50px;
+    border: 2px solid var(--facebookColor);
+    color: var(--facebookColor);
+    .facebook_icon {
+      margin-right: 10px;
+    }
+
+    &:hover {
+      background-color: var(--facebookColor);
+      color: var(--white);
+    }
+  }
+
+  .connect_google {
+    width: 250px;
+    height: 50px;
+    border: 2px solid var(--chillRed-color);
+    color: var(--chillRed-color);
+    .google_icon {
+      margin-right: 10px;
+    }
+
+    &:hover {
+      background-color: var(--chillRed-color);
+      color: var(--white);
+    }
+  }
+}

@@ -1,0 +1,14 @@
+.products-box {
+  padding: 0 16px;
+  flex: 1;
+}
+
+.product-list {
+  // padding: 0 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 30px 20px;
+  height: 100%;
+  width: 100%;
+}

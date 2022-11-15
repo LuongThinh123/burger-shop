@@ -1,0 +1,125 @@
+.shop-filter_price {
+  margin-top: 35px;
+
+  .price_title {
+    width: 138px;
+    font-size: 1.8rem;
+    padding-bottom: 10px;
+  }
+}
+
+.filter_price {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin-top: 10px;
+
+  .price_input {
+    width: 100%;
+    display: flex;
+    margin: 15px 0 25px;
+  }
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 45px;
+
+  input {
+    font-size: 1.5rem;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    text-align: center;
+    margin-left: 12px;
+    border-radius: 5px;
+    border: 1px solid #999;
+    -moz-appearance: textfield;
+  }
+
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+}
+
+.separator {
+  font-size: 2.6rem;
+  width: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider {
+  height: 5px;
+  border-radius: 5px;
+  background-color: var(--lightGray);
+  position: relative;
+
+  .progress {
+    height: 100%;
+    left: 0%;
+    right: 0%;
+    position: absolute;
+    border-radius: 5px;
+    background: var(--primary);
+  }
+
+  input {
+    position: absolute;
+    cursor: pointer;
+    // top: -5px;
+    height: 5px;
+    width: 100%;
+    background: none;
+    pointer-events: none;
+    -webkit-appearance: none;
+  }
+
+  input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 17px;
+    width: 17px;
+    border-radius: 50%;
+    pointer-events: auto;
+    background-color: var(--primary);
+  }
+
+  input[type='range']::-moz-range-thumb {
+    -moz-appearance: none;
+    border: none;
+    height: 17px;
+    width: 17px;
+    border-radius: 50%;
+    pointer-events: auto;
+    background-color: var(--primary);
+  }
+}
+
+.filter-btn {
+  margin: 20px 0 35px 0;
+  font-size: 1.8rem;
+  font-weight: bold;
+  height: 40px;
+  width: 100%;
+  border-radius: 6px;
+  color: var(--white);
+}
+
+// .filter-btn {
+//   margin: 20px 0 35px 0;
+//   button {
+//     background-color: var(--primary);
+//     border: none;
+//     font-size: 1.8rem;
+//     font-weight: bold;
+//     height: 40px;
+//     width: 100%;
+//     cursor: pointer;
+//     border-radius: 6px;
+//     color: var(--white);
+//   }
+// }

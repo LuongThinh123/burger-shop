@@ -1,29 +1,21 @@
-import { useState, useEffect } from 'react';
-import productApi from '~/api/productApi';
+import classNames from 'classnames/bind';
+
+import ShopSideBar from '~/components/ShopSideBar';
+import ProductList from '~/components/ProductList';
+import styles from './Product.module.scss';
+
+const cx = classNames.bind(styles);
 
 function Product() {
-  const [productList, setProductList] = useState([]);
-
-  useEffect(() => {
-    const fetchProductList = async () => {
-      try {
-        const response = await productApi.getAll();
-        // console.log(response);
-        setProductList(response);
-        console.log(response);
-      } catch (error) {
-        console.error('lỗi mẹ rồi');
-      }
-    };
-    fetchProductList();
-  }, []);
   return (
-    <div>
-      <ul>
+    <div className={cx('inner')}>
+      {/* <ul>
         {productList.map((product) => (
           <li key={product._id}>{product.title}</li>
         ))}
-      </ul>
+      </ul> */}
+      <ShopSideBar />
+      <ProductList />
     </div>
   );
 }
