@@ -1,6 +1,8 @@
 // api/axiosClient.js
 import axios from 'axios';
 import queryString from 'query-string';
+import { setAccessToken } from './localStorage';
+import jwt_decode from 'jwt-decode';
 // Set up default config for http requests heret
 
 const request = axios.create({
@@ -12,7 +14,24 @@ const request = axios.create({
 });
 
 request.interceptors.request.use(async (config) => {
+  const token = config.headers.token;
+  if (!token) return config;
+  const accessToken = token.split(' ')[1];
+  if (!accessToken) return config;
+
   // Handle token here ...
+  const date = new Date();
+  const decodedToken = jwt_decode(accessToken);
+
+  if (decodedToken.exp < date.getTime() / 1000) {
+    const res = await request.post('/auth//refresh', { withCredentials: true });
+    if (!res) return config;
+
+    setAccessToken(res.accessToken || '');
+
+    config.headers['token'] = `Bearer ${res.accessToken}`;
+  }
+
   return config;
 });
 

@@ -35,52 +35,30 @@ function ShopSideBar() {
   // console.log(categories);
   return (
     <div className={cx('shop_sidebar')}>
-      <div className={cx('sidebar_header')}>
-        <h3 className={cx('header')}>Category list</h3>
-      </div>
-      <div className={cx('categories_box')}>
-        <ul className={cx('category_list')}>
-          {categories.map((category, index) => {
-            return (
-              <li key={category._id} className={cx('category')}>
-                <input
-                  className={cx('category-checkbox')}
-                  type="checkbox"
-                  id={`check-${index}`}
-                  onChange={(input) => handleCategoryChecked(input, category._id)}
-                  // checked
-                />
-                <label htmlFor={`check-${index}`} className={cx('category-name')}>
-                  {category.title}
-                </label>
-              </li>
-            );
-          })}
-          {/* <li className={cx('category')}>
-            <input className={cx('category-checkbox')} type="checkbox" id="check-1" />
-            <label htmlFor="check-1" className={cx('category-name')}>
-              Hamburger
-            </label>
-          </li>
-          <li className={cx('category')}>
-            <input className={cx('category-checkbox')} type="checkbox" id="check-2" />
-            <label htmlFor="check-2" className={cx('category-name')}>
-              Pizza
-            </label>
-          </li>
-          <li className={cx('category')}>
-            <input className={cx('category-checkbox')} type="checkbox" id="check-3" />
-            <label htmlFor="check-3" className={cx('category-name')}>
-              Cake
-            </label>
-          </li>
-          <li className={cx('category')}>
-            <input className={cx('category-checkbox')} type="checkbox" id="check-4" />
-            <label htmlFor="check-4" className={cx('category-name')}>
-              Snacks
-            </label>
-          </li> */}
-        </ul>
+      <div className={cx('category_container')}>
+        <div className={cx('sidebar_header')}>
+          <h3 className={cx('header')}>Category list</h3>
+        </div>
+        <div className={cx('categories_box')}>
+          <ul className={cx('category_list')}>
+            {categories.map((category, index) => {
+              return (
+                <li key={category._id} className={cx('category')}>
+                  <input
+                    className={cx('category-checkbox')}
+                    type="checkbox"
+                    id={`check-${index}`}
+                    onChange={(input) => handleCategoryChecked(input, category._id)}
+                    // checked
+                  />
+                  <label htmlFor={`check-${index}`} className={cx('category-name')}>
+                    {category.title}
+                  </label>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
       <PriceFilter />
       {/* <div className={cx('shop-filter_price')}>

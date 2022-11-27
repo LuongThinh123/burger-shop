@@ -53,12 +53,13 @@ function ProductList() {
       <Pagination
         className="pagination-bar"
         currentPage={currentPage}
-        totalCount={productListInfor.total ? productListInfor.total : 35}
+        totalCount={productListInfor.total ? productListInfor.total : ''}
         pageSize={productListInfor.limit ? productListInfor.limit : 6}
         onPageChange={(currentPage) => filterDispatch(changePage(currentPage))}
       />
     </div>
   );
 }
-
+// ? productListInfor.total : 35
+// ? productListInfor.limit : 6
 export default ProductList;

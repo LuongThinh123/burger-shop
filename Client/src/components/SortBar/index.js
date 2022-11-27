@@ -26,7 +26,7 @@ function SortBar() {
   return (
     <div className={cx('sortBar')}>
       <div className={cx('select_content')}>
-        <h3 className={cx('sort_by')}>Sort by:</h3>
+        {/* <h3 className={cx('sort_by')}>Sort by:</h3> */}
         <div className={cx('sort_select')}>
           <select name="price" id="price" onChange={(e) => handleSelectChange(e)}>
             <option value="">Price</option>

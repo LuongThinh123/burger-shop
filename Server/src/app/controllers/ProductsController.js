@@ -99,7 +99,7 @@ const ProductsController = {
       const total = await Product.countDocuments({
         categoryId: { $in: [...categoryFilter] },
         title: { $regex: search, $options: "i" },
-        price: { $gte: price[0], $lte: price[1] },
+        sale: { $gte: price[0], $lte: price[1] },
       });
 
       const response = {

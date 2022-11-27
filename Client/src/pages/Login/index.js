@@ -15,7 +15,8 @@ const cx = classNames.bind(styles);
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [authenState, authenDispatch] = useAuthenContext();
+
+  const [, authenDispatch] = useAuthenContext();
   const navigate = useNavigate();
 
   const handleLogin = (e) => {

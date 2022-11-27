@@ -10,8 +10,9 @@ const AuthenController = {
       const hashed = await bcrypt.hash(req.body.password, salt);
 
       const newUser = await User({
-        username: req.body.username,
+        fullname: req.body.fullname,
         email: req.body.email,
+        username: req.body.username,
         password: hashed,
       });
 

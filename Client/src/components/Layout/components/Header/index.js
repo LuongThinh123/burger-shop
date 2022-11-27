@@ -1,13 +1,25 @@
 import classNames from 'classnames/bind';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faMagnifyingGlass, faUser } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './Header.module.scss';
+import { useAuthenContext } from '~/customHook';
+import * as authenApi from '~/api/authenApi';
+import { getAccessToken } from '~/utils/localStorage';
 import image from '~/assets/images';
 
 const cx = classNames.bind(styles);
 
 function Header() {
+  const [, authenDispatch] = useAuthenContext();
+  const navigate = useNavigate();
+  const accessToken = getAccessToken();
+
+  const handleLogout = () => {
+    authenApi.logout(accessToken, authenDispatch, navigate);
+  };
+
   return (
     <header className={cx('wrapper')}>
       <div className={cx('inner')}>
