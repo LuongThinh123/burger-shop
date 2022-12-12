@@ -1,5 +1,5 @@
 .wrapper {
-  --search-border-radius: 7px;
+  --search-border-radius: 26px;
   --search-height: 46px;
   --search-top-spacer: 9px;
   --search-button-width: 52px;
@@ -8,7 +8,8 @@
   z-index: 2;
   width: 100%;
   height: var(--default-layout-header-height);
-  background-color: var(--primary);
+  background-color: var(--white);
+  box-shadow: 0 0 30px 0 var(--box-shadow-color);
   //   box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
   display: flex;
   justify-content: center;
@@ -46,7 +47,7 @@
   span {
     font-size: 1.8rem;
     font-weight: bold;
-    color: var(--white);
+    color: var(--red-color);
   }
 }
 
@@ -62,22 +63,27 @@
     cursor: pointer;
     padding: 0 3px;
     a {
-      font-size: 1.8rem;
-      color: var(--white);
+      font-size: 1.9rem;
+      font-weight: bold;
+      color: var(--black);
       padding: 15px 15px;
       text-decoration: none;
+    }
+    &:hover a {
+      color: var(--lightOrange-color);
     }
   }
 }
 
 .search {
   width: 460px;
-  height: 40px;
+  height: 45px;
   padding-left: 16px;
   display: flex;
   align-items: center;
-  background-color: var(--white);
+  background-color: var(--chillYellow);
   border-radius: var(--search-border-radius);
+  border: 1px solid var(--grayBorder);
   input {
     height: 100%;
     color: var(--gray);
@@ -88,12 +94,15 @@
 }
 
 .search-btn {
-  margin-right: 2px;
+  // margin-right: 2px;
   width: 62px;
-  height: 88%;
+  height: 100%;
   color: var(--white);
   background-color: var(--primary);
-  border-radius: var(--search-border-radius);
+  border-top-right-radius: var(--search-border-radius);
+  border-bottom-right-radius: var(--search-border-radius);
+  // border-radius: var(--search-border-radius);
+
   cursor: pointer;
   .search-icon {
     font-size: 2rem;
@@ -110,16 +119,18 @@
 
 .nav_user,
 .nav_cart {
-  --height: 36px;
-  width: 36px;
+  --height: 46px;
+  width: 46px;
+  // padding: 10px;
   height: var(--height);
   background-color: var(--white);
   text-align: center;
   border-radius: 50%;
+  border: 2px solid var(--primary);
   color: var(--primary);
   &:hover {
     cursor: pointer;
-    background-color: var(--star-gold);
+    background-color: var(--lightOrange-color);
     color: var(--white);
   }
 }

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
@@ -78,4 +79,4 @@ const Pagination = (props) => {
   );
 };
 
-export default Pagination;
+export default memo(Pagination);

@@ -9,15 +9,16 @@ import ProductCard from '~/components/ProductCard';
 import Pagination from '~/components/Pagination';
 import { changePage } from '~/reducers/actions/filterAction';
 import * as productApi from '~/api/productApi';
+import { useToastContext } from '~/customHook';
 
 const cx = classNames.bind(styles);
 
 function ProductList() {
   const [currentPage, setCurrentPage] = useState(1);
-
   const [productListInfor, setProductListInfor] = useState({});
   const [filterState, filterDispatch] = useFilterContext();
-
+  const [, toastDispatch] = useToastContext();
+  console.log('re-render');
   useEffect(() => {
     const fetchProductList = async () => {
       try {
@@ -46,7 +47,7 @@ function ProductList() {
         {/* {console.log(productListInfor.page)} */}
         {productListInfor.products
           ? productListInfor.products.map((data) => {
-              return <ProductCard key={data._id} data={data} />;
+              return <ProductCard key={data._id} data={data} toastDispatch={toastDispatch} />;
             })
           : []}
       </div>

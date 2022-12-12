@@ -5,15 +5,18 @@ import reportWebVitals from './reportWebVitals';
 import GlobalStyles from '~/components/GlobalStyles';
 import { AuthenProvider } from './contexts';
 import { FilterProvider } from './contexts';
+import { ToastProvider } from './contexts';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <GlobalStyles>
       <AuthenProvider>
-        <FilterProvider>
-          <App />
-        </FilterProvider>
+        <ToastProvider>
+          <FilterProvider>
+            <App />
+          </FilterProvider>
+        </ToastProvider>
       </AuthenProvider>
     </GlobalStyles>
   </React.StrictMode>,

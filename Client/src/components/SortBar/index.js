@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
@@ -29,7 +30,7 @@ function SortBar() {
         {/* <h3 className={cx('sort_by')}>Sort by:</h3> */}
         <div className={cx('sort_select')}>
           <select name="price" id="price" onChange={(e) => handleSelectChange(e)}>
-            <option value="">Price</option>
+            <option value="">Default sorting</option>
             <option value="asc">Price: low to high</option>
             <option value="desc">Price: high to low</option>
           </select>
@@ -38,6 +39,7 @@ function SortBar() {
 
       <div className={cx('mini_nagination')}>
         <div className={cx('mini_nagination_state')}>
+          <span className={cx('mini_nagination_title')}>Page: </span>
           <span className={cx('mini_nagination_current')}>1</span>/
           <span className={cx('mini_nagination_total')}>50</span>
         </div>
@@ -52,4 +54,4 @@ function SortBar() {
   );
 }
 
-export default SortBar;
+export default memo(SortBar);

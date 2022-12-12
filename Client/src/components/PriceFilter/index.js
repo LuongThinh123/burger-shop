@@ -14,6 +14,7 @@ function PriceFilter() {
   const [rangeMax, setRangeMax] = useState(40);
   const [filterState, filterDispatch] = useFilterContext();
 
+  console.log('re-render');
   const maxRangeRef = useRef(),
     minRangeRef = useRef(),
     // maxPrice = useRef(),

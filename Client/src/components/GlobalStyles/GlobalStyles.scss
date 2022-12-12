@@ -1,6 +1,6 @@
 @import 'normalize.css';
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-
+// @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 :root {
   --primary: #f16b28;
   --white: #fff;
@@ -21,9 +21,11 @@
   --chillYellow: #fff4ec;
   --customBlue: #03a9f4;
   --facebookColor: #0675e7;
+  --light: #999999;
+  --box-shadow-color: rgba(0, 0, 0, 0.1);
 
   //Default layout
-  --default-layout-header-height: 60px;
+  --default-layout-header-height: 74px;
   --default-layout-width: 1535px;
   --default-layout-horizontal-spacer: 24px;
   --default-content-layout-padding: 154px;

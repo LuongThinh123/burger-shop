@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faMagnifyingGlass, faUser } from '@fortawesome/free-solid-svg-icons';
 
@@ -25,23 +25,23 @@ function Header() {
       <div className={cx('inner')}>
         <div className={cx('nav_container')}>
           <div className={cx('logo')}>
-            <a href="">
+            <Link to="/">
               <img src={image.logo} alt="Burger-shop" />
               <span>CT-FOOD</span>
-            </a>
+            </Link>
           </div>
           <ul className={cx('nav_list')}>
             <li className={cx('nav_item')}>
-              <a href="">Trang chủ</a>
+              <Link to="/">Home</Link>
             </li>
             <li className={cx('nav_item')}>
-              <a href="">Giới thiệu</a>
+              <Link to="/about">About</Link>
             </li>
             <li className={cx('nav_item')}>
-              <a href="">Sản phẩm</a>
+              <Link to="/products">Shop</Link>
             </li>
             <li className={cx('nav_item')}>
-              <a href="">Liên hệ</a>
+              <Link to="/contact">Contact</Link>
             </li>
           </ul>
 
@@ -60,8 +60,10 @@ function Header() {
             </div>
           </div>
           <div className={cx('nav_cart')}>
+            {/* <Link to="/cart"> */}
             <FontAwesomeIcon className={cx('cart_icon')} icon={faCartShopping} />
             <span className={cx('cart_product_numbers')}></span>
+            {/* </Link> */}
           </div>
         </div>
       </div>
