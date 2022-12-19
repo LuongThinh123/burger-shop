@@ -8,6 +8,7 @@ import Register from '~/pages/Register';
 import Profile from '~/pages/Profile';
 import Product from '~/pages/Product';
 import CartPage from '~/pages/CartPage';
+import CheckoutDone from '~/pages/CheckoutDone';
 
 export const publicRoutes = [
   { path: '/', component: Home },
@@ -17,6 +18,7 @@ export const publicRoutes = [
   { path: '/profile', component: Profile, layout: HeaderOnly },
   { path: '/products', component: Product },
   { path: '/cart', component: CartPage },
+  { path: '/checkout-done', component: CheckoutDone },
 ];
 
 export const privateRoutes = [];

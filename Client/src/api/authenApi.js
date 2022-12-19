@@ -1,4 +1,5 @@
 import request from '~/utils/request';
+import { setAccessToken } from '~/utils/localStorage';
 import {
   registerSuccess,
   registerFailed,
@@ -11,9 +12,9 @@ import {
 export const login = async (user, dispatch, navigate) => {
   try {
     const res = await request.post(`/auth/login`, user);
-    dispatch(loginSuccess(res.data));
+    setAccessToken(res.accessToken || '');
+    dispatch(loginSuccess(res));
     navigate('/');
-    // return res;
   } catch (err) {
     dispatch(loginFailed());
   }

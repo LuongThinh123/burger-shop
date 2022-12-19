@@ -18,22 +18,21 @@ function ProductList() {
   const [productListInfor, setProductListInfor] = useState({});
   const [filterState, filterDispatch] = useFilterContext();
   const [, toastDispatch] = useToastContext();
-  console.log('re-render');
+
   useEffect(() => {
     const fetchProductList = async () => {
       try {
         const response = await productApi.getProducts(filterState);
-        // console.log(response);
+        console.log(response);
         setProductListInfor(response);
         setCurrentPage(response.page);
-        console.log(response);
+        // console.log(response);
       } catch (error) {
         console.error('lỗi rồi');
       }
     };
     fetchProductList();
   }, [filterState]);
-
   // const currentData = useMemo(() => {
   //   const firstPageIndex = (currentPage - 1) * PageSize;
   //   const lastPageIndex = firstPageIndex + PageSize;

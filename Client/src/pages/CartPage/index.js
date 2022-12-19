@@ -1,7 +1,10 @@
+import { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
 
 import Banner from '~/components/Banner';
 import styles from './CartPage.module.scss';
+import * as cartApi from '~/api/cartApi';
+import { getAccessToken } from '~/utils/localStorage';
 import CartPageProduct from '~/components/CartPageProduct';
 
 const cx = classNames.bind(styles);
@@ -11,6 +14,24 @@ function CartPage() {
   //   link: 'products',
 
   // }]
+
+  const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    const fetchProductList = async () => {
+      try {
+        const accessToken = getAccessToken();
+        const response = await cartApi.getCartProducts(accessToken);
+        console.log(response);
+        setCartItems(response);
+        // console.log([...response]);
+      } catch (error) {
+        console.error('lỗi rồi');
+      }
+    };
+    fetchProductList();
+  }, []);
+  // console.log(cartItems);
   return (
     <>
       <Banner heading={'Cart'}>Cart</Banner>
@@ -23,6 +44,11 @@ function CartPage() {
             <div className={cx('product_total')}>Total</div>
           </div>
           <div className={cx('product-box')}>
+            {cartItems
+              ? cartItems.map((item) => {
+                  return <CartPageProduct key={item._id} data={item} />;
+                })
+              : []}
             {/* <div className={cx('product')}>
               <div class="cartPage__product-item">
                 <div class="cartPage__product-imgBox">
@@ -64,7 +90,7 @@ function CartPage() {
                 <span class="cartPage__product-total-cost">$500</span>
               </div>
             </div> */}
-            <CartPageProduct />
+            {/* <CartPageProduct /> */}
           </div>
         </div>
 

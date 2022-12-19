@@ -24,7 +24,7 @@ request.interceptors.request.use(async (config) => {
   const decodedToken = jwt_decode(accessToken);
 
   if (decodedToken.exp < date.getTime() / 1000) {
-    const res = await request.post('/auth//refresh', { withCredentials: true });
+    const res = await request.post('/auth/refresh', { withCredentials: true });
     if (!res) return config;
 
     setAccessToken(res.accessToken || '');

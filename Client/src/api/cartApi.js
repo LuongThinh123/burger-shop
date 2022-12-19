@@ -1,12 +1,23 @@
 import request from '~/utils/request';
 
-export const addToCart = async (product, navigate) => {
+export const addToCart = async (accessToken, product, navigate) => {
   try {
-    // console.log(params);
+    const result = await request.post(`/cart`, product, { headers: { token: `Bearer ${accessToken}` } });
+    if (result.status === 401) navigate('/login');
+    return result;
+  } catch (err) {}
+};
 
-    // console.log(params);
-    const result = await request.post(`/cart`, { product });
-    if(result.status === 401) navigate('/login');
+export const getCartProducts = async (accessToken) => {
+  try {
+    const result = await request.get(`/cart`, { headers: { token: `Bearer ${accessToken}` } });
+    return result;
+  } catch (err) {}
+};
+
+export const deleteCartItem = async (accessToken, productId) => {
+  try {
+    const result = await request.post(`/cart/delete`, { productId }, { headers: { token: `Bearer ${accessToken}` } });
     return result;
   } catch (err) {}
 };

@@ -1,9 +1,13 @@
 import classNames from 'classnames/bind';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Tippy from '@tippyjs/react/headless';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping, faMagnifyingGlass, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping, faCircleXmark, faMagnifyingGlass, faSpinner, faUser } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './Header.module.scss';
+import { Wrapper as PopperWrapper } from '~/components/Popper';
+import SearchItem from '~/components/SearchItem';
 import { useAuthenContext } from '~/customHook';
 import * as authenApi from '~/api/authenApi';
 import { getAccessToken } from '~/utils/localStorage';
@@ -15,6 +19,14 @@ function Header() {
   const [, authenDispatch] = useAuthenContext();
   const navigate = useNavigate();
   const accessToken = getAccessToken();
+
+  const [searchResult, setSearchResult] = useState([]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setSearchResult([1, 2, 3]);
+    }, 0);
+  }, []);
 
   const handleLogout = () => {
     authenApi.logout(accessToken, authenDispatch, navigate);
@@ -44,13 +56,36 @@ function Header() {
               <Link to="/contact">Contact</Link>
             </li>
           </ul>
-
-          <div className={cx('search')}>
-            <input placeholder="Tìm kiếm sản phẩm" spellCheck={false} />
-            <button className={cx('search-btn')}>
-              <FontAwesomeIcon className={cx('search-icon')} icon={faMagnifyingGlass} />
-            </button>
-          </div>
+          <Tippy
+            // visible={searchResult.length > 0}
+            // interactive
+            render={(attrs) => (
+              <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+                <PopperWrapper>
+                  <h4 className={cx('search-title')}>Search results...</h4>
+                  <SearchItem />
+                  <SearchItem />
+                  <SearchItem />
+                  <SearchItem />
+                  <SearchItem />
+                  <SearchItem />
+                  {/* <SearchItem /> */}
+                  {/* <SearchItem /> */}
+                </PopperWrapper>
+              </div>
+            )}
+          >
+            <div className={cx('search')}>
+              <input placeholder="Tìm kiếm sản phẩm" spellCheck={false} />
+              <button className={cx('clear')}>
+                <FontAwesomeIcon icon={faCircleXmark} />
+              </button>
+              <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
+              <button className={cx('search-btn')}>
+                <FontAwesomeIcon className={cx('search-icon')} icon={faMagnifyingGlass} />
+              </button>
+            </div>
+          </Tippy>
         </div>
 
         <div className={cx('nav_actions')}>

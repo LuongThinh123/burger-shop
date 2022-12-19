@@ -6,6 +6,7 @@ import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import { v4 as uuidv4 } from 'uuid';
 
 import { addNotification } from '~/reducers/actions/toastAction';
+import { getAccessToken } from '~/utils/localStorage';
 import * as cartApi from '~/api/cartApi';
 import styles from './ProductCard.module.scss';
 import image from '~/assets/images';
@@ -14,18 +15,16 @@ const cx = classNames.bind(styles);
 
 function ProductCard({ data, toastDispatch }) {
   const navigate = useNavigate();
-
+  const accessToken = getAccessToken();
   let handleAddToCart = (e) => {
-    e.preventDefault();
     console.log('Add to cart');
 
     const productId = e.target.dataset.id;
-    // console.log(productId);
     const product = {
       productId,
-      quantity: 1,
+      amount: 1,
     };
-    cartApi.addToCart(product, navigate);
+    cartApi.addToCart(accessToken, product, navigate);
 
     toastDispatch(
       addNotification({
@@ -54,11 +53,9 @@ function ProductCard({ data, toastDispatch }) {
         </div>
         <div className={cx('addToCart-btn')}>
           <button className={cx('addToCart')} data-id={data._id} onClick={(e) => handleAddToCart(e)}>
-            <div className={cx('addToCart-title')} data-id={data._id}>
-              <FontAwesomeIcon className={cx('cart-plus_icon')} icon={faCartPlus} data-id={data._id} />
-              <p className={cx('addToCart-text')} data-id={data._id}>
-                Add to cart
-              </p>
+            <div className={cx('addToCart-title')}>
+              <FontAwesomeIcon className={cx('cart-plus_icon')} icon={faCartPlus} />
+              <p className={cx('addToCart-text')}>Add to cart</p>
             </div>
           </button>
         </div>

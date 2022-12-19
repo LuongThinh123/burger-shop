@@ -5,7 +5,7 @@ const CartController = {
     try {
       const userId = req.user.id;
 
-      const cartInfor = await Cart.find(
+      let cartInfor = await Cart.find(
         {
           userId: userId,
         },
@@ -34,7 +34,7 @@ const CartController = {
             userId: userId,
             productId: productId,
           },
-          { quantity: productQuantity }
+          { $inc: { quantity: productQuantity } }
         );
       } else {
         const newCart = await Cart({
@@ -64,7 +64,6 @@ const CartController = {
         },
         { quantity: productQuantity }
       );
-
       res.status(200).json("updated successfully");
     } catch (err) {
       res.status(500).json(err);

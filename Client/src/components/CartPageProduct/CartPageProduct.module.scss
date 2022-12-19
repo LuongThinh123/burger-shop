@@ -54,6 +54,16 @@
   width: 22px;
 }
 
+.deleteIcon {
+  font-size: 2rem;
+  padding-right: 15px;
+  padding-bottom: 15px;
+  &:hover {
+    color: var(--primary);
+    cursor: pointer;
+  }
+}
+
 .total_amount {
   color: var(--primary-color);
 }
@@ -67,26 +77,9 @@
   }
 }
 
-// .cartPage__product-price,
-// .cartPage__product-item-price {
-//   width: 16%;
-//   font-size: 1.6rem;
-//   text-align: center;
-// }
-
-// .cartPage__product-item-price {
-//   font-size: 1.8rem;
-// }
-
-.quantity_input {
+.cartItem_quantity {
   width: 25%;
-  text-align: center;
-  //   margin: 0 auto;
 }
-
-// #cartPage .modal__cart-item-input {
-//   margin: 0 auto;
-// }
 
 .product_total {
   font-size: 1.6rem;
@@ -96,7 +89,3 @@
     font-size: 1.7rem;
   }
 }
-
-// .cartPage__product-total-cost {
-//   font-size: 1.7rem;
-// }

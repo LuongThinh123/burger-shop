@@ -1,0 +1,39 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  padding: 6px 16px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+}
+
+.product_img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.info {
+  flex: 1;
+  margin-left: 12px;
+}
+
+.name {
+  font-size: 1.7rem;
+  font-weight: 600;
+}
+
+// .check {
+//   margin-left: 6px;
+//   color: rgb(32, 213, 236);
+// }
+
+.price {
+  display: block;
+  margin-top: 4px;
+  font-size: 1.6rem;
+  color: var(--primary);
+}
