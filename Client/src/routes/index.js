@@ -7,8 +7,10 @@ import Login from '~/pages/Login';
 import Register from '~/pages/Register';
 import Profile from '~/pages/Profile';
 import Product from '~/pages/Product';
+import Detail from '~/pages/Detail';
 import CartPage from '~/pages/CartPage';
 import CheckoutDone from '~/pages/CheckoutDone';
+import Contact from '~/pages/Contact';
 
 export const publicRoutes = [
   { path: '/', component: Home },
@@ -17,8 +19,10 @@ export const publicRoutes = [
   { path: '/register', component: Register, layout: AuthenLayout },
   { path: '/profile', component: Profile, layout: HeaderOnly },
   { path: '/products', component: Product },
+  { path: '/detail', component: Detail },
   { path: '/cart', component: CartPage },
   { path: '/checkout-done', component: CheckoutDone },
+  { path: '/contact', component: Contact },
 ];
 
 export const privateRoutes = [];

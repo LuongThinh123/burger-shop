@@ -1,12 +1,21 @@
 import classNames from 'classnames/bind';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Tippy from '@tippyjs/react/headless';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping, faCircleXmark, faMagnifyingGlass, faSpinner, faUser } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCartShopping,
+  faCircleXmark,
+  faFileInvoiceDollar,
+  faMagnifyingGlass,
+  faRightToBracket,
+  faSpinner,
+  faUser,
+} from '@fortawesome/free-solid-svg-icons';
 
 import styles from './Header.module.scss';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
+import Menu from '~/components/Popper/Menu';
 import SearchItem from '~/components/SearchItem';
 import { useAuthenContext } from '~/customHook';
 import * as authenApi from '~/api/authenApi';
@@ -20,9 +29,56 @@ function Header() {
   const navigate = useNavigate();
   const accessToken = getAccessToken();
 
+  const MENU_ITEMS = accessToken
+    ? [
+        {
+          icon: <FontAwesomeIcon icon={faUser} />,
+          title: 'Profile',
+          to: '/profile/account',
+        },
+        {
+          icon: <FontAwesomeIcon icon={faFileInvoiceDollar} />,
+          title: 'Purchase',
+          to: '/profile/purchase',
+        },
+        {
+          icon: <FontAwesomeIcon icon={faRightToBracket} />,
+          title: 'Logout',
+        },
+      ]
+    : [
+        {
+          icon: <FontAwesomeIcon icon={faRightToBracket} />,
+          title: 'Login',
+          to: '/login',
+        },
+        {
+          icon: <FontAwesomeIcon icon={faRightToBracket} />,
+          title: 'Register',
+          to: '/register',
+        },
+      ];
+
+  // const MENU_ITEMS = useRef(items);
+
   const [searchResult, setSearchResult] = useState([]);
 
   useEffect(() => {
+    // if (accessToken) {
+    //   MENU_ITEMS.current = [
+    //     {
+    //       icon: <FontAwesomeIcon icon={faRightToBracket} />,
+    //       title: 'Login',
+    //       to: '/login',
+    //     },
+    //     {
+    //       icon: <FontAwesomeIcon icon={faRightToBracket} />,
+    //       title: 'Register',
+    //       to: '/register',
+    //     },
+    //   ];
+    //   //   console.log(MENU_ITEMS.current);
+    // }
     setTimeout(() => {
       setSearchResult([1, 2, 3]);
     }, 0);
@@ -89,11 +145,13 @@ function Header() {
         </div>
 
         <div className={cx('nav_actions')}>
-          <div className={cx('nav_user')}>
-            <div className={cx('user_icon')}>
-              <FontAwesomeIcon icon={faUser} />
+          <Menu items={MENU_ITEMS} menuItemClass={cx('menu_item')}>
+            <div className={cx('nav_user')}>
+              <div className={cx('user_icon')}>
+                <FontAwesomeIcon icon={faUser} />
+              </div>
             </div>
-          </div>
+          </Menu>
           <div className={cx('nav_cart')}>
             {/* <Link to="/cart"> */}
             <FontAwesomeIcon className={cx('cart_icon')} icon={faCartShopping} />

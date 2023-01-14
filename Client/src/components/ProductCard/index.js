@@ -13,7 +13,7 @@ import image from '~/assets/images';
 
 const cx = classNames.bind(styles);
 
-function ProductCard({ data, toastDispatch }) {
+function ProductCard({ data, toastDispatch, className }) {
   const navigate = useNavigate();
   const accessToken = getAccessToken();
   let handleAddToCart = (e) => {
@@ -37,7 +37,7 @@ function ProductCard({ data, toastDispatch }) {
   };
 
   return (
-    <div className={cx('product-card')}>
+    <div className={cx('product-card', className)}>
       <div className={cx('product-img')}>
         <img src={image.test} alt="" />
       </div>

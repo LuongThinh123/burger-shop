@@ -189,3 +189,14 @@
 .cart_product_numbers {
   line-height: var(--height);
 }
+
+.nav_actions {
+  .menu_item {
+    justify-content: flex-start;
+    margin: 0;
+    color: var(--primary);
+    font-size: 1.8rem;
+    padding: 16px 16px;
+    // border-bottom: 1px solid var(--gray);
+  }
+}

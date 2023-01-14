@@ -35,12 +35,16 @@
   }
 
   .product-description {
+    width: 100%;
     margin: 15px 0;
     text-align: center;
     line-height: 1.4;
 
     .description {
       color: var(--gray);
+      display: inline-block;
+      width: 100%;
+      word-break: break-all;
     }
   }
 

@@ -9,8 +9,9 @@ const cx = classNames.bind(styles);
 function InputQuantity({ value, className, rounded = false, onChange }) {
   const [inputQuantity, setInputQuantity] = useState(value);
 
-  const classes = cx('wrapper', {
+  const classes = cx('quantity_input', {
     [className]: className,
+    rounded,
   });
 
   //   const handleOncickPlusAndMinus = (e) => {
@@ -28,8 +29,8 @@ function InputQuantity({ value, className, rounded = false, onChange }) {
   //   };
 
   return (
-    <div className={classes}>
-      <div className={cx('quantity_input', { rounded })}>
+    <div className={cx('wrapper')}>
+      <div className={classes}>
         {/* <div class="modal__cart-item-input"> */}
         <button
           className={cx('decrement')}

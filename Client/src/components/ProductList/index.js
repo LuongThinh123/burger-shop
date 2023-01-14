@@ -60,6 +60,5 @@ function ProductList() {
     </div>
   );
 }
-// ? productListInfor.total : 35
-// ? productListInfor.limit : 6
+
 export default ProductList;
