@@ -1,22 +1,29 @@
 .container {
-  width: 100%;
   position: relative;
-  display: flex;
   align-items: center;
-  //   overflow: hidden;
+}
+
+.container,
+.items-container,
+.displayFrame {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.items-container {
+  align-items: center;
+  overflow: hidden;
 }
 
 .displayFrame {
-  width: 100%;
-  height: 340px;
   max-height: 900px;
   margin: auto;
   text-align: center;
-  //   background-color: var(--lightGray);
   white-space: nowrap;
   z-index: 1;
   caret-color: transparent;
-  overflow: hidden;
+  transition: all 700ms ease-in-out;
 }
 
 .displayFrame::-webkit-scrollbar {
@@ -28,12 +35,14 @@
   left: -3%;
   cursor: pointer;
   z-index: 2;
+  color: var(--primary);
+
   &:hover {
-    color: var(--primary);
+    color: var(--darkCyan);
   }
 
   .left-arrow-icon {
-    font-size: 3.2rem;
+    font-size: 3.4rem;
   }
 }
 
@@ -42,24 +51,16 @@
   right: -3%;
   cursor: pointer;
   z-index: 2;
+  color: var(--primary);
 
   &:hover {
-    color: var(--primary);
+    color: var(--darkCyan);
   }
 
   .right-arrow-icon {
-    font-size: 3.2rem;
+    font-size: 3.4rem;
   }
 }
-
-.displayFrame {
-  display: flex;
-  //   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  //   grid-gap: 20px;
-  height: 100%;
-  width: 100%;
-}
-
 // .carouselItem {
 //   touch-action: none;
 //   height: 100%;
@@ -72,17 +73,4 @@
 //   height: 100%;
 //   max-width: 100%;
 //   background-color: none;
-// }
-
-.carouselProduct {
-  width: 22.5%;
-  margin: 0 15px;
-  transition: all 500ms linear;
-}
-
-// .carouselProduct:first-child {
-//   margin-left: 0;
-// }
-// .carouselProduct:last-child {
-//   margin-right: 0;
 // }

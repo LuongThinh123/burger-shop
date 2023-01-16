@@ -1,25 +1,15 @@
 import classNames from 'classnames/bind';
-import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Tippy from '@tippyjs/react/headless';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCartShopping,
-  faCircleXmark,
-  faFileInvoiceDollar,
-  faMagnifyingGlass,
-  faRightToBracket,
-  faSpinner,
-  faUser,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping, faFileInvoiceDollar, faRightToBracket, faUser } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './Header.module.scss';
-import { Wrapper as PopperWrapper } from '~/components/Popper';
 import Menu from '~/components/Popper/Menu';
-import SearchItem from '~/components/SearchItem';
+import Search from '../Search';
 import { useAuthenContext } from '~/customHook';
 import * as authenApi from '~/api/authenApi';
 import { getAccessToken } from '~/utils/localStorage';
+import Image from '~/components/Image';
 import image from '~/assets/images';
 
 const cx = classNames.bind(styles);
@@ -44,6 +34,7 @@ function Header() {
         {
           icon: <FontAwesomeIcon icon={faRightToBracket} />,
           title: 'Logout',
+          separate: true,
         },
       ]
     : [
@@ -58,31 +49,6 @@ function Header() {
           to: '/register',
         },
       ];
-
-  // const MENU_ITEMS = useRef(items);
-
-  const [searchResult, setSearchResult] = useState([]);
-
-  useEffect(() => {
-    // if (accessToken) {
-    //   MENU_ITEMS.current = [
-    //     {
-    //       icon: <FontAwesomeIcon icon={faRightToBracket} />,
-    //       title: 'Login',
-    //       to: '/login',
-    //     },
-    //     {
-    //       icon: <FontAwesomeIcon icon={faRightToBracket} />,
-    //       title: 'Register',
-    //       to: '/register',
-    //     },
-    //   ];
-    //   //   console.log(MENU_ITEMS.current);
-    // }
-    setTimeout(() => {
-      setSearchResult([1, 2, 3]);
-    }, 0);
-  }, []);
 
   const handleLogout = () => {
     authenApi.logout(accessToken, authenDispatch, navigate);
@@ -112,45 +78,24 @@ function Header() {
               <Link to="/contact">Contact</Link>
             </li>
           </ul>
-          <Tippy
-            // visible={searchResult.length > 0}
-            // interactive
-            render={(attrs) => (
-              <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                <PopperWrapper>
-                  <h4 className={cx('search-title')}>Search results...</h4>
-                  <SearchItem />
-                  <SearchItem />
-                  <SearchItem />
-                  <SearchItem />
-                  <SearchItem />
-                  <SearchItem />
-                  {/* <SearchItem /> */}
-                  {/* <SearchItem /> */}
-                </PopperWrapper>
-              </div>
-            )}
-          >
-            <div className={cx('search')}>
-              <input placeholder="Tìm kiếm sản phẩm" spellCheck={false} />
-              <button className={cx('clear')}>
-                <FontAwesomeIcon icon={faCircleXmark} />
-              </button>
-              <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
-              <button className={cx('search-btn')}>
-                <FontAwesomeIcon className={cx('search-icon')} icon={faMagnifyingGlass} />
-              </button>
-            </div>
-          </Tippy>
+          <Search />
         </div>
 
         <div className={cx('nav_actions')}>
           <Menu items={MENU_ITEMS} menuItemClass={cx('menu_item')}>
-            <div className={cx('nav_user')}>
-              <div className={cx('user_icon')}>
-                <FontAwesomeIcon icon={faUser} />
+            {accessToken ? (
+              <Image
+                className={cx('user-avatar')}
+                src="https://scontent.fsgn5-5.fna.fbcdn.net/v/t39.30808-6/308855318_1765329653819861_649421416552517202_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=wbrN_378ctQAX90IYt2&_nc_ht=scontent.fsgn5-5.fna&oh=00_AfAuTzZIWLcytmZhXwxTzvnpKZ1-7vfn8ddXM4t81LW5GA&oe=63CAD1B2"
+                alt="avatar"
+              />
+            ) : (
+              <div className={cx('nav_user')}>
+                <div className={cx('user_icon')}>
+                  <FontAwesomeIcon icon={faUser} />
+                </div>
               </div>
-            </div>
+            )}
           </Menu>
           <div className={cx('nav_cart')}>
             {/* <Link to="/cart"> */}

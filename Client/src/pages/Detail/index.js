@@ -90,7 +90,11 @@ function Detail() {
 
         <div className={cx('recommend-food')}>
           <h1 className={cx('recommend-food-title')}>YOU MAY ALSO LIKE</h1>
-          <Carousel amountItemAppear={4}>
+          <Carousel amountItemAppear={4} marginLeftRight={15}>
+            <ProductCard data={data} className={cx('product')} />
+            <ProductCard data={data} className={cx('product')} />
+            <ProductCard data={data} className={cx('product')} />
+            <ProductCard data={data} className={cx('product')} />
             <ProductCard data={data} className={cx('product')} />
             <ProductCard data={data} className={cx('product')} />
             <ProductCard data={data} className={cx('product')} />
