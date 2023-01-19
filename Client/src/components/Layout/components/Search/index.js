@@ -1,11 +1,17 @@
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react/headless';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import SearchItem from '~/components/SearchItem';
+import * as productApi from '~/api/productApi';
+import { useDebounce } from '~/customHook';
+import { setSearchTitle } from '~/reducers/actions/filterAction';
+import { useFilterContext } from '~/customHook';
+
 import styles from './Search.module.scss';
 const cx = classNames.bind(styles);
 
@@ -14,27 +20,35 @@ function Search() {
   const [searchResult, setSearchResult] = useState([]);
   const [showResults, setShowResults] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [, filterDispatch] = useFilterContext();
+
+  const debounced = useDebounce(searchValue, 700);
 
   const inputRef = useRef();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (!searchValue.trim()) {
+    if (!debounced.trim()) {
       setSearchResult([]);
       return;
     }
 
     setLoading(true);
 
-    fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
-      .then((res) => res.json())
-      .then((res) => {
-        setSearchResult(res.data);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-  }, [searchValue]);
+    const fetchProductList = async () => {
+      try {
+        const response = await productApi.getProducts({
+          searchTitle: encodeURIComponent(debounced),
+        });
+        setSearchResult(response.products);
+        console.log(response.products);
+      } catch (error) {
+        console.error('lỗi rồi');
+      }
+    };
+    fetchProductList();
+    setLoading(false);
+  }, [debounced]);
 
   const handleClear = () => {
     setSearchValue('');
@@ -46,6 +60,22 @@ function Search() {
     setShowResults(false);
   };
 
+  const handleSearchBtnClick = () => {
+    if (!debounced.trim()) return;
+    navigate('/products');
+    filterDispatch(setSearchTitle(encodeURIComponent(searchValue)));
+    // try {
+    //   const response = await productApi.getProducts({
+    //     searchTitle: encodeURIComponent(debounced),
+    //   });
+    //   setSearchResult(response.products);
+    //   setLoading(false);
+    //   console.log(response.products);
+    // } catch (error) {
+    //   console.error('lỗi rồi');
+    // }
+  };
+
   return (
     <Tippy
       visible={showResults && searchResult.length > 0}
@@ -54,8 +84,8 @@ function Search() {
         <div className={cx('search-result')} tabIndex="-1" {...attrs}>
           <PopperWrapper>
             <h4 className={cx('search-title')}>Search results...</h4>
-            {searchResult.map((result) => (
-              <SearchItem key={result.id} data={result} />
+            {searchResult.map((result, index) => (
+              <SearchItem key={index} data={result} />
             ))}
           </PopperWrapper>
         </div>
@@ -77,7 +107,7 @@ function Search() {
           </button>
         )}
         {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
-        <button className={cx('search-btn')}>
+        <button className={cx('search-btn')} onClick={handleSearchBtnClick}>
           <FontAwesomeIcon className={cx('search-icon')} icon={faMagnifyingGlass} />
         </button>
       </div>

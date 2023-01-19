@@ -23,3 +23,7 @@ export const setPriceFilter = (payload) => ({
   payload,
 });
 
+export const setSearchTitle = (payload) => ({
+  type: 'set_search_title',
+  payload,
+});

@@ -67,7 +67,6 @@
 .total_amount {
   color: var(--primary-color);
 }
-
 .product_price {
   width: 16%;
   text-align: center;
@@ -77,8 +76,12 @@
   }
 }
 
-.cartItem_quantity {
+.product_quantity {
   width: 25%;
+}
+
+.cartItem_quantity {
+  margin: auto;
 }
 
 .product_total {

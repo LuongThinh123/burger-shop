@@ -11,13 +11,13 @@ function SearchItem({ data }) {
   return (
     // /detail/${data.id}
     <Link to={`/detail`} className={cx('wrapper')}>
-      <Image className={cx('product_img')} src={images.test} alt="Hoa" />
+      <Image className={cx('product_img')} src={images.test} alt="Burger" />
       <div className={cx('info')}>
         <h4 className={cx('name')}>
-          <span>{data.full_name}</span>
+          <span>{data.title}</span>
           {/* <FontAwesomeIcon className={cx('check')} icon={faCheckCircle} /> */}
         </h4>
-        <span className={cx('price')}>{data.nickname}</span>
+        <span className={cx('price')}>${data.sale}</span>
       </div>
     </Link>
   );

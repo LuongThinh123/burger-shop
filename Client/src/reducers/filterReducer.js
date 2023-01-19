@@ -22,7 +22,11 @@ function filterReducer(state, action) {
         page: 1,
       };
     case 'set_search_title':
-      return {};
+      return {
+        ...state,
+        searchTitle: action.payload,
+        page: 1,
+      };
     case 'set_price_filter':
       return {
         ...state,

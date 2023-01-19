@@ -56,6 +56,7 @@ const CartController = {
       const userId = req.user.id;
       const productId = req.body.productId;
       const productQuantity = req.body.amount;
+      console.log(userId, productId, productQuantity);
 
       await Cart.updateOne(
         {

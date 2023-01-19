@@ -18,13 +18,16 @@ export const getProducts = async (filterState) => {
       page: filterState?.page,
       limit: filterState?.limit,
       search: filterState?.searchTitle,
-      price: filterState?.price.join(','),
+      price: filterState.price ? filterState.price.join(',') : '',
       sort: filterState?.sort,
       order: filterState?.order,
-      categoryIdList: filterState?.categoryIdList.join(','),
+      categoryIdList: filterState.categoryIdList ? filterState.categoryIdList.join(',') : '',
     };
-    // console.log(params);
+
     const result = await request.get(`/products`, { params });
     return result;
-  } catch (err) {}
+    // return params;
+  } catch (err) {
+    console.log(err);
+  }
 };
