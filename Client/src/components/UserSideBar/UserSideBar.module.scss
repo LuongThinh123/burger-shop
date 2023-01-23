@@ -1,0 +1,88 @@
+.user-options {
+  width: 21%;
+  margin-right: 44px;
+}
+
+.user-display,
+.mini-infor,
+.options,
+.option {
+  display: flex;
+}
+
+.user-display {
+  padding-bottom: 15px;
+  align-items: center;
+  border-bottom: 1px solid var(--lightGray);
+}
+
+.mini-infor {
+  flex-direction: column;
+
+  .mini-nick-name {
+    font-size: 1.9rem;
+    margin-bottom: 4px;
+    color: var(--primary);
+  }
+
+  .mini-full-name {
+    font-weight: bold;
+    font-size: 1.9rem;
+  }
+}
+
+.user-imgBox {
+  width: 76px;
+  height: 76px;
+  margin-right: 18px;
+
+  .user-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+}
+
+.options {
+  margin-top: 25px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.option-link {
+  width: 100%;
+}
+
+.option {
+  align-items: center;
+  cursor: pointer;
+  padding-bottom: 30px;
+
+  .purchase-icon,
+  .account-icon {
+    color: var(--primary);
+    font-size: 2.4rem;
+    margin-right: 15px;
+  }
+
+  .account-icon {
+    margin-left: 3px;
+    margin-right: 19px;
+  }
+
+  .account-title,
+  .purchase-title {
+    font-size: 2.1rem;
+    color: var(--darkGray);
+    font-weight: bold;
+  }
+
+  &:hover .account-title {
+    color: var(--primary);
+  }
+
+  &:hover .purchase-title {
+    color: var(--primary);
+  }
+}

@@ -8,9 +8,12 @@ const cx = classNames.bind(styles);
 function OrderDetail({ itemList, status }) {
   return (
     <div className={cx('order-box')}>
-      <div className={cx('order-id')}>
-        <h3>ORDER ID: </h3>
-        <span> 123456789</span>
+      <div className={cx('order-id-status')}>
+        <div className={cx('order-id')}>
+          <h3>ORDER ID: </h3>
+          <span> 123456789</span>
+        </div>
+        {status && <h2 className={cx('order-status')}>PENDING</h2>}
       </div>
       <div className={cx('order-product-list')}>
         {/* {itemList

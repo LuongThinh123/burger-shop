@@ -1,13 +1,7 @@
-import { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMoneyBill, faUser } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './UserPurchase.module.scss';
-// import * as cartApi from '~/api/cartApi';
-// import { getAccessToken } from '~/utils/localStorage';
-// import CartPageProduct from '~/components/CartPageProduct';
-import Image from '~/components/Image';
+import UserSideBar from '~/components/UserSideBar';
 import Button from '~/components/Button';
 import OrderDetail from '~/components/OrderDetail';
 
@@ -16,41 +10,16 @@ const cx = classNames.bind(styles);
 function UserPurchase() {
   return (
     <div className={cx('inner')}>
-      <div className={cx('user-options')}>
-        <div className={cx('user-display')}>
-          <div className={cx('user-imgBox')}>
-            <Image
-              className={cx('user-img')}
-              src={
-                'https://scontent.fsgn5-5.fna.fbcdn.net/v/t39.30808-6/308855318_1765329653819861_649421416552517202_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=6MDPEqim8SMAX-4iaOd&_nc_ht=scontent.fsgn5-5.fna&oh=00_AfCjbv3s4xMljrNqGwqMPc8CM00uLIZ63ZUsfk1khjSG-Q&oe=63D2BAB2'
-              }
-            />
-          </div>
-          <div className={cx('mini-infor')}>
-            <h4 className={cx('mini-nick-name')}>chithinh123</h4>
-            <span className={cx('mini-full-name')}>Lương Chi Thịnh</span>
-          </div>
-        </div>
-        <div className={cx('options')}>
-          <div className={cx('account-option', 'option')}>
-            <FontAwesomeIcon className={cx('account-icon')} icon={faUser} />
-            <span className={cx('account-title')}>Account</span>
-          </div>
-          <div className={cx('purchase-option', 'option')}>
-            <FontAwesomeIcon className={cx('purchase-icon')} icon={faMoneyBill} />
-            <span className={cx('purchase-title')}>Purchase order</span>
-          </div>
-        </div>
-      </div>
+      <UserSideBar />
       <div className={cx('user-orders')}>
         <div className={cx('order-status')}>
-          <Button>All</Button>
-          <Button>Pending</Button>
-          <Button>Completed</Button>
-          <Button>Canceled</Button>
+          <Button className={cx('status', 'active-status')}>All</Button>
+          <Button className={cx('status')}>Pending</Button>
+          <Button className={cx('status')}>Completed</Button>
+          <Button className={cx('status')}>Canceled</Button>
         </div>
         <div className={cx('orders')}>
-          <OrderDetail />
+          <OrderDetail status />
         </div>
       </div>
     </div>
