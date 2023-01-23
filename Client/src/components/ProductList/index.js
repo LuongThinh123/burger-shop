@@ -18,7 +18,7 @@ function ProductList() {
   const [productListInfor, setProductListInfor] = useState({});
   const [filterState, filterDispatch] = useFilterContext();
   const [, toastDispatch] = useToastContext();
-
+  console.log('re-render');
   useEffect(() => {
     const fetchProductList = async () => {
       try {

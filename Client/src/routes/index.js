@@ -9,7 +9,9 @@ import Profile from '~/pages/Profile';
 import Product from '~/pages/Product';
 import Detail from '~/pages/Detail';
 import CartPage from '~/pages/CartPage';
+import Checkout from '~/pages/Checkout';
 import CheckoutDone from '~/pages/CheckoutDone';
+import UserPurchase from '~/pages/UserPurchase';
 import Contact from '~/pages/Contact';
 
 export const publicRoutes = [
@@ -22,6 +24,8 @@ export const publicRoutes = [
   { path: '/detail', component: Detail },
   { path: '/cart', component: CartPage },
   { path: '/checkout-done', component: CheckoutDone },
+  { path: '/checkout', component: Checkout },
+  { path: '/user/purchase', component: UserPurchase },
   { path: '/contact', component: Contact },
 ];
 

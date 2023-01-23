@@ -1,0 +1,131 @@
+.inner {
+  //   display: flex;
+  //   flex-direction;
+  padding: 0 var(--default-content-layout-padding);
+  //   justify-content: space-between;
+  //   align-items: flex-start;
+  width: var(--default-layout-width);
+  margin: 68px 0;
+}
+
+.checkout-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.Billing-details {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+
+  .Billing-details-title {
+    margin-bottom: 20px;
+  }
+
+  .name-details {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .input-form-name {
+    width: 49%;
+  }
+
+  .input-form {
+    width: 100%;
+  }
+
+  .bill-input {
+    //   height: 46px;
+    //   width: 100%;
+    border: 2px solid var(--lightGray);
+    border-radius: 5px;
+  }
+}
+
+.your-order {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin-left: 75px;
+
+  .your-order-title {
+    margin-bottom: 25px;
+  }
+}
+
+.order-products {
+  margin-bottom: 20px;
+}
+
+.product-item,
+.product-name {
+  display: flex;
+  align-items: center;
+}
+
+.product-item {
+  justify-content: space-between;
+}
+
+.product-thumb {
+  width: 56px;
+  height: 58px;
+
+  .product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.name {
+  margin-left: 10px;
+
+  .product-quantity {
+    margin-left: 5px;
+    color: var(--darkGray);
+    font-size: 1.7rem;
+  }
+}
+
+.product-price {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--darkGray);
+}
+
+.subtotal,
+.total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.7rem;
+  width: 100%;
+  height: 60px;
+  background-color: rgba(244, 244, 244);
+  padding: 25px;
+
+  span {
+    font-size: 1.7rem;
+    font-weight: bold;
+  }
+}
+
+.subtotal {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom: 1px solid var(--white);
+}
+
+.total {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+  .total_amount {
+    color: var(--primary);
+    font-size: 1.8rem;
+  }
+}

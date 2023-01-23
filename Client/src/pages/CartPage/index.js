@@ -17,12 +17,13 @@ function CartPage() {
 
   const [cartItems, setCartItems] = useState([]);
 
+  console.log('re-render nè');
   useEffect(() => {
     const fetchProductList = async () => {
       try {
         const accessToken = getAccessToken();
         const response = await cartApi.getCartProducts(accessToken);
-        console.log(response);
+        // console.log(response);
         setCartItems(response);
         // console.log([...response]);
       } catch (error) {
@@ -31,7 +32,7 @@ function CartPage() {
     };
     fetchProductList();
   }, []);
-  // console.log(cartItems);
+
   return (
     <>
       <Banner heading={'Cart'}>Cart</Banner>
