@@ -1,0 +1,90 @@
+.your-order {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin-left: 75px;
+
+  .your-order-title {
+    margin-bottom: 25px;
+  }
+}
+
+.payment-methods {
+  list-style: none;
+  margin-top: 30px;
+
+  .payment-method {
+    height: auto;
+    overflow: hidden;
+    margin-top: 26px;
+    // animation: MoveDownUp 0.5s linear;
+    transition: all 0.5s linear;
+
+    label {
+      width: 100%;
+      font-weight: bold;
+      color: var(--darkGray);
+    }
+  }
+}
+
+.input-radio {
+  margin-right: 10px;
+}
+
+.payment-description {
+  //   position: absolute;
+  position: relative;
+  left: 0;
+  top: 0;
+  margin-top: 12px;
+  padding-left: 28px;
+  padding-right: 14px;
+
+  animation: MoveUpDown 0.25s linear;
+}
+
+.paypal-img {
+  margin-left: 16px;
+}
+
+@keyframes MoveUpDown {
+  100% {
+    top: 0;
+  }
+  0% {
+    top: 100px;
+  }
+}
+
+@keyframes MoveDownUp {
+  100% {
+    top: 100px;
+  }
+  0% {
+    top: 0px;
+  }
+}
+
+.description {
+  font-size: 1.4rem;
+  line-height: 24px;
+  letter-spacing: 0.08px;
+  color: var(--darkGray);
+}
+
+.place-order-btn {
+  width: 100%;
+  height: 60px;
+  font-size: 1.9rem;
+  border-radius: 6px;
+  margin-top: 35px;
+
+  &:hover {
+    background-color: var(--primary);
+  }
+}
+
+.hidden {
+  display: none;
+}

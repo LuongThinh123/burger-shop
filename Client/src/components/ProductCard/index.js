@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
@@ -39,9 +39,11 @@ function ProductCard({ data, toastDispatch, className }) {
 
   return (
     <div className={cx('product-card', className)}>
-      <div className={cx('product-img')}>
-        <img src={image.test} alt="" />
-      </div>
+      <Link to={`/detail/${data._id}`}>
+        <div className={cx('product-img')}>
+          <img src={image.test} alt="" />
+        </div>
+      </Link>
       <div className={cx('product-information')}>
         <div className={cx('product-name')}>
           <h3 className={cx('name')}>{data.title}</h3>

@@ -3,8 +3,7 @@ import classNames from 'classnames/bind';
 
 import Banner from '~/components/Banner';
 import Input from '~/components/Input';
-import Image from '~/components/Image';
-import images from '~/assets/images';
+import CheckoutOrder from '~/components/CheckoutOrder';
 import styles from './Checkout.module.scss';
 // import * as cartApi from '~/api/cartApi';
 // import { getAccessToken } from '~/utils/localStorage';
@@ -94,35 +93,7 @@ function Checkout() {
               errors={'hello'}
             />
           </div>
-          <div className={cx('your-order')}>
-            <h2 className={cx('your-order-title')}>Your order</h2>
-            <div className={cx('order-review')}>
-              <div className={cx('order-details')}>
-                <div className={cx('order-products')}>
-                  <div className={cx('product-item')}>
-                    <div className={cx('product-name')}>
-                      <div className={cx('product-thumb')}>
-                        <Image className={cx('product-img')} src={images.test} />
-                      </div>
-                      <div className={cx('name')}>
-                        SHRIMP BURGER
-                        <strong className={cx('product-quantity')}> X 3</strong>
-                      </div>
-                    </div>
-                    <div className={cx('product-price')}>$35.00</div>
-                  </div>
-                </div>
-                <div className={cx('subtotal')}>
-                  <h4 className={cx('subtotal_title')}>Subtotal</h4>
-                  <span className={cx('subtotal_amount')}>$150.00</span>
-                </div>
-                <div className={cx('total')}>
-                  <h4 className={cx('total_title')}>Total</h4>
-                  <span className={cx('total_amount')}>$150.00</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <CheckoutOrder />
         </form>
       </div>
     </>

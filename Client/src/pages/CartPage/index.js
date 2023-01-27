@@ -1,21 +1,20 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames/bind';
 
 import Banner from '~/components/Banner';
 import styles from './CartPage.module.scss';
 import * as cartApi from '~/api/cartApi';
-import { getAccessToken } from '~/utils/localStorage';
+import { getAccessToken, setCartProducts, getCartProducts } from '~/utils/localStorage';
 import CartPageProduct from '~/components/CartPageProduct';
 
 const cx = classNames.bind(styles);
 
 function CartPage() {
-  // const path = [{
-  //   link: 'products',
-
-  // }]
-
   const [cartItems, setCartItems] = useState([]);
+  const subTotal = useRef();
+  const total = useRef();
+
+  let totalPrice = 0;
 
   console.log('re-render nè');
   useEffect(() => {
@@ -23,14 +22,19 @@ function CartPage() {
       try {
         const accessToken = getAccessToken();
         const response = await cartApi.getCartProducts(accessToken);
-        // console.log(response);
         setCartItems(response);
-        // console.log([...response]);
+        setCartProducts(response);
       } catch (error) {
         console.error('lỗi rồi');
       }
     };
+    // const cartItems = getCartProducts();
+    // if (cartItems) {
+    //   setCartItems(cartItems);
+    //   console.log(cartItems);
+    // } else {
     fetchProductList();
+    // }
   }, []);
 
   return (
@@ -47,7 +51,8 @@ function CartPage() {
           <div className={cx('product-box')}>
             {cartItems
               ? cartItems.map((item) => {
-                  return <CartPageProduct key={item._id} data={item} />;
+                  totalPrice += item.productId.sale * item.quantity;
+                  return <CartPageProduct key={item._id} data={item} subTotalRef={subTotal} totalRef={total} />;
                 })
               : []}
             {/* <div className={cx('product')}>
@@ -100,11 +105,15 @@ function CartPage() {
             <h2 className={cx('title')}>Cart totals</h2>
             <div className={cx('subtotal')}>
               <h4 className={cx('subtotal_title')}>Subtotal</h4>
-              <span className={cx('subtotal_amount')}>$150.00</span>
+              <span ref={subTotal} className={cx('subtotal_amount')}>
+                ${totalPrice}
+              </span>
             </div>
             <div className={cx('total')}>
               <h4 className={cx('total_title')}>Total</h4>
-              <span className={cx('total_amount')}>$150.00</span>
+              <span ref={total} className={cx('total_amount')}>
+                ${totalPrice}
+              </span>
             </div>
             <div className={cx('checkout_btn')}>
               <span className={cx('checkout_text')}>Proceed to checkout</span>

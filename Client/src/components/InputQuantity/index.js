@@ -30,7 +30,7 @@ const InputQuantity = forwardRef(({ value, productId, className, rounded = false
     if (!onCallApi || !quantityDebounced) return;
     if (Number(quantityDebounced) !== Number(currentValue.current) && blurDebounced) {
       currentValue.current = quantityDebounced;
-      console.log(currentValue.current);
+      // console.log(currentValue.current);
       onCallApi();
     }
   }, [quantityDebounced, blurDebounced, onCallApi, value]);

@@ -21,7 +21,7 @@ export const publicRoutes = [
   { path: '/register', component: Register, layout: AuthenLayout },
   { path: '/profile', component: Profile, layout: HeaderOnly },
   { path: '/products', component: Product },
-  { path: '/detail', component: Detail },
+  { path: '/detail/:productId', component: Detail },
   { path: '/cart', component: CartPage },
   { path: '/checkout-done', component: CheckoutDone },
   { path: '/checkout', component: Checkout },

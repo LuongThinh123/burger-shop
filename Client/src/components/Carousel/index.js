@@ -1,4 +1,4 @@
-import { useState, Children, useRef, useEffect } from 'react';
+import { memo, useState, Children, useRef, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleChevronLeft, faCircleChevronRight } from '@fortawesome/free-solid-svg-icons';
@@ -8,6 +8,7 @@ import styles from './Carousel.module.scss';
 const cx = classNames.bind(styles);
 
 function Carousel(props) {
+  console.log('re-render carousel');
   // const [slidePosition, setSlidePosition] = useState(0);
   const [countSpace, setCountSpace] = useState(0);
   const [displayItems, setDisplayItems] = useState([]);
@@ -18,6 +19,7 @@ function Carousel(props) {
   const displayFrame = useRef();
 
   useEffect(() => {
+    // console.log('re-render carousel');
     widthItem.current = displayFrame.current.getBoundingClientRect().width / amountItemAppear;
     spacing.current = widthItem.current * children.length - amountItemAppear * widthItem.current;
 
@@ -92,4 +94,4 @@ function Carousel(props) {
   );
 }
 
-export default Carousel;
+export default memo(Carousel);

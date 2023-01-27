@@ -6,24 +6,44 @@ import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 import styles from './CartPageProduct.module.scss';
 import * as cartApi from '~/api/cartApi';
 import InputQuantity from '~/components/InputQuantity';
-import { getAccessToken } from '~/utils/localStorage';
+import {
+  getAccessToken,
+  updateCartProductsItem,
+  removeCartProductsItem,
+  getTotalCartProducts,
+} from '~/utils/localStorage';
 import image from '~/assets/images';
 const cx = classNames.bind(styles);
 
-function CartPageProduct({ data }) {
+function CartPageProduct({ data, subTotalRef, totalRef }) {
+  console.log('re-render cart product');
   const inputRef = useRef();
+  const totalAmountRef = useRef();
   const productRef = useRef();
 
   const handleDeleteItem = (e) => {
     productRef.current.remove();
     const productId = e.target.dataset.id;
+
+    removeCartProductsItem(productId);
+    subTotalRef.current.innerHTML = `$${getTotalCartProducts()}`;
+    totalRef.current.innerHTML = `$${getTotalCartProducts()}`;
+
     cartApi.deleteCartItem(getAccessToken(), productId);
   };
 
   const handleOnchageQuantity = () => {
+    const productId = inputRef.current.dataset.id;
+    const amount = inputRef.current.value;
+
+    totalAmountRef.current.innerHTML = `$${amount * data.productId.sale}`;
+    updateCartProductsItem(productId, amount);
+    subTotalRef.current.innerHTML = `$${getTotalCartProducts()}`;
+    totalRef.current.innerHTML = `$${getTotalCartProducts()}`;
+
     const product = {
-      productId: inputRef.current.dataset.id,
-      amount: inputRef.current.value,
+      productId,
+      amount,
     };
     cartApi.updateCartItem(getAccessToken(), product);
   };
@@ -59,7 +79,9 @@ function CartPageProduct({ data }) {
         />
       </div>
       <div className={cx('product_total')}>
-        <span className={cx('total_amount')}>$500</span>
+        <span ref={totalAmountRef} className={cx('total_amount')}>
+          ${data.productId.sale * data.quantity}
+        </span>
       </div>
     </div>
   );

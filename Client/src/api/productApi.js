@@ -31,3 +31,23 @@ export const getProducts = async (filterState) => {
     console.log(err);
   }
 };
+
+export const getProductById = async (id) => {
+  try {
+    const result = await request.get(`/products/${id}`);
+    return result;
+    // return params;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getRandomProducts = async (number) => {
+  try {
+    const result = await request.get(`/products/random?number=${number}`);
+    return result;
+    // return params;
+  } catch (err) {
+    console.log(err);
+  }
+};

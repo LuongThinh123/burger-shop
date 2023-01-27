@@ -119,13 +119,24 @@ const ProductsController = {
       res.status(500).json({ error: true, message: err.message });
     }
   },
+
   //[GET] /products/:slug
   show: async (req, res, next) => {
     try {
-      let product = await Product.findOne({ slug: req.params.slug });
-      console.log(req.params.slug);
-      console.log(product);
-      res.status(200).res.json(product);
+      const product = await Product.findOne({ _id: req.params.id });
+      res.status(200).json(product);
+    } catch (err) {
+      next(err);
+    }
+  },
+
+  //[GET] /products/random?number='your number'
+  getRandomProducts: async (req, res, next) => {
+    try {
+      const products = await Product.aggregate().sample(
+        Number(req.query.number)
+      );
+      res.status(200).json(products);
     } catch (err) {
       next(err);
     }

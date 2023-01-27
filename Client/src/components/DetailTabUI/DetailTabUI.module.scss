@@ -1,0 +1,126 @@
+// More infor component
+
+.more-infor {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+}
+
+.infor-btn {
+  font-size: 1.5rem;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  padding: 13px 22px;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-active {
+  background-color: var(--primary);
+}
+
+// .infor-btn:first-child {
+//   margin-left: 0;
+// }
+
+.infor-content {
+  border: 1px solid var(--lightGray);
+  padding: 30px;
+}
+
+.description {
+  p {
+    margin-bottom: 15px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    color: var(--darkGray);
+  }
+  animation: FadeIn 0.5s ease-in-out;
+}
+
+.product-details {
+  display: flex;
+  flex-direction: column;
+  animation: FadeIn 0.5s ease-in-out;
+}
+
+.product-manufacturer {
+  margin-bottom: 15px;
+}
+
+.product-img {
+  width: 103px;
+  height: 80px;
+  border: 1px solid var(--lightGray);
+}
+
+.product-reference,
+.product-condition,
+.product-quantities {
+  margin-bottom: 12px;
+
+  .label {
+    margin-right: 14px;
+    font-weight: bold;
+  }
+
+  span {
+    color: var(--darkGray);
+  }
+}
+
+.product-features {
+  display: flex;
+  flex-direction: column;
+}
+
+.features-title {
+  margin-bottom: 12px;
+  font-size: 1.6rem;
+}
+
+.feature-wrapper {
+  display: flex;
+
+  .name,
+  .value {
+    background-color: #ddd;
+    margin-bottom: 3px;
+    padding: 14px 20px;
+  }
+
+  .name {
+    margin-right: 4px;
+    width: 50%;
+    font-weight: 480;
+  }
+
+  .value {
+    flex: 1;
+  }
+}
+
+.feature-wrapper:nth-of-type(even) .name {
+  background-color: #f6f6f6;
+}
+
+.feature-wrapper:nth-of-type(even) .value {
+  background-color: #f6f6f6;
+}
+
+.active {
+  color: var(--white);
+  background-color: var(--primary);
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes FadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

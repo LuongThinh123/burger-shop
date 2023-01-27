@@ -1,0 +1,111 @@
+.homeInner {
+  display: flex;
+  flex-direction: column;
+  padding: 0 99.5px;
+  width: var(--default-layout-width);
+}
+
+.elementor-container {
+  display: flex;
+  align-items: center;
+}
+
+.element {
+  position: relative;
+  width: 33.33%;
+  margin: 0 15px;
+  background-color: #936dc4;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.element-item {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  width: 100%;
+  min-height: 296px;
+  height: 296px;
+  padding: 40px;
+  overflow: hidden;
+}
+
+.element-title {
+  width: 50%;
+  margin-bottom: 30px;
+  position: relative;
+  animation: upToDowOpacity 1s ease;
+
+  h2 {
+    font-size: 3.1rem;
+    letter-spacing: 0.6px;
+    color: var(--white);
+  }
+
+  span {
+    display: block;
+    margin-top: 5px;
+    font-size: 1.5rem;
+  }
+}
+
+.element-button {
+  width: 100%;
+  position: relative;
+  animation: upToDowOpacity 1s ease;
+}
+
+.element-btn {
+  color: var(--white);
+  border-radius: 5px;
+  padding: 12px 22px;
+  font-size: 1.5rem;
+  transition: all 0.1s linear;
+
+  &:hover {
+    background-color: var(--black);
+  }
+}
+
+.food-element-imgBox {
+  position: absolute;
+  right: -72.7px;
+  bottom: -82px;
+  width: 330px;
+  z-index: 1;
+  height: 330px;
+  animation: rightToLeftOpacity 1s ease;
+
+  .food-element-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.element:nth-child(2) {
+  background-color: #2db0b2;
+}
+
+@keyframes upToDowOpacity {
+  from {
+    opacity: 0;
+    top: 180px;
+  }
+  to {
+    opacity: 1;
+    top: 0px;
+  }
+}
+
+@keyframes rightToLeftOpacity {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
