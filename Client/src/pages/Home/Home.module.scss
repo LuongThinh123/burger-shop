@@ -1,13 +1,14 @@
 .homeInner {
   display: flex;
   flex-direction: column;
-  padding: 0 99.5px;
   width: var(--default-layout-width);
 }
 
 .elementor-container {
   display: flex;
   align-items: center;
+  justify-content: center;
+  padding: 0 99.5px;
 }
 
 .element {
@@ -25,20 +26,21 @@
   flex-wrap: wrap;
   align-content: flex-start;
   width: 100%;
-  min-height: 296px;
-  height: 296px;
+  // min-height: 296px;
+  height: 282px;
   padding: 40px;
   overflow: hidden;
 }
 
 .element-title {
   width: 50%;
-  margin-bottom: 30px;
+  margin-bottom: 26px;
   position: relative;
   animation: upToDowOpacity 1s ease;
+  z-index: 1;
 
   h2 {
-    font-size: 3.1rem;
+    font-size: 2.8rem;
     letter-spacing: 0.6px;
     color: var(--white);
   }
@@ -57,23 +59,24 @@
 }
 
 .element-btn {
-  color: var(--white);
+  color: var(--black);
+  background-color: var(--star-gold);
   border-radius: 5px;
   padding: 12px 22px;
   font-size: 1.5rem;
-  transition: all 0.1s linear;
+  transition: all 0.12s linear;
 
   &:hover {
+    color: var(--white);
     background-color: var(--black);
   }
 }
 
 .food-element-imgBox {
   position: absolute;
-  right: -72.7px;
+  right: -92.7px;
   bottom: -82px;
   width: 330px;
-  z-index: 1;
   height: 330px;
   animation: rightToLeftOpacity 1s ease;
 
@@ -85,7 +88,176 @@
 }
 
 .element:nth-child(2) {
+  background-color: #f1502c;
+
+  .element-item {
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 30px 12px 30px;
+  }
+
+  .element-title {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  .food-element-imgBox {
+    text-align: center;
+    top: 4px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+    width: 280px;
+    height: 280px;
+    animation: opactityScalceSmallToBig 1s ease-in-out;
+    animation-delay: 100ms;
+
+    .food-element-img {
+      object-fit: contain;
+    }
+  }
+
+  .price-only {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: auto;
+    overflow: hidden;
+  }
+
+  .price {
+    font-size: 2.3rem;
+    font-weight: bold;
+    color: var(--white);
+    margin-right: 25px;
+  }
+
+  .element-button {
+    width: auto;
+    z-index: 1;
+  }
+}
+
+.element:nth-child(3) {
   background-color: #2db0b2;
+
+  .food-element-imgBox {
+    bottom: -96px;
+  }
+
+  h2 {
+    line-height: 1.4;
+  }
+}
+
+.menu-cointainer {
+  width: 100%;
+  margin-top: 70px;
+  padding: 100px 0;
+  background-image: url('/assets/images/ourMenu.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.menu-board {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-heading {
+  text-align: center;
+}
+
+.menu-heading-name {
+  font-size: 4rem;
+  margin-bottom: 10px;
+  color: var(--primaryHover);
+}
+
+.menu-heading-title {
+  font-size: 3.6rem;
+  color: var(--white);
+}
+
+.menu-box {
+  margin-top: 50px;
+  width: 100%;
+  padding: 0 114px;
+  display: flex;
+}
+
+.menu-item {
+  padding: 40px;
+  margin: 0 15px;
+  width: 50%;
+  background-color: var(--white);
+  border-radius: 30px;
+}
+
+.menu-title {
+  font-size: 2.8rem;
+  margin-bottom: 30px;
+}
+
+.menu-products {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-product {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.menu-product:last-child {
+  margin-bottom: 0;
+}
+
+.menu-product-imgBox {
+  width: 56px;
+  height: 56px;
+  margin-right: 20px;
+}
+
+.menu-product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.menu-combo-list {
+  flex: 1;
+}
+
+.menu-combo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px dashed var(--gray);
+}
+
+.combo-header {
+  font-size: 2.1rem;
+  font-weight: bold;
+}
+
+.combo-price {
+  font-size: 2.1rem;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.menu-combo-description {
+  color: var(--gray);
 }
 
 @keyframes upToDowOpacity {
@@ -95,6 +267,7 @@
   }
   to {
     opacity: 1;
+    transform: translateY(0);
     top: 0px;
   }
 }
@@ -107,5 +280,16 @@
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@keyframes opactityScalceSmallToBig {
+  from {
+    opacity: 0;
+    scale: 0.6;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
   }
 }
