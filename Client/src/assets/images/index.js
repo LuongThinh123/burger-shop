@@ -6,6 +6,9 @@ const images = {
   element: require('~/assets/images/element-banner-img.png'),
   element2: require('~/assets/images/element-banner-img2.png'),
   element3: require('~/assets/images/element-banner-img3.png'),
+  blurImg: require('~/assets/images/blurImg.png'),
+  blurImg2: require('~/assets/images/blurImg2.png'),
+  qualityfood: require('~/assets/images/qualityfood.png'),
 };
 
 export default images;

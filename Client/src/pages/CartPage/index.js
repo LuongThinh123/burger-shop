@@ -51,7 +51,7 @@ function CartPage() {
           <div className={cx('product-box')}>
             {cartItems
               ? cartItems.map((item) => {
-                  totalPrice += item.productId.sale * item.quantity;
+                  totalPrice += item.sale * item.quantity;
                   return <CartPageProduct key={item._id} data={item} subTotalRef={subTotal} totalRef={total} />;
                 })
               : []}

@@ -36,7 +36,7 @@ function CartPageProduct({ data, subTotalRef, totalRef }) {
     const productId = inputRef.current.dataset.id;
     const amount = inputRef.current.value;
 
-    totalAmountRef.current.innerHTML = `$${amount * data.productId.sale}`;
+    totalAmountRef.current.innerHTML = `$${amount * data.sale}`;
     updateCartProductsItem(productId, amount);
     subTotalRef.current.innerHTML = `$${getTotalCartProducts()}`;
     totalRef.current.innerHTML = `$${getTotalCartProducts()}`;
@@ -55,24 +55,24 @@ function CartPageProduct({ data, subTotalRef, totalRef }) {
           <img className={cx('product_img')} src={image.test} alt="" />
         </div>
         <div className={cx('product_infor')}>
-          <h3 className={cx('product_name')}>{data.productId.title}</h3>
+          <h3 className={cx('product_name')}>{data.title}</h3>
           <div className={cx('delete_icon')}>
             <FontAwesomeIcon
               className={cx('deleteIcon')}
               icon={faCircleXmark}
-              data-id={data.productId._id}
+              data-id={data._id}
               onClick={(e) => handleDeleteItem(e)}
             ></FontAwesomeIcon>
           </div>
         </div>
       </div>
       <div className={cx('product_price')}>
-        <span className={cx('price_amount')}>${data.productId.sale}</span>
+        <span className={cx('price_amount')}>${data.sale}</span>
       </div>
       <div className={cx('product_quantity')}>
         <InputQuantity
           ref={inputRef}
-          productId={data.productId._id}
+          productId={data._id}
           value={data.quantity}
           className={cx('cartItem_quantity')}
           onCallApi={handleOnchageQuantity}
@@ -80,7 +80,7 @@ function CartPageProduct({ data, subTotalRef, totalRef }) {
       </div>
       <div className={cx('product_total')}>
         <span ref={totalAmountRef} className={cx('total_amount')}>
-          ${data.productId.sale * data.quantity}
+          ${data.sale * data.quantity}
         </span>
       </div>
     </div>

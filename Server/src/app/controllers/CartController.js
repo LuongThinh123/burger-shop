@@ -9,10 +9,19 @@ const CartController = {
         {
           userId: userId,
         },
-        { productId: 1, quantity: 1 }
+        { _id: 0, productId: 1, quantity: 1 }
       ).populate("productId");
 
-      res.status(200).json(cartInfor);
+      const result = [];
+
+      cartInfor.map((item) => {
+        result.push({
+          ...item.productId.toObject(),
+          quantity: item.quantity,
+        });
+      });
+
+      res.status(200).json(result);
     } catch (err) {
       res.status(500).json(err);
     }
