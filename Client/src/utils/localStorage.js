@@ -45,3 +45,14 @@ export const getTotalCartProducts = () => {
 
   return sum;
 };
+
+//Order ShippingInfor
+export const getShippingInfor = () => {
+  const shippingInfor = localStorage.getItem('ShippingInfor');
+  return shippingInfor ? JSON.parse(shippingInfor) : '';
+};
+
+export const setShippingInfor = (Information) => {
+  if (Information) localStorage.setItem('ShippingInfor', JSON.stringify(Information));
+  else localStorage.removeItem('ShippingInfor');
+};

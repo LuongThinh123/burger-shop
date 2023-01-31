@@ -9,12 +9,14 @@
 }
 
 .product-item {
+  margin-bottom: 15px;
   justify-content: space-between;
 }
 
 .product-thumb {
   width: 56px;
   height: 58px;
+  flex-shrink: 0;
 
   .product-img {
     width: 100%;
@@ -24,19 +26,27 @@
 }
 
 .name {
+  width: 210px;
   margin-left: 10px;
 
   .product-quantity {
-    margin-left: 5px;
     color: var(--darkGray);
     font-size: 1.7rem;
+  }
+
+  .product-titile {
+    white-space: pre;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 4px;
   }
 }
 
 .product-price {
-  font-size: 1.8rem;
+  font-size: 1.75rem;
   font-weight: bold;
   color: var(--darkGray);
+  padding-left: 30px;
 }
 
 .subtotal,

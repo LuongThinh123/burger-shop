@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames/bind';
 
 import CheckoutOrderDetails from '../CheckoutOrderDetails';
@@ -6,11 +7,71 @@ import images from '~/assets/images';
 import Image from '~/components/Image';
 import Button from '~/components/Button';
 import styles from './CheckoutOrder.module.scss';
+import { setShippingInfor } from '~/utils/localStorage';
 
 const cx = classNames.bind(styles);
 
-function CheckoutOrder() {
+function CheckoutOrder({
+  fristNameRef,
+  lastNameRef,
+  companyRef,
+  regionRef,
+  streetAddressRef,
+  streetAddress2Ref,
+  cityRef,
+  countryRef,
+  postCodeRef,
+  phoneRef,
+  emailRef,
+}) {
   const [radioChecked, setRadioChecked] = useState(1);
+  const navigate = useNavigate();
+
+  const randomNumber = (max, min) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
+
+  const handlePlaceOrder = (e) => {
+    e.preventDefault();
+
+    let payment = '';
+    switch (radioChecked) {
+      case 1:
+        payment = 'Direct bank transfer';
+        break;
+      case 2:
+        payment = 'Check payments';
+        break;
+      case 3:
+        payment = 'Cash on delivery';
+        break;
+      case 4:
+        payment = 'PayPal';
+        break;
+      default:
+    }
+
+    const orderNumber = randomNumber(99999999, 10000000);
+
+    const shippingInfor = {
+      firstName: fristNameRef.current.value,
+      lastNameRef: lastNameRef.current.value,
+      companyRef: companyRef.current.value,
+      regionRef: regionRef.current.value,
+      streetAddressRef: streetAddressRef.current.value,
+      streetAddress2Ref: streetAddress2Ref.current.value,
+      cityRef: cityRef.current.value,
+      countryRef: countryRef.current.value,
+      postCodeRef: postCodeRef.current.value,
+      phoneRef: phoneRef.current.value,
+      emailRef: emailRef.current.value,
+      payment: payment,
+      orderNumber,
+    };
+
+    setShippingInfor(shippingInfor);
+    navigate('/checkout-done');
+  };
 
   return (
     <div className={cx('your-order')}>
@@ -88,7 +149,7 @@ function CheckoutOrder() {
               </div>
             </li>
           </ul>
-          <Button primary className={cx('place-order-btn')}>
+          <Button primary className={cx('place-order-btn')} onClick={handlePlaceOrder}>
             Place order
           </Button>
         </div>

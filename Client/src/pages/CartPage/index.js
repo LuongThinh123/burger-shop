@@ -6,6 +6,7 @@ import styles from './CartPage.module.scss';
 import * as cartApi from '~/api/cartApi';
 import { getAccessToken, setCartProducts, getCartProducts } from '~/utils/localStorage';
 import CartPageProduct from '~/components/CartPageProduct';
+import Button from '~/components/Button';
 
 const cx = classNames.bind(styles);
 
@@ -115,9 +116,12 @@ function CartPage() {
                 ${totalPrice}
               </span>
             </div>
-            <div className={cx('checkout_btn')}>
+            <Button to={'/checkout'} className={cx('checkout_btn')}>
+              Proceed to checkout
+            </Button>
+            {/* <div className={cx('checkout_btn')}>
               <span className={cx('checkout_text')}>Proceed to checkout</span>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

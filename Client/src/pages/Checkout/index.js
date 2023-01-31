@@ -1,4 +1,4 @@
-// import { useState, useEffect } from 'react';
+import { useRef } from 'react';
 import classNames from 'classnames/bind';
 
 import Banner from '~/components/Banner';
@@ -12,6 +12,18 @@ import styles from './Checkout.module.scss';
 const cx = classNames.bind(styles);
 
 function Checkout() {
+  const fristNameRef = useRef();
+  const lastNameRef = useRef();
+  const companyRef = useRef();
+  const regionRef = useRef();
+  const streetAddressRef = useRef();
+  const streetAddress2Ref = useRef();
+  const cityRef = useRef();
+  const countryRef = useRef();
+  const postCodeRef = useRef();
+  const phoneRef = useRef();
+  const emailRef = useRef();
+
   return (
     <>
       <Banner heading={'Checkout'}>Checkout</Banner>
@@ -21,6 +33,7 @@ function Checkout() {
             <h2 className={cx('Billing-details-title')}>Billing details</h2>
             <div className={cx('name-details')}>
               <Input
+                ref={fristNameRef}
                 type={'text'}
                 className={cx('input-form-name')}
                 inputClass={cx('bill-input')}
@@ -28,6 +41,7 @@ function Checkout() {
                 errors={'hello'}
               />
               <Input
+                ref={lastNameRef}
                 type={'text'}
                 className={cx('input-form-name')}
                 inputClass={cx('bill-input')}
@@ -36,6 +50,7 @@ function Checkout() {
               />
             </div>
             <Input
+              ref={companyRef}
               type={'text'}
               className={cx('input-form')}
               inputClass={cx('bill-input')}
@@ -43,6 +58,7 @@ function Checkout() {
               errors={'hello'}
             />
             <Input
+              ref={regionRef}
               type={'text'}
               className={cx('input-form')}
               inputClass={cx('bill-input')}
@@ -50,14 +66,22 @@ function Checkout() {
               errors={'hello'}
             />
             <Input
+              ref={streetAddressRef}
               type={'text'}
               className={cx('input-form')}
               inputClass={cx('bill-input')}
               label="Street address *"
               errors={'hello'}
             />
-            <Input type={'text'} className={cx('input-form')} inputClass={cx('bill-input')} errors={'hello'} />
             <Input
+              ref={streetAddress2Ref}
+              type={'text'}
+              className={cx('input-form')}
+              inputClass={cx('bill-input')}
+              errors={'hello'}
+            />
+            <Input
+              ref={cityRef}
               type={'text'}
               className={cx('input-form')}
               inputClass={cx('bill-input')}
@@ -65,6 +89,7 @@ function Checkout() {
               errors={'hello'}
             />
             <Input
+              ref={countryRef}
               type={'text'}
               className={cx('input-form')}
               inputClass={cx('bill-input')}
@@ -72,6 +97,7 @@ function Checkout() {
               errors={'hello'}
             />
             <Input
+              ref={postCodeRef}
               type={'text'}
               className={cx('input-form')}
               inputClass={cx('bill-input')}
@@ -79,6 +105,7 @@ function Checkout() {
               errors={'hello'}
             />
             <Input
+              ref={phoneRef}
               type={'text'}
               className={cx('input-form')}
               inputClass={cx('bill-input')}
@@ -86,6 +113,7 @@ function Checkout() {
               errors={'hello'}
             />
             <Input
+              ref={emailRef}
               type={'text'}
               className={cx('input-form')}
               inputClass={cx('bill-input')}
@@ -93,7 +121,19 @@ function Checkout() {
               errors={'hello'}
             />
           </div>
-          <CheckoutOrder />
+          <CheckoutOrder
+            fristNameRef={fristNameRef}
+            lastNameRef={lastNameRef}
+            companyRef={companyRef}
+            regionRef={regionRef}
+            streetAddressRef={streetAddressRef}
+            streetAddress2Ref={streetAddress2Ref}
+            cityRef={cityRef}
+            countryRef={countryRef}
+            postCodeRef={postCodeRef}
+            phoneRef={phoneRef}
+            emailRef={emailRef}
+          />
         </form>
       </div>
     </>
