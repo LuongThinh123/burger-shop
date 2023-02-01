@@ -6,8 +6,16 @@ import CheckoutOrderDetails from '../CheckoutOrderDetails';
 import images from '~/assets/images';
 import Image from '~/components/Image';
 import Button from '~/components/Button';
+import * as orderApi from '~/api/orderApi';
 import styles from './CheckoutOrder.module.scss';
-import { setShippingInfor } from '~/utils/localStorage';
+import {
+  getCartProducts,
+  setShippingInfor,
+  getTotalCartProducts,
+  setOrderDetails,
+  getAccessToken,
+  setCartProducts,
+} from '~/utils/localStorage';
 
 const cx = classNames.bind(styles);
 
@@ -69,7 +77,21 @@ function CheckoutOrder({
       orderNumber,
     };
 
-    setShippingInfor(shippingInfor);
+    const products = getCartProducts();
+    const totalPrice = getTotalCartProducts();
+
+    setShippingInfor({ ...shippingInfor, totalPrice: totalPrice });
+    setOrderDetails(products);
+    setCartProducts([]);
+
+    const orderInfor = {
+      products,
+      totalPrice,
+      shippingInfor,
+    };
+
+    orderApi.addOrder(getAccessToken(), orderInfor);
+
     navigate('/checkout-done');
   };
 
@@ -77,7 +99,7 @@ function CheckoutOrder({
     <div className={cx('your-order')}>
       <h2 className={cx('your-order-title')}>Your order</h2>
       <div className={cx('order-review')}>
-        <CheckoutOrderDetails />
+        <CheckoutOrderDetails data={getCartProducts()} />
         <div className={cx('payment')}>
           <ul className={cx('payment-methods')}>
             <li className={cx('payment-method')}>

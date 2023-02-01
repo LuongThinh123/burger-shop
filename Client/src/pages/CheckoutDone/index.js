@@ -4,20 +4,15 @@ import { useEffect } from 'react';
 
 import Banner from '~/components/Banner';
 import OrderDetail from '~/components/OrderDetail';
-import { getCartProducts, getTotalCartProducts, getShippingInfor } from '~/utils/localStorage';
+import { getOrderDetails, getTotalCartProducts, getShippingInfor } from '~/utils/localStorage';
 import { getCurrentDateTime } from '~/utils/dateFormat';
 import styles from './CheckoutDone.module.scss';
 
 const cx = classNames.bind(styles);
 
 function CheckoutDone() {
-  const productList = getCartProducts();
+  const productList = getOrderDetails();
   const shippingInfor = getShippingInfor();
-  const totalPrice = getTotalCartProducts();
-
-  console.log(shippingInfor);
-
-  useEffect(() => {}, []);
 
   return (
     <>
@@ -35,7 +30,7 @@ function CheckoutDone() {
           </li>
           <li className={cx('infor', 'order-total')}>
             <span>Total:</span>
-            <strong>${totalPrice}</strong>
+            <strong>${shippingInfor.totalPrice}</strong>
           </li>
           <li className={cx('infor', ' order-payment')}>
             <span>Payment method:</span>

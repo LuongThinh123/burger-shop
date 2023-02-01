@@ -9,7 +9,7 @@ const cx = classNames.bind(styles);
 
 function CheckoutOrderDetails({ data }) {
   console.log('re-render order details');
-  const [productList] = useState(getCartProducts());
+  const [productList] = useState(data);
   let total = 0;
 
   console.log(productList);

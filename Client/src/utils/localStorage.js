@@ -56,3 +56,14 @@ export const setShippingInfor = (Information) => {
   if (Information) localStorage.setItem('ShippingInfor', JSON.stringify(Information));
   else localStorage.removeItem('ShippingInfor');
 };
+
+//Order details
+export const getOrderDetails = () => {
+  const orderDetails = localStorage.getItem('OrderDetails');
+  return orderDetails ? JSON.parse(orderDetails) : '';
+};
+
+export const setOrderDetails = (orderDetails) => {
+  if (orderDetails) localStorage.setItem('OrderDetails', JSON.stringify(orderDetails));
+  else localStorage.removeItem('OrderDetails');
+};

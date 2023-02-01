@@ -1,0 +1,26 @@
+//User order
+.user-orders {
+  flex: 1;
+}
+
+.order-status {
+  width: 100%;
+  margin-bottom: 15px;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  // box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  .status {
+    width: 25%;
+    padding: 16px 0;
+    font-size: 1.9rem;
+    transition: all 0.18s ease;
+
+    &:hover {
+      color: var(--primary);
+    }
+  }
+
+  .status.active-status {
+    color: var(--primary);
+    border-bottom: 3px solid var(--primary);
+  }
+}
