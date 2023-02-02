@@ -1,24 +1,59 @@
-// import { useState } from 'react';
+import { memo, useEffect, useRef } from 'react';
 import classNames from 'classnames/bind';
+
 import images from '~/assets/images';
+import { getAccessToken } from '~/utils/localStorage';
 import { getCurrentDateTime } from '~/utils/dateFormat';
+import Button from '~/components/Button';
+import * as OrderApi from '~/api/orderApi';
 import styles from './OrderDetail.module.scss';
 
 const cx = classNames.bind(styles);
 
-function OrderDetail({ itemList, status, orderNumber, orderId }) {
+function OrderDetail({ itemList, status, orderNumber, orderId, allActiveStatusRef }) {
   let totalPrice = 0;
+  const orderBoxRef = useRef();
+  const statusChangeBtnRef = useRef();
+  const statusTitleRef = useRef();
 
-  const handleChangeStatus = (status) => {};
+  useEffect(() => {
+    console.log('call useEFFECT');
+    orderBoxRef.current.style.display = 'block';
+  }, [itemList]);
+
+  const handleChangeStatus = (status) => {
+    const orderId = orderBoxRef.current.dataset.id;
+    const isAllActive = allActiveStatusRef.current.classList.contains('UserOrders_active-status__6vFHY');
+    if (isAllActive) {
+      if (status === 2) {
+        statusTitleRef.current.innerHTML = 'COMPLETED';
+      } else if (status === 3) {
+        statusTitleRef.current.innerHTML = 'CANCELED';
+      }
+      statusChangeBtnRef.current.style.display = 'none';
+    } else {
+      orderBoxRef.current.style.display = 'none';
+    }
+
+    const orderStatusChangeInfor = {
+      orderId,
+      status,
+    };
+    OrderApi.updateOrderStatus(getAccessToken(), orderStatusChangeInfor);
+  };
 
   return (
-    <div data-id={orderId} className={cx('order-box')}>
+    <div ref={orderBoxRef} data-id={orderId} className={cx('order-box')}>
       <div className={cx('order-id-status')}>
         <div className={cx('order-id')}>
           <h3>ORDER NUMBER: </h3>
           <span> {orderNumber}</span>
         </div>
-        {status && <h2 className={cx('order-status')}>{status.title}</h2>}
+        {status && (
+          <h2 ref={statusTitleRef} className={cx('order-status')}>
+            {status.title}
+          </h2>
+        )}
       </div>
       <div className={cx('order-product-list')}>
         {itemList
@@ -47,13 +82,25 @@ function OrderDetail({ itemList, status, orderNumber, orderId }) {
           Order date:
           <span> {getCurrentDateTime()}</span>
         </div>
-        <div className={cx('order-footer-total')}>
-          Total:
-          <span> ${totalPrice}</span>
+        <div className={cx('order-totalBox')}>
+          <div className={cx('order-footer-total')}>
+            Total:
+            <span> ${totalPrice}</span>
+          </div>
+          {status && status.code === 1 && (
+            <div ref={statusChangeBtnRef} className={cx('order-status-change')}>
+              <Button className={cx('status-change-btn')} onClick={() => handleChangeStatus(2)}>
+                COMPLETED
+              </Button>
+              <Button className={cx('status-change-btn')} onClick={() => handleChangeStatus(3)}>
+                CANCELED
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </div>
   );
 }
 
-export default OrderDetail;
+export default memo(OrderDetail);

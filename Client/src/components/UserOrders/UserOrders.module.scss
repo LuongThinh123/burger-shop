@@ -24,3 +24,27 @@
     border-bottom: 3px solid var(--primary);
   }
 }
+
+//empty orders
+.orders-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  min-height: 540px;
+}
+
+.orders-empty-title,
+.orders-empty-icon {
+  color: var(--primary);
+}
+
+.orders-empty-icon {
+  font-size: 6rem;
+}
+
+.orders-empty-title {
+  font-size: 2.2rem;
+  margin-top: 15px;
+}

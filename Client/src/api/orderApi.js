@@ -22,9 +22,11 @@ export const getOrders = async (accessToken, status) => {
   }
 };
 
-export const updateOrderStatus = async (accessToken, status) => {
+export const updateOrderStatus = async (accessToken, orderStatusChangeInfor) => {
   try {
-    const result = await request.post(`/order/update`, status, { headers: { token: `Bearer ${accessToken}` } });
+    const result = await request.post(`/order/update`, orderStatusChangeInfor, {
+      headers: { token: `Bearer ${accessToken}` },
+    });
     return result;
   } catch (err) {
     console.log(err);

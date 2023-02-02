@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './ShopSideBar.module.scss';
@@ -6,14 +6,15 @@ import image from '~/assets/images';
 import PriceFilter from '~/components/PriceFilter';
 import * as categoryApi from '~/api/categoryApi';
 import { addCategory, deleteCategory } from '~/reducers/actions/filterAction';
-import { useFilterContext } from '~/customHook';
+// import { useFilterContext } from '~/customHook';
 
 const cx = classNames.bind(styles);
 
-function ShopSideBar() {
+function ShopSideBar({ filterDispatch }) {
   const [categories, setCategories] = useState([]);
-  const [, filterDispatch] = useFilterContext();
+  // const [, filterDispatch] = useFilterContext();
   // const { categoryIdList } = filterState;
+  console.log('re-render shop side bar');
 
   useEffect(() => {
     const fecthCategories = async () => {
@@ -60,7 +61,7 @@ function ShopSideBar() {
           </ul>
         </div>
       </div>
-      <PriceFilter />
+      <PriceFilter filterDispatch={filterDispatch} />
       {/* <div className={cx('shop-filter_price')}>
         <h3 className={cx('price_title')}>Filter by price</h3>
         <div className={cx('filter_price')}>
@@ -148,4 +149,4 @@ function ShopSideBar() {
   );
 }
 
-export default ShopSideBar;
+export default memo(ShopSideBar);

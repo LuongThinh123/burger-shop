@@ -16,11 +16,11 @@ const cx = classNames.bind(styles);
 function ProductCard({ data, toastDispatch, className }) {
   const navigate = useNavigate();
   const accessToken = getAccessToken();
-  // console.log('re-render product');
-  let handleAddToCart = (e) => {
-    console.log('Add to cart');
 
-    const productId = e.target.dataset.id;
+  let handleAddToCart = (productId) => {
+    console.log('Add to cart');
+    console.log(productId);
+
     const product = {
       productId,
       amount: 1,
@@ -55,7 +55,7 @@ function ProductCard({ data, toastDispatch, className }) {
           <p className={cx('price')}>${data.sale}</p>
         </div>
         <div className={cx('addToCart-btn')}>
-          <button className={cx('addToCart')} data-id={data._id} onClick={(e) => handleAddToCart(e)}>
+          <button className={cx('addToCart')} data-id={data._id} onClick={() => handleAddToCart(data._id)}>
             <div className={cx('addToCart-title')}>
               <FontAwesomeIcon className={cx('cart-plus_icon')} icon={faCartPlus} />
               <p className={cx('addToCart-text')}>Add to cart</p>

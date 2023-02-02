@@ -24,7 +24,7 @@ const orderSchema = new mongoose.Schema(
       type: Object,
       default: {
         code: 1,
-        title: "Pending",
+        title: "PENDING",
       },
     },
   },

@@ -1,20 +1,18 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, memo } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './PriceFilter.module.scss';
 import Button from '~/components/Button';
 import { setPriceFilter } from '~/reducers/actions/filterAction';
-import { useFilterContext } from '~/customHook';
 
 const cx = classNames.bind(styles);
 
-function PriceFilter() {
+function PriceFilter({ filterDispatch }) {
   // const [priceMin, setPriceMin] = useState('');
   const [rangeMin, setRangeMin] = useState(0);
-  const [rangeMax, setRangeMax] = useState(40);
-  const [filterState, filterDispatch] = useFilterContext();
+  const [rangeMax, setRangeMax] = useState(30);
+  // const [, filterDispatch] = useFilterContext();
 
-  console.log('re-render');
   const maxRangeRef = useRef(),
     minRangeRef = useRef(),
     // maxPrice = useRef(),
@@ -65,8 +63,8 @@ function PriceFilter() {
       // isMin ? setRangeMin(minRangeRef.current.value - 1000) : setRangeMax(maxRangeRef.current.value + 1000);
     } else {
       isMin ? setRangeMin(minRangeRef.current.value) : setRangeMax(maxRangeRef.current.value);
-      progressRef.current.style.left = (minRangeRef.current.value / 40) * 100 + '%';
-      progressRef.current.style.right = 100 - (maxRangeRef.current.value / 40) * 100 + '%';
+      progressRef.current.style.left = (minRangeRef.current.value / 30) * 100 + '%';
+      progressRef.current.style.right = 100 - (maxRangeRef.current.value / 30) * 100 + '%';
     }
   };
 
@@ -78,32 +76,33 @@ function PriceFilter() {
   //   filterDispatch(setPriceFilter([rangeMin, rangeMax]));
   // };
 
-  console.log(filterState);
   return (
     <div className={cx('shop-filter_price')}>
       <h3 className={cx('price_title')}>Filter by price ($)</h3>
       <div className={cx('filter_price')}>
         <div className={cx('price_input')}>
           <div className={cx('field')}>
-            <span>Min</span>
-            <input
+            <span>Min: </span>
+            <span className={cx('field-price')}> ${rangeMin}</span>
+            {/* <input
               // ref={maxPrice}
               type="number"
               className={cx('input-min')}
               value={rangeMin}
               onInput={(e) => HandleOnchange(e)}
-            />
+            /> */}
           </div>
           <div className={cx('separator')}>-</div>
           <div className={cx('field')}>
-            <span>Max</span>
-            <input
+            <span>Max: </span>
+            <span className={cx('field-price')}> ${rangeMax}</span>
+            {/* <input
               // ref={minPrice}
               type="number"
               className={cx('input-max')}
               value={rangeMax}
               onInput={(e) => HandleOnchange(e)}
-            />
+            /> */}
           </div>
         </div>
         <div className={cx('slider')}>
@@ -113,7 +112,7 @@ function PriceFilter() {
             type="range"
             className={cx('range-min')}
             min="0"
-            max="40"
+            max="30"
             value={rangeMin}
             onChange={(e) => HandleOnchange(e)}
             onMouseUp={(e) => HandleOnMouseUpPriceFilter(e)}
@@ -124,7 +123,7 @@ function PriceFilter() {
             type="range"
             className={cx('range-max')}
             min="0"
-            max="40"
+            max="30"
             value={rangeMax}
             onChange={(e) => HandleOnchange(e)}
             onMouseUp={(e) => HandleOnMouseUpPriceFilter(e)}
@@ -135,12 +134,13 @@ function PriceFilter() {
 
       {/* <div className={cx('filter-btn')}> */}
       {/* <button>Filter</button> */}
+      <div className={cx('line-separate')}></div>
       <Button className={cx('filter-btn')} primary>
-        Filter
+        Clear Filter
       </Button>
       {/* </div> */}
     </div>
   );
 }
 
-export default PriceFilter;
+export default memo(PriceFilter);

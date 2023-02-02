@@ -105,6 +105,32 @@
   padding: 0 20px;
 }
 
+.order-totalBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.order-status-change {
+  margin-top: 8px;
+}
+
+.status-change-btn:first-child {
+  margin-right: 12px;
+  // 2ad604
+  background-color: #54d700;
+}
+
+.status-change-btn:last-child {
+  // 2ad604
+  background-color: var(--star-gold);
+}
+
+.status-change-btn {
+  color: var(--white);
+  border-radius: 6px;
+}
+
 .order-footer-date,
 .order-footer-total {
   color: var(--white);

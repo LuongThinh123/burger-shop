@@ -57,6 +57,12 @@ const OrderController = {
       const statusCode = Number(req.body.status);
       let status;
       switch (statusCode) {
+        case 1:
+          status = {
+            code: 1,
+            title: "PENDING",
+          };
+          break;
         case 2:
           status = {
             code: 2,

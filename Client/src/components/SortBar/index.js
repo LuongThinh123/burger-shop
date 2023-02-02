@@ -10,8 +10,8 @@ import { setSort } from '~/reducers/actions/filterAction';
 
 const cx = classNames.bind(styles);
 
-function SortBar() {
-  const [, filterDispatch] = useFilterContext();
+function SortBar({ filterDispatch }) {
+  // const [, filterDispatch] = useFilterContext();
 
   const handleSelectChange = (e) => {
     // console.log(e.target.name);

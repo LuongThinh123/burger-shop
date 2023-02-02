@@ -1,7 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import classNames from 'classnames/bind';
-
-import { useFilterContext } from '~/customHook';
 
 import styles from './ProductList.module.scss';
 import SortBar from '~/components/SortBar';
@@ -13,12 +11,12 @@ import { useToastContext } from '~/customHook';
 
 const cx = classNames.bind(styles);
 
-function ProductList() {
+function ProductList({ filterState, filterDispatch }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [productListInfor, setProductListInfor] = useState({});
-  const [filterState, filterDispatch] = useFilterContext();
+  // const [filterState, filterDispatch] = useFilterContext();
   const [, toastDispatch] = useToastContext();
-  console.log('re-render');
+  // console.log('re-render product list');
   useEffect(() => {
     const fetchProductList = async () => {
       try {
@@ -39,9 +37,16 @@ function ProductList() {
   //   return data.slice(firstPageIndex, lastPageIndex);
   // }, [currentPage]);
 
+  const handleOnPageChange = useCallback(
+    (currentPage) => {
+      filterDispatch(changePage(currentPage));
+    },
+    [filterDispatch],
+  );
+  // (currentPage) => filterDispatch(changePage(currentPage))
   return (
     <div className={cx('products-box')}>
-      <SortBar />
+      <SortBar filterDispatch={filterDispatch} />
       <div className={cx('product-list')}>
         {/* {console.log(productListInfor.page)} */}
         {productListInfor.products
@@ -55,7 +60,7 @@ function ProductList() {
         currentPage={currentPage}
         totalCount={productListInfor.total ? productListInfor.total : ''}
         pageSize={productListInfor.limit ? productListInfor.limit : 6}
-        onPageChange={(currentPage) => filterDispatch(changePage(currentPage))}
+        onPageChange={useCallback((currentPage) => handleOnPageChange(currentPage), [handleOnPageChange])}
       />
     </div>
   );

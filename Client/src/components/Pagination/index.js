@@ -9,7 +9,6 @@ const cx = classNames.bind(styles);
 
 const Pagination = (props) => {
   const { onPageChange, totalCount, siblingCount = 2, currentPage, pageSize, className } = props;
-
   const paginationRange = usePagination({
     currentPage,
     totalCount,

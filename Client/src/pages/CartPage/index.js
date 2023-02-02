@@ -42,21 +42,22 @@ function CartPage() {
     <>
       <Banner heading={'Cart'}>Cart</Banner>
       <div className={cx('inner')}>
-        <div className={cx('cartList__box')}>
-          <div className={cx('cartPage_header')}>
-            <div className={cx('product_title')}>Product</div>
-            <div className={cx('product_price')}>Price</div>
-            <div className={cx('product_quantity')}>Quantity</div>
-            <div className={cx('product_total')}>Total</div>
-          </div>
-          <div className={cx('product-box')}>
-            {cartItems
-              ? cartItems.map((item) => {
-                  totalPrice += item.sale * item.quantity;
-                  return <CartPageProduct key={item._id} data={item} subTotalRef={subTotal} totalRef={total} />;
-                })
-              : []}
-            {/* <div className={cx('product')}>
+        {cartItems.length !== 0 ? (
+          <div className={cx('cartList__box')}>
+            <div className={cx('cartPage_header')}>
+              <div className={cx('product_title')}>Product</div>
+              <div className={cx('product_price')}>Price</div>
+              <div className={cx('product_quantity')}>Quantity</div>
+              <div className={cx('product_total')}>Total</div>
+            </div>
+            <div className={cx('product-box')}>
+              {cartItems
+                ? cartItems.map((item) => {
+                    totalPrice += item.sale * item.quantity;
+                    return <CartPageProduct key={item._id} data={item} subTotalRef={subTotal} totalRef={total} />;
+                  })
+                : []}
+              {/* <div className={cx('product')}>
               <div class="cartPage__product-item">
                 <div class="cartPage__product-imgBox">
                   <img class="cartPage__product-img" src="${product.img}" alt="" />
@@ -97,11 +98,16 @@ function CartPage() {
                 <span class="cartPage__product-total-cost">$500</span>
               </div>
             </div> */}
-            {/* <CartPageProduct /> */}
+              {/* <CartPageProduct /> */}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className={cx('cartPage-empty')}>
+            <h2>hello</h2>
+          </div>
+        )}
 
-        <div className={cx('cart_footer')}>
+        {cartItems.length !== 0 && <div className={cx('cart_footer')}>
           <div className={cx('total_container')}>
             <h2 className={cx('title')}>Cart totals</h2>
             <div className={cx('subtotal')}>
@@ -123,7 +129,7 @@ function CartPage() {
               <span className={cx('checkout_text')}>Proceed to checkout</span>
             </div> */}
           </div>
-        </div>
+        </div>}
       </div>
     </>
   );
