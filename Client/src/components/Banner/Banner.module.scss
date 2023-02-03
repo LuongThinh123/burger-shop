@@ -36,3 +36,23 @@
     font-size: 1.2rem;
   }
 }
+
+.search-result {
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  color: var(--primary);
+}
+
+.search-result-title {
+  font-size: 3.8rem;
+  // color: var(--gray);
+}
+
+.result-delete-icon {
+  margin-left: 12px;
+  font-size: 2.8rem;
+  &:hover {
+    cursor: pointer;
+  }
+}

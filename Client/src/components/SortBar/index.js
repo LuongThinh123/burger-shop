@@ -10,13 +10,10 @@ import { setSort } from '~/reducers/actions/filterAction';
 
 const cx = classNames.bind(styles);
 
-function SortBar({ filterDispatch }) {
-  // const [, filterDispatch] = useFilterContext();
-
+function SortBar({ sortFilter, filterDispatch }) {
+  console.log(sortFilter);
   const handleSelectChange = (e) => {
-    // console.log(e.target.name);
     let sortBy = [];
-
     if (e.target.value === '') {
       sortBy = ['default', e.target.value];
     } else sortBy = [e.target.name, e.target.value];
@@ -29,7 +26,7 @@ function SortBar({ filterDispatch }) {
       <div className={cx('select_content')}>
         {/* <h3 className={cx('sort_by')}>Sort by:</h3> */}
         <div className={cx('sort_select')}>
-          <select name="price" id="price" onChange={(e) => handleSelectChange(e)}>
+          <select value={sortFilter} name="price" id="price" onChange={(e) => handleSelectChange(e)}>
             <option value="">Default sorting</option>
             <option value="asc">Price: low to high</option>
             <option value="desc">Price: high to low</option>

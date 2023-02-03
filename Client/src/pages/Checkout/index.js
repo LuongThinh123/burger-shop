@@ -5,9 +5,8 @@ import Banner from '~/components/Banner';
 import Input from '~/components/Input';
 import CheckoutOrder from '~/components/CheckoutOrder';
 import styles from './Checkout.module.scss';
-// import * as cartApi from '~/api/cartApi';
+import CartEmpty from '~/components/CartEmpty';
 import { getCartProducts } from '~/utils/localStorage';
-// import CartPageProduct from '~/components/CartPageProduct';
 
 const cx = classNames.bind(styles);
 
@@ -138,7 +137,7 @@ function Checkout() {
             />
           </form>
         ) : (
-          <div>hello</div>
+          <CartEmpty />
         )}
       </div>
     </>

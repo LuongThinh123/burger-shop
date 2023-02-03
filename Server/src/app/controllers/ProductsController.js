@@ -15,7 +15,7 @@ const ProductsController = {
       // let sort = req.query.sort || "price";
 
       if (price === "") {
-        price = ["0", "40"];
+        price = ["0", "30"];
       } else price = price.split(",");
       // const page = parseInt(req.params.page) - 1 || 0;
       // const limit = parseInt(req.params.limit) || 6;

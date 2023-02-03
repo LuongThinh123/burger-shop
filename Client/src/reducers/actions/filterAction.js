@@ -27,3 +27,8 @@ export const setSearchTitle = (payload) => ({
   type: 'set_search_title',
   payload,
 });
+
+export const clearFilter = (payload) => ({
+  type: 'clear_filter',
+  payload,
+});

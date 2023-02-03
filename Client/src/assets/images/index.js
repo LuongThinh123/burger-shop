@@ -1,5 +1,7 @@
 const images = {
   logo: require('~/assets/images/logo.png'),
+  footerImg: require('~/assets/images/footer_img1.png'),
+  shapeDot: require('~/assets/images/shape_dot.png'),
   test: require('~/assets/images/test.png'),
   paypal: require('~/assets/images/paypal.png'),
   loginWallpaper: require('~/assets/images/loginWallpaper.png'),

@@ -3,65 +3,23 @@ import classNames from 'classnames/bind';
 
 import styles from './ShopSideBar.module.scss';
 import image from '~/assets/images';
+import CategoryList from '../CategoryList';
 import PriceFilter from '~/components/PriceFilter';
-import * as categoryApi from '~/api/categoryApi';
-import { addCategory, deleteCategory } from '~/reducers/actions/filterAction';
-// import { useFilterContext } from '~/customHook';
+// import { useFilterContext } from '~/customHook'
 
 const cx = classNames.bind(styles);
 
-function ShopSideBar({ filterDispatch }) {
-  const [categories, setCategories] = useState([]);
+function ShopSideBar({ filterState, filterDispatch }) {
   // const [, filterDispatch] = useFilterContext();
   // const { categoryIdList } = filterState;
   console.log('re-render shop side bar');
-
-  useEffect(() => {
-    const fecthCategories = async () => {
-      const result = await categoryApi.getCategories();
-      setCategories(result);
-    };
-    fecthCategories();
-  }, []);
-
-  const handleCategoryChecked = (input, categoryId) => {
-    if (input.target.checked) {
-      filterDispatch(addCategory(categoryId));
-    } else {
-      filterDispatch(deleteCategory(categoryId));
-    }
-  };
 
   // console.log(filterState);
   // console.log(categories);
   return (
     <div className={cx('shop_sidebar')}>
-      <div className={cx('category_container')}>
-        <div className={cx('sidebar_header')}>
-          <h3 className={cx('header')}>Category list</h3>
-        </div>
-        <div className={cx('categories_box')}>
-          <ul className={cx('category_list')}>
-            {categories.map((category, index) => {
-              return (
-                <li key={category._id} className={cx('category')}>
-                  <input
-                    className={cx('category-checkbox')}
-                    type="checkbox"
-                    id={`check-${index}`}
-                    onChange={(input) => handleCategoryChecked(input, category._id)}
-                    // checked
-                  />
-                  <label htmlFor={`check-${index}`} className={cx('category-name')}>
-                    {category.title}
-                  </label>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      </div>
-      <PriceFilter filterDispatch={filterDispatch} />
+      <CategoryList categoryFilter={filterState.categoryIdList} filterDispatch={filterDispatch} />
+      <PriceFilter priceFilter={filterState.price} filterDispatch={filterDispatch} />
       {/* <div className={cx('shop-filter_price')}>
         <h3 className={cx('price_title')}>Filter by price</h3>
         <div className={cx('filter_price')}>

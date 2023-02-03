@@ -46,7 +46,7 @@ function ProductList({ filterState, filterDispatch }) {
   // (currentPage) => filterDispatch(changePage(currentPage))
   return (
     <div className={cx('products-box')}>
-      <SortBar filterDispatch={filterDispatch} />
+      <SortBar sortFilter={filterState.order} filterDispatch={filterDispatch} />
       <div className={cx('product-list')}>
         {/* {console.log(productListInfor.page)} */}
         {productListInfor.products

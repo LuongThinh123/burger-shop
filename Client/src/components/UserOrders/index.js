@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartPlus, faFileInvoiceDollar } from '@fortawesome/free-solid-svg-icons';
+import { faFileInvoiceDollar } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './UserOrders.module.scss';
 import Button from '~/components/Button';

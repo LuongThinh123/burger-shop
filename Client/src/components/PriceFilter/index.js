@@ -1,14 +1,16 @@
 import { useState, useRef, memo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames/bind';
 
 import styles from './PriceFilter.module.scss';
 import Button from '~/components/Button';
-import { setPriceFilter } from '~/reducers/actions/filterAction';
+import { setPriceFilter, clearFilter } from '~/reducers/actions/filterAction';
 
 const cx = classNames.bind(styles);
 
-function PriceFilter({ filterDispatch }) {
+function PriceFilter({ priceFilter, filterDispatch }) {
   // const [priceMin, setPriceMin] = useState('');
+  console.log('price is', priceFilter);
   const [rangeMin, setRangeMin] = useState(0);
   const [rangeMax, setRangeMax] = useState(30);
   // const [, filterDispatch] = useFilterContext();
@@ -37,6 +39,11 @@ function PriceFilter({ filterDispatch }) {
   //     progressRef.current.style.right = 100 - (maxRangeRef.current.value / 10000) * 100 + '%';
   //   }
   // };
+
+  const handleClearFilter = () => {
+    filterDispatch(clearFilter());
+    handleResetPriceFilter();
+  };
 
   const HandleOnchange = (e) => {
     // filterDispatch(setPriceFilter([minRangeRef.current.value, maxRangeRef.current.value]));
@@ -72,6 +79,12 @@ function PriceFilter({ filterDispatch }) {
     filterDispatch(setPriceFilter([minRangeRef.current.value, maxRangeRef.current.value]));
   };
 
+  const handleResetPriceFilter = () => {
+    progressRef.current.style.left = (0 / 30) * 100 + '%';
+    progressRef.current.style.right = 100 - (30 / 30) * 100 + '%';
+    setRangeMin(0);
+    setRangeMax(30);
+  };
   // const handleFilterBtnClick = () => {
   //   filterDispatch(setPriceFilter([rangeMin, rangeMax]));
   // };
@@ -135,7 +148,7 @@ function PriceFilter({ filterDispatch }) {
       {/* <div className={cx('filter-btn')}> */}
       {/* <button>Filter</button> */}
       <div className={cx('line-separate')}></div>
-      <Button className={cx('filter-btn')} primary>
+      <Button className={cx('filter-btn')} primary onClick={handleClearFilter}>
         Clear Filter
       </Button>
       {/* </div> */}

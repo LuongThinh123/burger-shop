@@ -18,9 +18,11 @@ function Product() {
   // }]
   return (
     <>
-      <Banner heading={'Shop'}>Shop</Banner>
+      <Banner heading={'Shop'} searchFilter={filterState.searchTitle} filterDispatch={filterDispatch}>
+        Shop
+      </Banner>
       <div className={cx('inner')}>
-        <ShopSideBar filterDispatch={filterDispatch} />
+        <ShopSideBar filterState={filterState} filterDispatch={filterDispatch} />
         <ProductList filterState={filterState} filterDispatch={filterDispatch} />
       </div>
       <Toast position={'top-right'} />

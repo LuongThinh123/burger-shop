@@ -10,7 +10,7 @@ const cx = classNames.bind(styles);
 function DefaultLayout({ children }) {
   return (
     <div>
-      <Header />;
+      <Header />
       <div className={cx('container')}>{children}</div>
       <Footer />
     </div>
