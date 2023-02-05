@@ -1,8 +1,168 @@
+.footer {
+  border-top: 3px solid var(--primary);
+}
+
+.footer-infor,
+.footer-infor-container,
+.footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-infor-container {
+  max-width: 1519px;
+  padding: 0 90px;
+}
+
 .footer-infor {
+  width: 100%;
+  padding: 120px 0;
   background-color: var(--black);
   background-image: url('/assets/images/shape_dot.png');
   background-color: black;
   background-position: center center;
   background-size: cover;
   background-repeat: repeat;
+}
+
+.infor-items {
+  width: 100%;
+  display: flex;
+}
+
+.infor,
+.infor-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.infor-item {
+  width: 25%;
+}
+
+.item-titleBox {
+  width: 100%;
+  text-align: center;
+  display: block;
+}
+
+.item-title {
+  margin-bottom: 20px;
+  color: var(--white);
+  line-height: 1;
+}
+
+.item-description {
+  margin: 4px 0;
+  color: #b0b0b0;
+}
+
+.item-phone {
+  color: var(--primary);
+  font-size: 1.9rem;
+  margin-top: 10px;
+}
+
+.item-social-icons {
+  display: flex;
+  margin-top: 15px;
+
+  .social-icon-wrapper {
+    margin: 0 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 34px;
+    width: 34px;
+    background-color: var(--white);
+    border-radius: 50%;
+    transition: all 0.1s linear;
+
+    &:hover {
+      background-color: var(--primary);
+      cursor: pointer;
+    }
+
+    &:hover .social-icon {
+      color: var(--white);
+    }
+  }
+
+  .social-icon {
+    font-size: 1.3rem;
+  }
+}
+
+.item-time {
+  color: var(--white);
+}
+
+.item-email-form {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  padding-right: 5px;
+  width: 298px;
+  height: 52px;
+  border: 1px solid var(--darkGray);
+}
+
+.email-input-wrapper {
+  // border: 1px solid var(--darkGray);
+  // width: 198px;
+  margin: 0;
+  width: auto;
+  height: 100%;
+  .email-input {
+    margin: 0;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    caret-color: var(--white);
+    color: var(--white);
+  }
+}
+
+.subscribe-btn {
+  width: 104px;
+  height: 40px;
+  background-color: var(--primary);
+  font-size: 1.35rem;
+  border-radius: 5px;
+}
+
+.footer-copy-right {
+  height: 90px;
+  width: 100%;
+  background-color: var(--primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.copy-right-container {
+  padding: 0 110px;
+  max-width: 1519px;
+  width: 1519px;
+}
+
+.copy-right-box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .copy-right-display {
+    color: var(--white);
+  }
+
+  .copy-right-brand {
+    color: var(--star-gold);
+  }
 }

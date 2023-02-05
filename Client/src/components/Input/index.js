@@ -5,8 +5,8 @@ import styles from './Input.module.scss';
 const cx = classNames.bind(styles);
 
 const Input = forwardRef(
-  ({ label, labelClass, inputClass, className, id, type, name, errors, rounded, ...inputProps }, ref) => {
-    const [inputValue, setInputValue] = useState('');
+  ({ label, labelClass, inputClass, className, id, type, name, error, rounded, ...inputProps }, ref) => {
+    // const [inputValue, setInputValue] = useState('');
 
     const classes = cx('form_group', {
       [className]: className,
@@ -16,7 +16,7 @@ const Input = forwardRef(
       <div
         className={classes}
         style={
-          errors && {
+          error && {
             marginBottom: 0,
           }
         }
@@ -28,20 +28,20 @@ const Input = forwardRef(
         )}
         {/* <div className={cx('feild', inputFeildClass, { rounded })}> */}
         <input
-          className={cx('form_input', inputClass, { rounded })}
+          className={cx('form_input', error && 'red-outline', inputClass, { rounded })}
           ref={ref}
           id={id}
           type={type}
           name={name}
-          value={inputValue}
+          // value={inputValue}
           {...inputProps}
-          onChange={(e) => setInputValue(e.target.value)}
+          // onChange={(e) => setInputValue(e.target.value)}
           //   name="fullname"
           //   placeholder="Enter your fullname"
           //   onChange={(e) => setFullname(e.target.value)}
         />
         {/* </div> */}
-        {errors && <span className={cx('input_error')}>This field is required!</span>}
+        {error && <span className={cx('input_error')}>{error.message}</span>}
       </div>
     );
   },

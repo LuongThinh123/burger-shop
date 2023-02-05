@@ -1,6 +1,9 @@
 import { useRef } from 'react';
 import classNames from 'classnames/bind';
 import { Link, useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
 import AuthenFormWrapper from '~/components/AuthenFormWrapper';
 import { useAuthenContext } from '~/customHook';
@@ -12,47 +15,82 @@ import styles from './Register.module.scss';
 const cx = classNames.bind(styles);
 
 function Register() {
+  const validationSchema = yup
+    .object({
+      fullname: yup.string().required('This field is required'),
+      email: yup.string().email('Please enter a valid email').required('This field is required'),
+      username: yup.string().required('This field is required').min(4).max(12),
+      password: yup.string().required('This field is required').min(6).max(15),
+      confirmPassword: yup
+        .string()
+        .required('This field is required')
+        .oneOf([yup.ref('password')], 'Passwords do not match'),
+    })
+    .required();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    mode: 'onChange',
+    reValidateMode: 'onBlur',
+    resolver: yupResolver(validationSchema),
+  });
   // const [fullname, setFullname] = useState('');
   // const [email, setEmail] = useState('');
   // const [username, setUsername] = useState('');
   // const [password, setPassword] = useState('');
   // const [comfirmPassword, setComfirmPassword] = useState('');
 
-  const fullNameRef = useRef();
-  const emailRef = useRef();
-  const userNameRef = useRef();
-  const passwordRef = useRef();
-  const comfirmPasswordRef = useRef();
-
   const [, authenDispatch] = useAuthenContext();
   const navigate = useNavigate();
 
-  const handleRegister = (e) => {
-    e.preventDefault();
+  const handleRegister = (data) => {
+    // e.preventDefault();
+    console.log(data);
 
-    const newUser = {
-      fullname: fullNameRef.current.value,
-      email: emailRef.current.value,
-      username: userNameRef.current.value,
-      password: passwordRef.current.value,
-    };
+    // const newUser = {
+    //   fullname: fullNameRef.current.value,
+    //   email: emailRef.current.value,
+    //   username: userNameRef.current.value,
+    //   password: passwordRef.current.value,
+    // };
 
-    authenApi.register(newUser, authenDispatch, navigate);
+    // authenApi.register(newUser, authenDispatch, navigate);
   };
 
   return (
     <AuthenFormWrapper className={cx('register_container')}>
-      <form className={cx('register_form')} onSubmit={handleRegister}>
+      <form className={cx('register_form')} onSubmit={handleSubmit(handleRegister)}>
         <h1>Register Form</h1>
         <div className={cx('register_body')}>
-          <Input ref={fullNameRef} type={'text'} name={'fullname'} placeholder="Enter your full name" rounded />
-          <Input ref={emailRef} type={'text'} name={'email'} placeholder="Enter your email" rounded />
-          <Input ref={userNameRef} type={'text'} name={'username'} placeholder="Enter your username" rounded />
-          <Input ref={passwordRef} type={'password'} name={'password'} placeholder="Enter your password" rounded />
           <Input
-            ref={comfirmPasswordRef}
+            {...register('fullname')}
+            error={errors.fullname}
+            type={'text'}
+            placeholder="Enter your full name"
+            rounded
+          />
+          <Input type={'text'} {...register('email')} error={errors.email} placeholder="Enter your email" rounded />
+          <Input
+            type={'text'}
+            {...register('username')}
+            error={errors.username}
+            placeholder="Enter your username"
+            rounded
+          />
+          <Input
+            {...register('password')}
+            error={errors.password}
             type={'password'}
-            name={'comfirmPassword'}
+            placeholder="Enter your password"
+            rounded
+          />
+          <Input
+            {...register('confirmPassword')}
+            error={errors.confirmPassword}
+            type={'password'}
             placeholder="Comfirm your password"
             rounded
           />
