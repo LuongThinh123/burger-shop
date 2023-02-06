@@ -36,7 +36,7 @@ const CartController = {
         userId: userId,
         productId: productId,
       });
-
+      
       if (count > 0) {
         await Cart.updateOne(
           {

@@ -12,6 +12,7 @@ import CartPage from '~/pages/CartPage';
 import Checkout from '~/pages/Checkout';
 import CheckoutDone from '~/pages/CheckoutDone';
 import UserPurchase from '~/pages/UserPurchase';
+import UserProfile from '~/pages/UserProfile';
 import Contact from '~/pages/Contact';
 
 export const publicRoutes = [
@@ -26,6 +27,7 @@ export const publicRoutes = [
   { path: '/checkout-done', component: CheckoutDone },
   { path: '/checkout', component: Checkout },
   { path: '/user/purchase', component: UserPurchase },
+  { path: '/user/account', component: UserProfile },
   { path: '/contact', component: Contact },
 ];
 

@@ -1,15 +1,17 @@
 import classNames from 'classnames/bind';
-import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoneyBill, faUser } from '@fortawesome/free-solid-svg-icons';
 
 import Image from '~/components/Image';
+import { getUser } from '~/utils/localStorage';
 import styles from './UserSideBar.module.scss';
 
 const cx = classNames.bind(styles);
 
 function UserSideBar() {
+  const userInfor = getUser();
+
   return (
     <div className={cx('user-options')}>
       <div className={cx('user-display')}>
@@ -22,8 +24,8 @@ function UserSideBar() {
           />
         </div>
         <div className={cx('mini-infor')}>
-          <h4 className={cx('mini-nick-name')}>chithinh123</h4>
-          <span className={cx('mini-full-name')}>Lương Chi Thịnh</span>
+          <h4 className={cx('mini-nick-name')}>{userInfor.username}</h4>
+          <span className={cx('mini-full-name')}>{userInfor.fullname}</span>
         </div>
       </div>
       <div className={cx('options')}>

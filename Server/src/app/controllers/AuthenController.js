@@ -8,16 +8,37 @@ const AuthenController = {
     try {
       const salt = await bcrypt.genSalt(10);
       const hashed = await bcrypt.hash(req.body.password, salt);
+      let errorMessage = "";
 
-      const newUser = await User({
-        fullname: req.body.fullname,
-        email: req.body.email,
+      const userNameExistCount = await User.countDocuments({
         username: req.body.username,
-        password: hashed,
+      });
+      const emailExistCount = await User.countDocuments({
+        email: req.body.email,
       });
 
-      const user = await newUser.save();
-      res.status(200).json(user);
+      if (userNameExistCount > 0 && emailExistCount > 0) {
+        errorMessage = "Username and Email already exists";
+      } else if (userNameExistCount > 0) {
+        errorMessage = "Username already exists";
+      } else if (emailExistCount > 0) {
+        errorMessage = "Email already exists";
+      }
+
+      if (errorMessage) {
+        const response = { errorMessage, error: true };
+        res.status(200).json(response);
+      } else {
+        const newUser = await User({
+          fullname: req.body.fullname,
+          email: req.body.email,
+          username: req.body.username,
+          password: hashed,
+        });
+        const user = await newUser.save();
+        const { password, ...others } = user._doc;
+        res.status(200).json({ ...others, error: false });
+      }
     } catch (err) {
       res.status(500).json(err);
     }

@@ -7,11 +7,10 @@ import DetailTabUI from '~/components/DetailTabUI';
 import ProductCard from '~/components/ProductCard';
 import Carousel from '~/components/Carousel';
 import * as productApi from '~/api/productApi';
+import Toast from '~/components/Toast';
 import styles from './Detail.module.scss';
 
 const cx = classNames.bind(styles);
-
-const data = { _id: '123', title: 'SHRIMP HAMBURGER', sale: 35.0 };
 
 function Detail() {
   const [detailItem, setDetailItem] = useState({});
@@ -78,6 +77,7 @@ function Detail() {
           </Carousel>
         </div>
       </div>
+      <Toast position={'top-left'} />
     </>
   );
 }

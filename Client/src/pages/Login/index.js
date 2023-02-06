@@ -6,14 +6,36 @@ import { faFacebookF, faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 import AuthenFormWrapper from '~/components/AuthenFormWrapper';
 import Button from '~/components/Button';
+import { getUser } from '~/utils/localStorage';
 import { useAuthenContext } from '~/customHook';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 import * as authenApi from '~/api/authenApi';
 import styles from './Login.module.scss';
 
 const cx = classNames.bind(styles);
 
 function Login() {
-  const [username, setUsername] = useState('');
+  // const validationSchema = yup
+  //   .object({
+  //     username: yup.string().required('This field is required'),
+  //     password: yup.string().required('This field is required'),
+  //   })
+  //   .required();
+
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm({
+  //   mode: 'all',
+  //   reValidateMode: 'onBlur',
+  //   resolver: yupResolver(validationSchema),
+  // });
+
+  const userInfor = getUser();
+  const [username, setUsername] = useState(userInfor.username);
   const [password, setPassword] = useState('');
 
   const [, authenDispatch] = useAuthenContext();
@@ -38,6 +60,7 @@ function Login() {
             <input
               type="text"
               name="username"
+              value={username}
               placeholder="Enter your username"
               onChange={(e) => setUsername(e.target.value)}
             />

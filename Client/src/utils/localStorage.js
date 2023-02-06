@@ -8,6 +8,17 @@ export const setAccessToken = (accessToken) => {
   else localStorage.removeItem('accessToken');
 };
 
+//user storage
+export const setUser = (user) => {
+  if (user) localStorage.setItem('user', JSON.stringify(user));
+  else localStorage.removeItem('user');
+};
+
+export const getUser = () => {
+  const user = localStorage.getItem('user');
+  return user ? JSON.parse(user) : '';
+};
+
 // Cart Storage
 export const getCartProducts = () => {
   const cartProducts = localStorage.getItem('cartProducts');

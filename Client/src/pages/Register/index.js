@@ -33,31 +33,29 @@ function Register() {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    mode: 'onChange',
+    mode: 'all',
     reValidateMode: 'onBlur',
     resolver: yupResolver(validationSchema),
   });
-  // const [fullname, setFullname] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [username, setUsername] = useState('');
-  // const [password, setPassword] = useState('');
-  // const [comfirmPassword, setComfirmPassword] = useState('');
 
   const [, authenDispatch] = useAuthenContext();
   const navigate = useNavigate();
 
-  const handleRegister = (data) => {
-    // e.preventDefault();
-    console.log(data);
+  const handleRegister = async (data) => {
+    // preventDefault();
 
-    // const newUser = {
-    //   fullname: fullNameRef.current.value,
-    //   email: emailRef.current.value,
-    //   username: userNameRef.current.value,
-    //   password: passwordRef.current.value,
-    // };
+    const newUser = {
+      fullname: data.fullname,
+      email: data.email,
+      username: data.username,
+      password: data.password,
+    };
+    // console.log(newUser);
 
-    // authenApi.register(newUser, authenDispatch, navigate);
+    const result = await authenApi.register(newUser, authenDispatch, navigate);
+    if (result.error) {
+      alert(result.errorMessage);
+    }
   };
 
   return (

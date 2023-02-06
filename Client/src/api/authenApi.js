@@ -1,5 +1,5 @@
 import request from '~/utils/request';
-import { setAccessToken } from '~/utils/localStorage';
+import { setAccessToken, setUser } from '~/utils/localStorage';
 import {
   registerSuccess,
   registerFailed,
@@ -12,8 +12,10 @@ import {
 export const login = async (user, dispatch, navigate) => {
   try {
     const res = await request.post(`/auth/login`, user);
-    setAccessToken(res.accessToken || '');
     dispatch(loginSuccess(res));
+    localStorage.clear();
+    setUser(res);
+    setAccessToken(res.accessToken || '');
     navigate('/');
   } catch (err) {
     dispatch(loginFailed());
@@ -24,8 +26,11 @@ export const register = async (user, dispatch, navigate) => {
   try {
     const res = await request.post(`/auth/register`, user);
     dispatch(registerSuccess(''));
-    navigate('/login');
-    // return res;
+    if (res.error === false) {
+      setUser(res);
+      navigate('/login');
+    }
+    return res;
   } catch (err) {
     dispatch(registerFailed(''));
   }
