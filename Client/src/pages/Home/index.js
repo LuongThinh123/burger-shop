@@ -7,6 +7,7 @@ import Button from '~/components/Button';
 import Image from '~/components/Image';
 import images from '~/assets/images';
 import HomeProduct from '~/components/HomeProduct';
+import Carousel from '~/components/Carousel';
 import styles from './Home.module.scss';
 import Toast from '~/components/Toast';
 
@@ -16,6 +17,56 @@ function Home() {
   return (
     <>
       <div className={cx('homeInner')}>
+        <div className={cx('Home-slider')}>
+          <div className={cx('slider__container')}>
+            <Carousel
+              amountItemAppear={1}
+              prevBtnClass={cx('slider-prev-btn')}
+              nextBtnClass={cx('slider-next-btn')}
+              marginLeftRight={0}
+            >
+              <div className={cx('slider')}>
+                {/* <img src="" alt="" /> */}
+                <Image src={images.homeSlide1} />
+                <div className={cx('slide-content')}>
+                  <h3 className={cx('text')}>WELCOME TO CT-FOOD</h3>
+                  <p className={cx('slide-description')}>GOOD FOOD GOOD FELLINGS</p>
+                  <Button to={'/products'} primary className={cx('slide-btn')}>
+                    CHECK OUT OUR MENU
+                  </Button>
+                </div>
+              </div>
+
+              <div className={cx('slider')}>
+                {/* <img src="" alt="" /> */}
+                <Image src={images.homeSlide2} />
+                <div className={cx('slide-content')}>
+                  <h3 className={cx('text')}>SHARE YOUR LOVE WITH BURGER</h3>
+                  <p className={cx('slide-description')}>
+                    Buy the most appetizing burger you've never eaten before in your life
+                  </p>
+                  <Button to={'/products'} primary className={cx('slide-btn')}>
+                    ORDER NOW
+                  </Button>
+                </div>
+              </div>
+
+              <div className={cx('slider')}>
+                {/* <img src="" alt="" /> */}
+                <Image src={images.homeSlide3} />
+                <div className={cx('slide-content')}>
+                  <h3 className={cx('text')}>FRESH AND HOT</h3>
+                  <p className={cx('slide-description')}>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus
+                  </p>
+                  <Button to={'/products'} primary className={cx('slide-btn')}>
+                    ORDER NOW
+                  </Button>
+                </div>
+              </div>
+            </Carousel>
+          </div>
+        </div>
         <div className={cx('elementor-inner')}>
           <div className={cx('elementor-container')}>
             <div className={cx('element')}>

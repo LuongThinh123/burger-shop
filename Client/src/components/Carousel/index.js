@@ -1,7 +1,7 @@
 import { memo, useState, Children, useRef, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleChevronLeft, faCircleChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './Carousel.module.scss';
 
@@ -12,7 +12,7 @@ function Carousel(props) {
   // const [slidePosition, setSlidePosition] = useState(0);
   const [countSpace, setCountSpace] = useState(0);
   const [displayItems, setDisplayItems] = useState([]);
-  const { children, amountItemAppear = 4, marginLeftRight = 15 } = props;
+  const { children, amountItemAppear = 4, marginLeftRight = 0, prevBtnClass, nextBtnClass } = props;
 
   const widthItem = useRef(0);
   const spacing = useRef(0);
@@ -41,7 +41,7 @@ function Carousel(props) {
 
   const prevSlideHandler = () => {
     // let newPosition = slidePosition;
-    let count = countSpace - widthItem.current * 2; // 2 is number of products transalte
+    let count = countSpace - widthItem.current; // 2 is number of products transalte
     if (count < 0) {
       count = spacing.current;
       // newPosition = children.length - amountItemAppear;
@@ -56,7 +56,7 @@ function Carousel(props) {
 
   const nextSlideHandler = () => {
     // let newPosition = slidePosition;
-    let count = countSpace + widthItem.current * 2;
+    let count = countSpace + widthItem.current;
     if (count > spacing.current) {
       count = 0;
       // newPosition = 0;
@@ -79,16 +79,16 @@ function Carousel(props) {
 
   return (
     <div className={cx('container')}>
-      <div className={cx('left-arrow')} onClick={prevSlideHandler}>
-        <FontAwesomeIcon className={cx('left-arrow-icon')} icon={faCircleChevronLeft} />
+      <div className={cx('left-arrow', prevBtnClass)} onClick={prevSlideHandler}>
+        <FontAwesomeIcon className={cx('left-arrow-icon')} icon={faAngleLeft} />
       </div>
       <div className={cx('items-container')}>
         <div className={cx('displayFrame')} ref={displayFrame}>
           {displayItems}
         </div>
       </div>
-      <div className={cx('right-arrow')} onClick={nextSlideHandler}>
-        <FontAwesomeIcon className={cx('right-arrow-icon')} icon={faCircleChevronRight} />
+      <div className={cx('right-arrow', nextBtnClass)} onClick={nextSlideHandler}>
+        <FontAwesomeIcon className={cx('right-arrow-icon')} icon={faAngleRight} />
       </div>
     </div>
   );

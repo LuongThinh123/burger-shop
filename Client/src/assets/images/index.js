@@ -1,5 +1,8 @@
 const images = {
   logo: require('~/assets/images/logo.png'),
+  homeSlide1: require('~/assets/images/home_slide1.png'),
+  homeSlide2: require('~/assets/images/home_slide2.png'),
+  homeSlide3: require('~/assets/images/home_slide3.png'),
   footerImg: require('~/assets/images/footer_img1.png'),
   shapeDot: require('~/assets/images/shape_dot.png'),
   test: require('~/assets/images/test.png'),
