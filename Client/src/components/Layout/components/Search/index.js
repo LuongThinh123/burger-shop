@@ -38,7 +38,7 @@ function Search() {
     const fetchProductList = async () => {
       try {
         const response = await productApi.getProducts({
-          searchTitle: encodeURIComponent(debounced),
+          searchTitle: encodeURIComponent(debounced.trim()),
         });
         setSearchResult(response.products);
         console.log(response.products);
@@ -60,20 +60,17 @@ function Search() {
     setShowResults(false);
   };
 
+  const handleChange = (e) => {
+    const searchValue = e.target.value;
+    if (!searchValue.startsWith(' ')) {
+      setSearchValue(searchValue);
+    }
+  };
+
   const handleSearchBtnClick = () => {
     if (!debounced.trim()) return;
     navigate('/products');
-    filterDispatch(setSearchTitle(encodeURIComponent(searchValue)));
-    // try {
-    //   const response = await productApi.getProducts({
-    //     searchTitle: encodeURIComponent(debounced),
-    //   });
-    //   setSearchResult(response.products);
-    //   setLoading(false);
-    //   console.log(response.products);
-    // } catch (error) {
-    //   console.error('lỗi rồi');
-    // }
+    filterDispatch(setSearchTitle(encodeURIComponent(debounced.trim())));
   };
 
   return (
@@ -98,7 +95,7 @@ function Search() {
           value={searchValue}
           placeholder="Tìm kiếm sản phẩm"
           spellCheck={false}
-          onChange={(e) => setSearchValue(e.target.value)}
+          onChange={handleChange}
           onFocus={() => setShowResults(true)}
         />
         {!!searchValue && !loading && (

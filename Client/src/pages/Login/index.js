@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import classNames from 'classnames/bind';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,73 +5,66 @@ import { faFacebookF, faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 import AuthenFormWrapper from '~/components/AuthenFormWrapper';
 import Button from '~/components/Button';
-import { getUser } from '~/utils/localStorage';
 import { useAuthenContext } from '~/customHook';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import * as authenApi from '~/api/authenApi';
+import Input from '~/components/Input';
 import styles from './Login.module.scss';
 
 const cx = classNames.bind(styles);
 
 function Login() {
-  // const validationSchema = yup
-  //   .object({
-  //     username: yup.string().required('This field is required'),
-  //     password: yup.string().required('This field is required'),
-  //   })
-  //   .required();
+  const validationSchema = yup
+    .object({
+      username: yup.string().required('This field is required'),
+      password: yup.string().required('This field is required'),
+    })
+    .required();
 
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   formState: { errors },
-  // } = useForm({
-  //   mode: 'all',
-  //   reValidateMode: 'onBlur',
-  //   resolver: yupResolver(validationSchema),
-  // });
-
-  const userInfor = getUser();
-  const [username, setUsername] = useState(userInfor.username);
-  const [password, setPassword] = useState('');
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    mode: 'all',
+    reValidateMode: 'onBlur',
+    resolver: yupResolver(validationSchema),
+  });
 
   const [, authenDispatch] = useAuthenContext();
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
+  const handleLogin = (data) => {
     const newUser = {
-      username: username,
-      password: password,
+      username: data.username,
+      password: data.password,
     };
     authenApi.login(newUser, authenDispatch, navigate);
   };
 
   return (
-    // <div className={cx('inner')}>
     <AuthenFormWrapper>
-      <form className={cx('login_form')} onSubmit={handleLogin}>
+      <form className={cx('login_form')} onSubmit={handleSubmit(handleLogin)}>
         <h1>Wellcome</h1>
         <div className={cx('login_body')}>
-          <div className={cx('feild')}>
-            <input
-              type="text"
-              name="username"
-              value={username}
-              placeholder="Enter your username"
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </div>
-          <div className={cx('feild')}>
-            <input
-              type="password"
-              name="password"
-              placeholder="Enter your password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
+          <Input
+            {...register('username')}
+            error={errors.username}
+            type={'text'}
+            placeholder="Enter your username"
+            className={cx('feild')}
+            inputClass={cx('form-input')}
+          />
+          <Input
+            {...register('password')}
+            error={errors.password}
+            type={'password'}
+            placeholder="Enter your password"
+            className={cx('feild')}
+            inputClass={cx('form-input')}
+          />
           <div className={cx('login_options')}>
             <label className={cx('rememberMe_checkbox')}>
               <input type="checkbox" value="remember me"></input>

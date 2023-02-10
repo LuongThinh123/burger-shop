@@ -10,10 +10,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  // display: none;
 }
 
 .footer-infor-container {
-  max-width: 1519px;
+  max-width: var(--default-layout-width);
   padding: 0 90px;
 }
 
@@ -148,8 +149,8 @@
 
 .copy-right-container {
   padding: 0 110px;
-  max-width: 1519px;
-  width: 1519px;
+  max-width: var(--default-layout-width);
+  width: 100%;
 }
 
 .copy-right-box {
