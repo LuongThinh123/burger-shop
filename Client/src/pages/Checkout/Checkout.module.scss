@@ -4,7 +4,8 @@
   padding: 0 var(--default-content-layout-padding);
   //   justify-content: space-between;
   //   align-items: flex-start;
-  width: var(--default-layout-width);
+  max-width: var(--default-layout-width);
+  width: 100%;
   margin: 68px 0;
 }
 

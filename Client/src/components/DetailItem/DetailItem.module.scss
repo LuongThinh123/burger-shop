@@ -29,9 +29,9 @@
 }
 
 .item-title {
-  font-size: 1.8rem;
+  font-size: 2.2rem;
   color: var(--black);
-  letter-spacing: 3px;
+  letter-spacing: 1px;
 }
 
 .item-price-status {
@@ -87,7 +87,7 @@
 
   &:hover {
     background-color: var(--darkCyan);
-    transition: all 0.5s;
+    transition: all 0.2s;
   }
 }
 

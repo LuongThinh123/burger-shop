@@ -9,8 +9,7 @@ const cx = classNames.bind(styles);
 
 function SearchItem({ data }) {
   return (
-    // /detail/${data.id}
-    <Link to={`/detail`} className={cx('wrapper')}>
+    <Link to={`/detail/${data._id}`} className={cx('wrapper')}>
       <Image className={cx('product_img')} src={images.test} alt="Burger" />
       <div className={cx('info')}>
         <h4 className={cx('name')}>

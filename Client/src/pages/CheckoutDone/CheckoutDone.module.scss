@@ -1,5 +1,6 @@
 .inner {
-  width: var(--default-layout-width);
+  max-width: var(--default-layout-width);
+  width: 100%;
   padding: 110px 174px 90px 174px;
   display: flex;
   flex-direction: column;

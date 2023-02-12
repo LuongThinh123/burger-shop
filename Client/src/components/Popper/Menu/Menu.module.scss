@@ -12,20 +12,27 @@
 }
 
 //Menu item
-.menu-item {
-  width: 100%;
-  justify-content: flex-start;
-  border-radius: 0;
-  padding: 11px 16px;
-  line-height: 1.8rem;
-  font-weight: 600;
+.menu-list {
+  .menu-item {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    border-radius: 0;
+    padding: 11px 16px;
+    line-height: 1.8rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--primary);
+    font-size: 1.75rem;
+    padding: 16px 16px;
 
-  &.separate {
-    border-top: 1px solid var(--lightGray);
-  }
+    &.separate {
+      border-top: 1px solid var(--lightGray);
+    }
 
-  &:hover {
-    background-color: rgba(22, 24, 35, 0.03);
+    &:hover {
+      background-color: rgba(22, 24, 35, 0.03);
+    }
   }
 }
 

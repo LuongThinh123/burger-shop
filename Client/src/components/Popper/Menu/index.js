@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react/headless';
 
@@ -11,9 +12,10 @@ const cx = classNames.bind(styles);
 
 const defaultFn = () => {};
 
-function Menu({ children, menuItemClass, hideOnClick = false, items = [], onChange = defaultFn }) {
+function Menu({ children, menuItemClass, hideOnClick = false, items = [], onChange = defaultFn, ...passProps }) {
   const [history, setHistory] = useState([{ data: items }]);
   const current = history[history.length - 1];
+  const navigate = useNavigate();
 
   const renderItems = () => {
     return current.data.map((item, index) => {
@@ -27,7 +29,8 @@ function Menu({ children, menuItemClass, hideOnClick = false, items = [], onChan
             if (isParent) {
               setHistory((prev) => [...prev, item.children]);
             } else {
-              onchange(item);
+              onChange(item);
+              // navigate(`${item.to}`);
             }
           }}
         />
@@ -37,6 +40,7 @@ function Menu({ children, menuItemClass, hideOnClick = false, items = [], onChan
 
   return (
     <Tippy
+      appendTo={() => document.body}
       interactive
       // visible
       hideOnClick={hideOnClick}

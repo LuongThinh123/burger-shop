@@ -77,6 +77,7 @@ function Search() {
     <Tippy
       visible={showResults && searchResult.length > 0}
       interactive
+      appendTo={() => document.body}
       render={(attrs) => (
         <div className={cx('search-result')} tabIndex="-1" {...attrs}>
           <PopperWrapper>
@@ -93,7 +94,7 @@ function Search() {
         <input
           ref={inputRef}
           value={searchValue}
-          placeholder="Tìm kiếm sản phẩm"
+          placeholder="Search for products"
           spellCheck={false}
           onChange={handleChange}
           onFocus={() => setShowResults(true)}

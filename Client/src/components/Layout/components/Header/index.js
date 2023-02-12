@@ -24,12 +24,12 @@ function Header() {
         {
           icon: <FontAwesomeIcon icon={faUser} />,
           title: 'Profile',
-          to: '/user/account',
+          to: `/user/account`,
         },
         {
           icon: <FontAwesomeIcon icon={faFileInvoiceDollar} />,
           title: 'Purchase',
-          to: '/user/purchase',
+          to: `/user/purchase`,
         },
         {
           icon: <FontAwesomeIcon icon={faRightToBracket} />,
@@ -41,12 +41,12 @@ function Header() {
         {
           icon: <FontAwesomeIcon icon={faRightToBracket} />,
           title: 'Login',
-          to: '/login',
+          to: `/login`,
         },
         {
           icon: <FontAwesomeIcon icon={faRightToBracket} />,
           title: 'Register',
-          to: '/register',
+          to: `/register`,
         },
       ];
 
