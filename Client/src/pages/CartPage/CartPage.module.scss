@@ -1,6 +1,7 @@
 .inner {
   min-height: 500px;
   padding: 110px 174px 90px 174px;
+  margin-bottom: 50px;
 }
 
 .cartList__box {
@@ -84,117 +85,29 @@
   font-weight: bold;
 
   .product_title {
+    font-size: 1.7rem;
     width: 40%;
     padding-left: 35px;
   }
 
   .product_price {
+    font-size: 1.7rem;
     width: 16%;
-    font-size: 1.6rem;
     text-align: center;
   }
 
   .product_quantity {
     width: 25%;
+    font-size: 1.7rem;
     text-align: center;
   }
 
   .product_total {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
     width: 16%;
     text-align: right;
   }
 }
-
-// #cartPage .cartPage__product {
-//   padding: 25px 0;
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   border-bottom: 1px solid #ccc;
-// }
-
-// .cartPage__product-imgBox {
-//   width: 150px;
-//   height: 128px;
-//   flex-shrink: 0;
-// }
-
-// .cartPage__product-img {
-//   width: 100%;
-//   height: 100%;
-//   object-fit: cover;
-// }
-
-// .cartPage__product-item {
-//   display: flex;
-//   align-items: center;
-// }
-
-// .cartPage__product-title {
-//   padding-left: 35px;
-//   /* text-align: center; */
-// }
-
-// .cartPage__product-item-infor {
-//   margin-left: 15px;
-// }
-
-// .cartPage__product-name {
-//   margin-top: 0px;
-//   font-size: 1.7rem;
-//   display: -webkit-box;
-//   -webkit-line-clamp: 2;
-//   -webkit-box-orient: vertical;
-//   overflow: hidden;
-//   text-overflow: ellipsis;
-//   word-break: break-word;
-// }
-
-// #cartPage .modal__cart-delete-icon {
-//   margin-top: 10px;
-//   width: 22px;
-// }
-
-// .cartPage__product-total-cost {
-//   color: var(--primary-color);
-// }
-
-// .cartPage__product-item-price span {
-//   padding-right: 2px;
-// }
-
-// .cartPage__product-price,
-// .cartPage__product-item-price {
-//   width: 16%;
-//   font-size: 1.6rem;
-//   text-align: center;
-// }
-
-// .cartPage__product-item-price {
-//   font-size: 1.8rem;
-// }
-
-// .cartPage__product-quantity,
-// .cartPage__item-input {
-//   width: 25%;
-//   text-align: center;
-// }
-
-// #cartPage .modal__cart-item-input {
-//   margin: 0 auto;
-// }
-
-// .cartPage__product-total,
-// .cartPage__product-total {
-//   font-size: 1.6rem;
-//   width: 16%;
-//   text-align: right;
-// }
-
-// .cartPage__product-total-cost {
-//   font-size: 1.7rem;
-// }
 
 .cart_footer {
   margin-top: 60px;

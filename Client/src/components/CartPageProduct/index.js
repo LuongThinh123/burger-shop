@@ -15,7 +15,7 @@ import {
 import image from '~/assets/images';
 const cx = classNames.bind(styles);
 
-function CartPageProduct({ data, subTotalRef, totalRef }) {
+function CartPageProduct({ data, subTotalRef, totalRef, ...passProp }) {
   console.log('re-render cart product');
   const inputRef = useRef();
   const totalAmountRef = useRef();
@@ -26,6 +26,7 @@ function CartPageProduct({ data, subTotalRef, totalRef }) {
     const productId = e.target.dataset.id;
 
     removeCartProductsItem(productId);
+    passProp.onUpdateRemoveChange();
     subTotalRef.current.innerHTML = `$${getTotalCartProducts()}`;
     totalRef.current.innerHTML = `$${getTotalCartProducts()}`;
 

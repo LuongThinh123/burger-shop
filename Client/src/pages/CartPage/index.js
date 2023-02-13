@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import classNames from 'classnames/bind';
 
 import Banner from '~/components/Banner';
@@ -15,6 +15,7 @@ function CartPage() {
   const [cartItems, setCartItems] = useState([]);
   const subTotal = useRef();
   const total = useRef();
+  const productBoxRef = useRef();
 
   let totalPrice = 0;
 
@@ -39,6 +40,12 @@ function CartPage() {
     // }
   }, []);
 
+  const onUpdateRemoveChange = useCallback(() => {
+    if (productBoxRef.current.childElementCount <= 0) {
+      setCartItems([]);
+    }
+  }, []);
+
   return (
     <>
       <Banner heading={'Cart'}>Cart</Banner>
@@ -51,55 +58,21 @@ function CartPage() {
               <div className={cx('product_quantity')}>Quantity</div>
               <div className={cx('product_total')}>Total</div>
             </div>
-            <div className={cx('product-box')}>
+            <div ref={productBoxRef} className={cx('product-box')}>
               {cartItems
                 ? cartItems.map((item) => {
                     totalPrice += item.sale * item.quantity;
-                    return <CartPageProduct key={item._id} data={item} subTotalRef={subTotal} totalRef={total} />;
+                    return (
+                      <CartPageProduct
+                        key={item._id}
+                        data={item}
+                        subTotalRef={subTotal}
+                        totalRef={total}
+                        onUpdateRemoveChange={onUpdateRemoveChange}
+                      />
+                    );
                   })
                 : []}
-              {/* <div className={cx('product')}>
-              <div class="cartPage__product-item">
-                <div class="cartPage__product-imgBox">
-                  <img class="cartPage__product-img" src="${product.img}" alt="" />
-                </div>
-
-                <div class="cartPage__product-item-infor">
-                  <h3 class="cartPage__product-name">chicken hamburger</h3>
-
-                  <div class="modal__cart-delete-icon">
-                    <i class="far fa-times-circle deleteIcon" data-id=""></i>
-                  </div>
-                </div>
-              </div>
-              <div class="cartPage__product-item-price">
-                <span class="cartPage__product-cost">$35</span>
-              </div>
-              <div class="cartPage__item-input">
-                <div class="modal__cart-item-input">
-                  <button class="cart__item-decrement" data-id="">
-                    -
-                  </button>
-                  <input
-                    type="number"
-                    min="1"
-                    max="9999"
-                    step="1"
-                    value=""
-                    class="cart_item-input"
-                    data-id=""
-                    inputmode="numeric"
-                  />
-                  <button class="cart__item-increment" data-id="">
-                    +
-                  </button>
-                </div>
-              </div>
-              <div class="cartPage__product-total">
-                <span class="cartPage__product-total-cost">$500</span>
-              </div>
-            </div> */}
-              {/* <CartPageProduct /> */}
             </div>
           </div>
         ) : (

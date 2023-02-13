@@ -66,7 +66,7 @@ const OrderController = {
         case 2:
           status = {
             code: 2,
-            title: "COMPLETE",
+            title: "COMPLETED",
           };
           break;
         case 3:

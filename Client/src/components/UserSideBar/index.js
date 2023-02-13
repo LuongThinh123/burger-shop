@@ -1,4 +1,5 @@
 import classNames from 'classnames/bind';
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoneyBill, faUser } from '@fortawesome/free-solid-svg-icons';
@@ -11,7 +12,6 @@ const cx = classNames.bind(styles);
 
 function UserSideBar() {
   const userInfor = getUser();
-
   return (
     <div className={cx('user-options')}>
       <div className={cx('user-display')}>
@@ -19,7 +19,7 @@ function UserSideBar() {
           <Image
             className={cx('user-img')}
             src={
-              'https://scontent.fsgn5-5.fna.fbcdn.net/v/t39.30808-6/308855318_1765329653819861_649421416552517202_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=6MDPEqim8SMAX-4iaOd&_nc_ht=scontent.fsgn5-5.fna&oh=00_AfCjbv3s4xMljrNqGwqMPc8CM00uLIZ63ZUsfk1khjSG-Q&oe=63D2BAB2'
+              'https://scontent.fsgn5-5.fna.fbcdn.net/v/t39.30808-6/308855318_1765329653819861_649421416552517202_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=OK9cSCH7ZVgAX9T1Cmc&_nc_ht=scontent.fsgn5-5.fna&oh=00_AfCTHwqq5fVFNIj2xl7sz86kcxP9a1A7O6SF7fGmuSgFHA&oe=63F06472'
             }
           />
         </div>
@@ -47,4 +47,4 @@ function UserSideBar() {
   );
 }
 
-export default UserSideBar;
+export default memo(UserSideBar);

@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileInvoiceDollar } from '@fortawesome/free-solid-svg-icons';
@@ -15,6 +15,7 @@ function UserOrders() {
   const [orderStatus, setOrderStatus] = useState(0);
   const [orders, setOrders] = useState([]);
   const allActiveStatusRef = useRef();
+  // console.log('re render userOrders');
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -23,6 +24,13 @@ function UserOrders() {
     };
     fetchOrders();
   }, [orderStatus]);
+
+  const onStatusChangeUpdate = useCallback(
+    (id) => {
+      setOrders(orders.filter((order) => order._id !== id));
+    },
+    [orders],
+  );
 
   return (
     <div className={cx('user-orders')}>
@@ -49,12 +57,13 @@ function UserOrders() {
           orders.map((order) => {
             return (
               <OrderDetail
+                key={order._id}
                 orderNumber={order.orderNumber}
                 orderId={order._id}
-                key={order._id}
                 status={order.status}
                 itemList={order.products}
                 allActiveStatusRef={allActiveStatusRef}
+                onStatusChangeUpdate={onStatusChangeUpdate}
               />
             );
           })

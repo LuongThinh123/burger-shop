@@ -10,20 +10,23 @@ import styles from './OrderDetail.module.scss';
 
 const cx = classNames.bind(styles);
 
-function OrderDetail({ itemList, status, orderNumber, orderId, allActiveStatusRef }) {
+function OrderDetail({ itemList, status, orderNumber, orderId, allActiveStatusRef, ...passProps }) {
   let totalPrice = 0;
   const orderBoxRef = useRef();
   const statusChangeBtnRef = useRef();
   const statusTitleRef = useRef();
 
+  // console.log('re-render order details');
+
   useEffect(() => {
-    console.log('call useEFFECT');
+    // console.log('call useEFFECT');
     orderBoxRef.current.style.display = 'block';
   }, [itemList]);
 
   const handleChangeStatus = (status) => {
     const orderId = orderBoxRef.current.dataset.id;
     const isAllActive = allActiveStatusRef.current.classList.contains('UserOrders_active-status__6vFHY');
+
     if (isAllActive) {
       if (status === 2) {
         statusTitleRef.current.innerHTML = 'COMPLETED';
@@ -32,7 +35,7 @@ function OrderDetail({ itemList, status, orderNumber, orderId, allActiveStatusRe
       }
       statusChangeBtnRef.current.style.display = 'none';
     } else {
-      orderBoxRef.current.style.display = 'none';
+      passProps.onStatusChangeUpdate(orderId);
     }
 
     const orderStatusChangeInfor = {
