@@ -12,7 +12,7 @@ import { useToastContext } from '~/customHook';
 const cx = classNames.bind(styles);
 
 function ProductList({ filterState, filterDispatch }) {
-  const [currentPage, setCurrentPage] = useState(1);
+  // const [currentPage, setCurrentPage] = useState(1);
   const [productListInfor, setProductListInfor] = useState({});
   // const [filterState, filterDispatch] = useFilterContext();
   const [, toastDispatch] = useToastContext();
@@ -24,7 +24,7 @@ function ProductList({ filterState, filterDispatch }) {
         const response = await productApi.getProducts(filterState);
         console.log(response);
         setProductListInfor(response);
-        setCurrentPage(response.page);
+        // setCurrentPage(response.page);
         // console.log(response);
       } catch (error) {
         console.error('lỗi rồi');
@@ -47,7 +47,13 @@ function ProductList({ filterState, filterDispatch }) {
   // (currentPage) => filterDispatch(changePage(currentPage))
   return (
     <div className={cx('products-box')}>
-      <SortBar sortFilter={filterState.order} filterDispatch={filterDispatch} />
+      <SortBar
+        sortFilter={filterState.order}
+        pageFilter={filterState.page}
+        limit={productListInfor.limit ? productListInfor.limit : 6}
+        totalCount={productListInfor.total ? productListInfor.total : ''}
+        filterDispatch={filterDispatch}
+      />
       <div className={cx('product-list')}>
         {/* {console.log(productListInfor.page)} */}
         {productListInfor.products
@@ -58,7 +64,7 @@ function ProductList({ filterState, filterDispatch }) {
       </div>
       <Pagination
         className="pagination-bar"
-        currentPage={currentPage}
+        currentPage={filterState.page}
         totalCount={productListInfor.total ? productListInfor.total : ''}
         pageSize={productListInfor.limit ? productListInfor.limit : 6}
         onPageChange={useCallback((currentPage) => handleOnPageChange(currentPage), [handleOnPageChange])}

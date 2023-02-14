@@ -1,7 +1,7 @@
 const initState = {
   searchTitle: '',
   categoryIdList: [],
-  price: [],
+  price: ['0', '30'],
   page: 1,
   sort: '',
   order: '',

@@ -1,5 +1,4 @@
 import classNames from 'classnames/bind';
-import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoneyBill, faUser } from '@fortawesome/free-solid-svg-icons';
@@ -47,4 +46,4 @@ function UserSideBar() {
   );
 }
 
-export default memo(UserSideBar);
+export default UserSideBar;

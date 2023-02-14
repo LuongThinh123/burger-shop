@@ -1,5 +1,4 @@
 import { useState, useRef, memo } from 'react';
-import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames/bind';
 
 import styles from './PriceFilter.module.scss';
@@ -9,36 +8,13 @@ import { setPriceFilter, clearFilter } from '~/reducers/actions/filterAction';
 const cx = classNames.bind(styles);
 
 function PriceFilter({ priceFilter, filterDispatch }) {
-  // const [priceMin, setPriceMin] = useState('');
   console.log('price is', priceFilter);
-  const [rangeMin, setRangeMin] = useState(0);
-  const [rangeMax, setRangeMax] = useState(30);
-  // const [, filterDispatch] = useFilterContext();
+  const [rangeMin, setRangeMin] = useState(Number(priceFilter[0]));
+  const [rangeMax, setRangeMax] = useState(Number(priceFilter[1]));
 
   const maxRangeRef = useRef(),
     minRangeRef = useRef(),
-    // maxPrice = useRef(),
-    // minPrice = useRef(),
     progressRef = useRef();
-
-  // const HandleOnchangeNumber = (e) => {
-  //   const priceGap = 1000;
-  //   let isMin = false;
-
-  //   console.log(e.target.value);
-  //   if (e.target.className === 'input-min') {
-  //     minRangeRef.current.value = e.target.value;
-  //     isMin = true;
-  //   } else {
-  //     maxRangeRef.current.value = e.target.value;
-  //   }
-
-  //   if (maxRangeRef.current.value - minRangeRef.current.value <= priceGap && maxRangeRef.current.value <= 10000) {
-  //     isMin ? setRangeMin(minRangeRef.current.value) : setRangeMax(maxRangeRef.current.value);
-  //     progressRef.current.style.left = (minRangeRef.current.value / 10000) * 100 + '%';
-  //     progressRef.current.style.right = 100 - (maxRangeRef.current.value / 10000) * 100 + '%';
-  //   }
-  // };
 
   const handleClearFilter = () => {
     filterDispatch(clearFilter());
@@ -46,7 +22,6 @@ function PriceFilter({ priceFilter, filterDispatch }) {
   };
 
   const HandleOnchange = (e) => {
-    // filterDispatch(setPriceFilter([minRangeRef.current.value, maxRangeRef.current.value]));
     const priceGap = 4;
     let isMin = false;
     if (e.target.className === 'range-min') {
@@ -57,17 +32,7 @@ function PriceFilter({ priceFilter, filterDispatch }) {
     }
 
     if (maxRangeRef.current.value - minRangeRef.current.value <= priceGap) {
-      // // return;
-      // if (isMin) {
-      //   minRangeRef.current.value = parseInt(maxRangeRef.current.value) - 1000;
-      //   // setRangeMin(minRangeRef.current.value);
-      //   return;
-      // } else {
-      //   maxRangeRef.current.value = parseInt(minRangeRef.current.value) + 1000;
-      //   // setRangeMax(maxRangeRef.current.value);
       return;
-      // }
-      // isMin ? setRangeMin(minRangeRef.current.value - 1000) : setRangeMax(maxRangeRef.current.value + 1000);
     } else {
       isMin ? setRangeMin(minRangeRef.current.value) : setRangeMax(maxRangeRef.current.value);
       progressRef.current.style.left = (minRangeRef.current.value / 30) * 100 + '%';
@@ -85,9 +50,6 @@ function PriceFilter({ priceFilter, filterDispatch }) {
     setRangeMin(0);
     setRangeMax(30);
   };
-  // const handleFilterBtnClick = () => {
-  //   filterDispatch(setPriceFilter([rangeMin, rangeMax]));
-  // };
 
   return (
     <div className={cx('shop-filter_price')}>
@@ -119,7 +81,14 @@ function PriceFilter({ priceFilter, filterDispatch }) {
           </div>
         </div>
         <div className={cx('slider')}>
-          <div ref={progressRef} className={cx('progress')}></div>
+          <div
+            ref={progressRef}
+            className={cx('progress')}
+            style={{
+              left: (rangeMin / 30) * 100 + '%',
+              right: 100 - (rangeMax / 30) * 100 + '%',
+            }}
+          ></div>
           <input
             ref={minRangeRef}
             type="range"
@@ -144,14 +113,10 @@ function PriceFilter({ priceFilter, filterDispatch }) {
           />
         </div>
       </div>
-
-      {/* <div className={cx('filter-btn')}> */}
-      {/* <button>Filter</button> */}
       <div className={cx('line-separate')}></div>
       <Button className={cx('filter-btn')} primary onClick={handleClearFilter}>
         Clear Filter
       </Button>
-      {/* </div> */}
     </div>
   );
 }

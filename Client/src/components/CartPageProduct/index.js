@@ -13,6 +13,7 @@ import {
   getTotalCartProducts,
 } from '~/utils/localStorage';
 import image from '~/assets/images';
+import { priceFormat } from '~/utils/priceFormat';
 const cx = classNames.bind(styles);
 
 function CartPageProduct({ data, subTotalRef, totalRef, ...passProp }) {
@@ -21,9 +22,9 @@ function CartPageProduct({ data, subTotalRef, totalRef, ...passProp }) {
   const totalAmountRef = useRef();
   const productRef = useRef();
 
-  const handleDeleteItem = (e) => {
+  const handleDeleteItem = (id) => {
     productRef.current.remove();
-    const productId = e.target.dataset.id;
+    const productId = id;
 
     removeCartProductsItem(productId);
     passProp.onUpdateRemoveChange();
@@ -37,7 +38,7 @@ function CartPageProduct({ data, subTotalRef, totalRef, ...passProp }) {
     const productId = inputRef.current.dataset.id;
     const amount = inputRef.current.value;
 
-    totalAmountRef.current.innerHTML = `$${amount * data.sale}`;
+    totalAmountRef.current.innerHTML = `$${priceFormat(amount * data.sale)}`;
     updateCartProductsItem(productId, amount);
     subTotalRef.current.innerHTML = `$${getTotalCartProducts()}`;
     totalRef.current.innerHTML = `$${getTotalCartProducts()}`;
@@ -62,7 +63,7 @@ function CartPageProduct({ data, subTotalRef, totalRef, ...passProp }) {
               className={cx('deleteIcon')}
               icon={faCircleXmark}
               data-id={data._id}
-              onClick={(e) => handleDeleteItem(e)}
+              onClick={() => handleDeleteItem(data._id)}
             ></FontAwesomeIcon>
           </div>
         </div>
@@ -81,7 +82,7 @@ function CartPageProduct({ data, subTotalRef, totalRef, ...passProp }) {
       </div>
       <div className={cx('product_total')}>
         <span ref={totalAmountRef} className={cx('total_amount')}>
-          ${data.sale * data.quantity}
+          ${priceFormat(Number(data.sale) * Number(data.quantity))}
         </span>
       </div>
     </div>

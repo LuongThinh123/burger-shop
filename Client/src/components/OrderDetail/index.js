@@ -10,7 +10,7 @@ import styles from './OrderDetail.module.scss';
 
 const cx = classNames.bind(styles);
 
-function OrderDetail({ itemList, status, orderNumber, orderId, allActiveStatusRef, ...passProps }) {
+function OrderDetail({ itemList, status, orderNumber, orderDate, orderId, allActiveStatusRef, ...passProps }) {
   let totalPrice = 0;
   const orderBoxRef = useRef();
   const statusChangeBtnRef = useRef();
@@ -83,7 +83,7 @@ function OrderDetail({ itemList, status, orderNumber, orderId, allActiveStatusRe
       <div className={cx('order-footer')}>
         <div className={cx('order-footer-date')}>
           Order date:
-          <span> {getCurrentDateTime()}</span>
+          <span> {orderDate}</span>
         </div>
         <div className={cx('order-totalBox')}>
           <div className={cx('order-footer-total')}>

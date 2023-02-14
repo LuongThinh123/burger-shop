@@ -7,6 +7,7 @@ import styles from './UserOrders.module.scss';
 import Button from '~/components/Button';
 import OrderDetail from '~/components/OrderDetail';
 import { getAccessToken } from '~/utils/localStorage';
+import { dayFormat } from '~/utils/dateFormat';
 import * as OrderApi from '~/api/orderApi';
 
 const cx = classNames.bind(styles);
@@ -64,6 +65,7 @@ function UserOrders() {
                 itemList={order.products}
                 allActiveStatusRef={allActiveStatusRef}
                 onStatusChangeUpdate={onStatusChangeUpdate}
+                orderDate={dayFormat(order.createdAt)}
               />
             );
           })

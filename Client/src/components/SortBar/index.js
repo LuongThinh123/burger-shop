@@ -4,14 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './SortBar.module.scss';
-import { useFilterContext } from '~/customHook';
 import { setSort } from '~/reducers/actions/filterAction';
+import MiniPagination from '../MiniPagination';
 // import image from '~/assets/images';
 
 const cx = classNames.bind(styles);
 
-function SortBar({ sortFilter, filterDispatch }) {
-  console.log(sortFilter);
+function SortBar({ sortFilter, pageFilter, totalCount, limit, filterDispatch }) {
+  console.log('re-render sort bar');
   const handleSelectChange = (e) => {
     let sortBy = [];
     if (e.target.value === '') {
@@ -34,7 +34,7 @@ function SortBar({ sortFilter, filterDispatch }) {
         </div>
       </div>
 
-      <div className={cx('mini_nagination')}>
+      {/* <div className={cx('mini_nagination')}>
         <div className={cx('mini_nagination_state')}>
           <span className={cx('mini_nagination_title')}>Page: </span>
           <span className={cx('mini_nagination_current')}>1</span>/
@@ -46,7 +46,8 @@ function SortBar({ sortFilter, filterDispatch }) {
         <button className={cx('mini_nagination_next-btn')}>
           <FontAwesomeIcon icon={faChevronRight} />
         </button>
-      </div>
+      </div> */}
+      <MiniPagination pageCurrent={pageFilter} totalCount={totalCount} limit={limit} filterDispatch={filterDispatch} />
     </div>
   );
 }

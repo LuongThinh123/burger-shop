@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import Banner from '~/components/Banner';
 import OrderDetail from '~/components/OrderDetail';
 import { getOrderDetails, getShippingInfor } from '~/utils/localStorage';
-import { getCurrentDateTime } from '~/utils/dateFormat';
+// import { getCurrentDateTime } from '~/utils/dateFormat';
 import CartEmpty from '~/components/CartEmpty';
 import styles from './CheckoutDone.module.scss';
 
@@ -30,7 +30,7 @@ function CheckoutDone() {
                 </li>
                 <li className={cx('infor', 'order-date')}>
                   <span>Date:</span>
-                  <strong>{getCurrentDateTime()}</strong>
+                  <strong>{shippingInfor.orderDate}</strong>
                 </li>
                 <li className={cx('infor', 'order-total')}>
                   <span>Total:</span>
@@ -45,7 +45,11 @@ function CheckoutDone() {
 
             <div className={cx('order-details')}>
               <h1 className={cx('order-details-title')}>Order details</h1>
-              <OrderDetail itemList={productList} orderNumber={shippingInfor.orderNumber} />
+              <OrderDetail
+                itemList={productList}
+                orderNumber={shippingInfor.orderNumber}
+                orderDate={shippingInfor.orderDate}
+              />
             </div>
           </div>
         ) : (

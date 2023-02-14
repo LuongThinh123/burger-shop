@@ -6,6 +6,7 @@ import CheckoutOrderDetails from '../CheckoutOrderDetails';
 import images from '~/assets/images';
 import Image from '~/components/Image';
 import Button from '~/components/Button';
+import { getCurrentDateTime } from '~/utils/dateFormat';
 import * as orderApi from '~/api/orderApi';
 import styles from './CheckoutOrder.module.scss';
 import {
@@ -60,6 +61,7 @@ function CheckoutOrder({
     }
 
     const orderNumber = randomNumber(99999999, 10000000);
+    const orderDate = getCurrentDateTime();
 
     const shippingInfor = {
       firstName: fristNameRef.current.value,
@@ -74,6 +76,7 @@ function CheckoutOrder({
       phoneRef: phoneRef.current.value,
       emailRef: emailRef.current.value,
       payment: payment,
+      orderDate,
       orderNumber,
     };
 

@@ -1,0 +1,44 @@
+.mini_nagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  button {
+    color: var(--white);
+    background-color: var(--primary);
+    height: 32px;
+    width: 35px;
+    cursor: pointer;
+    border-radius: 2px;
+    font-size: 1.4rem;
+
+    &:hover {
+      color: var(--white);
+      background-color: var(--darkCyan);
+    }
+  }
+
+  .mini_nagination_prev-btn {
+    margin-left: 15px;
+    margin-right: 2px;
+  }
+  // .mini_nagination_next-btn {
+  //   margin-right: 10px;
+  // }
+}
+
+.mini_nagination_state {
+  color: var(--black);
+  font-size: 1.7rem;
+  display: flex;
+  align-items: center;
+  // font-weight: bold;
+
+  .mini_nagination_current {
+    color: var(--primary);
+  }
+
+  .mini_nagination_title {
+    margin-right: 8px;
+  }
+}

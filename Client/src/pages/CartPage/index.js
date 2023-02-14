@@ -8,6 +8,7 @@ import { getAccessToken, setCartProducts } from '~/utils/localStorage';
 import CartPageProduct from '~/components/CartPageProduct';
 import CartEmpty from '~/components/CartEmpty';
 import Button from '~/components/Button';
+import { priceFormat } from '~/utils/priceFormat';
 
 const cx = classNames.bind(styles);
 
@@ -86,13 +87,13 @@ function CartPage() {
               <div className={cx('subtotal')}>
                 <h4 className={cx('subtotal_title')}>Subtotal</h4>
                 <span ref={subTotal} className={cx('subtotal_amount')}>
-                  ${totalPrice}
+                  ${priceFormat(totalPrice)}
                 </span>
               </div>
               <div className={cx('total')}>
                 <h4 className={cx('total_title')}>Total</h4>
                 <span ref={total} className={cx('total_amount')}>
-                  ${totalPrice}
+                  ${priceFormat(totalPrice)}
                 </span>
               </div>
               <Button to={'/checkout'} className={cx('checkout_btn')}>
