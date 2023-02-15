@@ -11,6 +11,7 @@ import * as authenApi from '~/api/authenApi';
 import { getAccessToken } from '~/utils/localStorage';
 import Image from '~/components/Image';
 import image from '~/assets/images';
+import config from '~/config';
 
 const cx = classNames.bind(styles);
 
@@ -97,12 +98,12 @@ function Header() {
               </div>
             )}
           </Menu>
-          <div className={cx('nav_cart')}>
+          <Link to={config.routes.cart} className={cx('nav_cart')}>
             {/* <Link to="/cart"> */}
             <FontAwesomeIcon className={cx('cart_icon')} icon={faCartShopping} />
             <span className={cx('cart_product_numbers')}></span>
             {/* </Link> */}
-          </div>
+          </Link>
         </div>
       </div>
     </header>

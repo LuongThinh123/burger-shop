@@ -12,8 +12,8 @@ const InputQuantity = forwardRef(({ value, productId, className, rounded = false
   const [isBlur, setIsBlur] = useState(true);
   const currentValue = useRef(value);
 
-  const quantityDebounced = useDebounce(inputQuantity, 600);
-  const blurDebounced = useDebounce(isBlur, 600);
+  const quantityDebounced = useDebounce(inputQuantity, 530);
+  const blurDebounced = useDebounce(isBlur, 530);
 
   const classes = cx('quantity_input', {
     [className]: className,

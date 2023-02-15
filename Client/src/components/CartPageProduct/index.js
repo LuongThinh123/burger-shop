@@ -54,7 +54,7 @@ function CartPageProduct({ data, subTotalRef, totalRef, ...passProp }) {
     <div className={cx('product')} ref={productRef}>
       <div className={cx('product_item')}>
         <div className={cx('product_imgBox')}>
-          <img className={cx('product_img')} src={image.test} alt="" />
+          <img className={cx('product_img')} src={require(`../../assets/images/${data.image}`)} alt="" />
         </div>
         <div className={cx('product_infor')}>
           <h3 className={cx('product_name')}>{data.title}</h3>

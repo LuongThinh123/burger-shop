@@ -10,9 +10,8 @@
 }
 
 .product_img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
+  width: 82px;
+  height: 82px;
   object-fit: cover;
 }
 
@@ -23,6 +22,7 @@
 
 .name {
   font-size: 1.7rem;
+  color: var(--black);
   font-weight: 600;
 }
 

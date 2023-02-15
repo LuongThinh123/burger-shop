@@ -25,7 +25,7 @@ function Product() {
         <ShopSideBar filterState={filterState} filterDispatch={filterDispatch} />
         <ProductList filterState={filterState} filterDispatch={filterDispatch} />
       </div>
-      <Toast position={'top-right'} />
+      <Toast position={'top-left'} />
     </>
   );
 }

@@ -71,6 +71,7 @@ function Search() {
     if (!debounced.trim()) return;
     navigate('/products');
     filterDispatch(setSearchTitle(encodeURIComponent(debounced.trim())));
+    handleClear();
   };
 
   return (
@@ -83,7 +84,7 @@ function Search() {
           <PopperWrapper>
             <h4 className={cx('search-title')}>Search results...</h4>
             {searchResult.map((result, index) => (
-              <SearchItem key={index} data={result} />
+              <SearchItem key={index} data={result} onClick={handleClear} />
             ))}
           </PopperWrapper>
         </div>

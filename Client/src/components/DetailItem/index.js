@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import { memo, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import images from '~/assets/images';
+import Image from '~/components/Image';
 import * as cartApi from '~/api/cartApi';
 import { getAccessToken } from '~/utils/localStorage';
 import InputQuantity from '~/components/InputQuantity';
@@ -43,7 +43,11 @@ function DetailItem({ data }) {
     <div className={cx('detail-item')}>
       <div className={cx('detail-item__slider')}>
         <div className={cx('item-imgBx')}>
-          <img className={cx('item-img')} src={images.test} alt="" />
+          <Image
+            className={cx('item-img')}
+            src={data.image ? require(`../../assets/images/${data.image}`) : ''}
+            alt=""
+          />
         </div>
       </div>
 

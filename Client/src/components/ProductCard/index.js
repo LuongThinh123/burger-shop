@@ -41,7 +41,7 @@ function ProductCard({ data, toastDispatch, className }) {
     <div className={cx('product-card', className)}>
       <Link to={`/detail/${data._id}`}>
         <div className={cx('product-img')}>
-          <img src={image.test} alt="" />
+          <img src={require(`../../assets/images/${data.image}`)} alt="" />
         </div>
       </Link>
       <div className={cx('product-information')}>

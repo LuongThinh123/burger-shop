@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 
 import images from '~/assets/images';
 import { getAccessToken } from '~/utils/localStorage';
-import { getCurrentDateTime } from '~/utils/dateFormat';
+import { priceFormat } from '~/utils/priceFormat';
 import Button from '~/components/Button';
 import * as OrderApi from '~/api/orderApi';
 import styles from './OrderDetail.module.scss';
@@ -66,7 +66,7 @@ function OrderDetail({ itemList, status, orderNumber, orderDate, orderId, allAct
                 <div key={item._id} className={cx('order-product')}>
                   <div className={cx('product-item')}>
                     <div className={cx('product-imgBox')}>
-                      <img className={cx('product_img')} src={images.test} alt="" />
+                      <img className={cx('product_img')} src={require(`../../assets/images/${item.image}`)} alt="" />
                     </div>
                     <div className={cx('product-info')}>
                       <span className={cx('product-name')}>{item.title}</span>
@@ -74,7 +74,7 @@ function OrderDetail({ itemList, status, orderNumber, orderDate, orderId, allAct
                       <span className={cx('product-price')}>${item.sale}</span>
                     </div>
                   </div>
-                  <span className={cx('product-total')}>${item.sale * item.quantity}</span>
+                  <span className={cx('product-total')}>${priceFormat(item.sale * item.quantity)}</span>
                 </div>
               );
             })
@@ -88,7 +88,7 @@ function OrderDetail({ itemList, status, orderNumber, orderDate, orderId, allAct
         <div className={cx('order-totalBox')}>
           <div className={cx('order-footer-total')}>
             Total:
-            <span> ${totalPrice}</span>
+            <span> ${priceFormat(totalPrice)}</span>
           </div>
           {status && status.code === 1 && (
             <div ref={statusChangeBtnRef} className={cx('order-status-change')}>

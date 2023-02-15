@@ -142,7 +142,7 @@ function Home() {
                 <div className={cx('menu-products')}>
                   <div className={cx('menu-product')}>
                     <div className={cx('menu-product-imgBox')}>
-                      <Image className={cx('menu-product-img')} src={images.test} />
+                      <Image className={cx('menu-product-img')} src={require('~/assets/images/menuboadlist1.png')} />
                     </div>
                     <div className={cx('menu-combo-list')}>
                       <div className={cx('menu-combo-header')}>
@@ -154,7 +154,7 @@ function Home() {
                   </div>
                   <div className={cx('menu-product')}>
                     <div className={cx('menu-product-imgBox')}>
-                      <Image className={cx('menu-product-img')} src={images.test} />
+                      <Image className={cx('menu-product-img')} src={require('~/assets/images/menuboadlist2.png')} />
                     </div>
                     <div className={cx('menu-combo-list')}>
                       <div className={cx('menu-combo-header')}>
@@ -166,7 +166,7 @@ function Home() {
                   </div>
                   <div className={cx('menu-product')}>
                     <div className={cx('menu-product-imgBox')}>
-                      <Image className={cx('menu-product-img')} src={images.test} />
+                      <Image className={cx('menu-product-img')} src={require('~/assets/images/menuboadlist3.png')} />
                     </div>
                     <div className={cx('menu-combo-list')}>
                       <div className={cx('menu-combo-header')}>
@@ -185,7 +185,7 @@ function Home() {
                 <div className={cx('menu-products')}>
                   <div className={cx('menu-product')}>
                     <div className={cx('menu-product-imgBox')}>
-                      <Image className={cx('menu-product-img')} src={images.test} />
+                      <Image className={cx('menu-product-img')} src={require('~/assets/images/menuboadlist4.png')} />
                     </div>
                     <div className={cx('menu-combo-list')}>
                       <div className={cx('menu-combo-header')}>
@@ -197,7 +197,7 @@ function Home() {
                   </div>
                   <div className={cx('menu-product')}>
                     <div className={cx('menu-product-imgBox')}>
-                      <Image className={cx('menu-product-img')} src={images.test} />
+                      <Image className={cx('menu-product-img')} src={require('~/assets/images/menuboadlist5.png')} />
                     </div>
                     <div className={cx('menu-combo-list')}>
                       <div className={cx('menu-combo-header')}>
@@ -209,7 +209,7 @@ function Home() {
                   </div>
                   <div className={cx('menu-product')}>
                     <div className={cx('menu-product-imgBox')}>
-                      <Image className={cx('menu-product-img')} src={images.test} />
+                      <Image className={cx('menu-product-img')} src={require('~/assets/images/menuboadlist6.png')} />
                     </div>
                     <div className={cx('menu-combo-list')}>
                       <div className={cx('menu-combo-header')}>
@@ -230,7 +230,7 @@ function Home() {
                 <div className={cx('menu-products')}>
                   <div className={cx('menu-product')}>
                     <div className={cx('menu-product-imgBox')}>
-                      <Image className={cx('menu-product-img')} src={images.test} />
+                      <Image className={cx('menu-product-img')} src={require('~/assets/images/menuboadlist7.png')} />
                     </div>
                     <div className={cx('menu-combo-list')}>
                       <div className={cx('menu-combo-header')}>
@@ -242,7 +242,7 @@ function Home() {
                   </div>
                   <div className={cx('menu-product')}>
                     <div className={cx('menu-product-imgBox')}>
-                      <Image className={cx('menu-product-img')} src={images.test} />
+                      <Image className={cx('menu-product-img')} src={require('~/assets/images/menuboadlist8.png')} />
                     </div>
                     <div className={cx('menu-combo-list')}>
                       <div className={cx('menu-combo-header')}>
@@ -254,7 +254,7 @@ function Home() {
                   </div>
                   <div className={cx('menu-product')}>
                     <div className={cx('menu-product-imgBox')}>
-                      <Image className={cx('menu-product-img')} src={images.test} />
+                      <Image className={cx('menu-product-img')} src={require('~/assets/images/menuboadlist9.png')} />
                     </div>
                     <div className={cx('menu-combo-list')}>
                       <div className={cx('menu-combo-header')}>
@@ -273,7 +273,7 @@ function Home() {
                 <div className={cx('menu-products')}>
                   <div className={cx('menu-product')}>
                     <div className={cx('menu-product-imgBox')}>
-                      <Image className={cx('menu-product-img')} src={images.test} />
+                      <Image className={cx('menu-product-img')} src={require('~/assets/images/menuboadlist10.png')} />
                     </div>
                     <div className={cx('menu-combo-list')}>
                       <div className={cx('menu-combo-header')}>
@@ -285,7 +285,7 @@ function Home() {
                   </div>
                   <div className={cx('menu-product')}>
                     <div className={cx('menu-product-imgBox')}>
-                      <Image className={cx('menu-product-img')} src={images.test} />
+                      <Image className={cx('menu-product-img')} src={require('~/assets/images/menuboadlist11.png')} />
                     </div>
                     <div className={cx('menu-combo-list')}>
                       <div className={cx('menu-combo-header')}>
@@ -297,7 +297,7 @@ function Home() {
                   </div>
                   <div className={cx('menu-product')}>
                     <div className={cx('menu-product-imgBox')}>
-                      <Image className={cx('menu-product-img')} src={images.test} />
+                      <Image className={cx('menu-product-img')} src={require('~/assets/images/menuboadlist12.png')} />
                     </div>
                     <div className={cx('menu-combo-list')}>
                       <div className={cx('menu-combo-header')}>

@@ -7,10 +7,14 @@ import Image from '~/components/Image';
 
 const cx = classNames.bind(styles);
 
-function SearchItem({ data }) {
+function SearchItem({ data, onClick }) {
   return (
-    <Link to={`/detail/${data._id}`} className={cx('wrapper')}>
-      <Image className={cx('product_img')} src={images.test} alt="Burger" />
+    <Link to={`/detail/${data._id}`} className={cx('wrapper')} onClick={onClick}>
+      <Image
+        className={cx('product_img')}
+        src={data.image ? require(`../../assets/images/${data.image}`) : ''}
+        alt="Burger"
+      />
       <div className={cx('info')}>
         <h4 className={cx('name')}>
           <span>{data.title}</span>

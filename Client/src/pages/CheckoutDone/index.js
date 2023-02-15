@@ -1,11 +1,8 @@
-// import { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
-import { useEffect } from 'react';
 
 import Banner from '~/components/Banner';
 import OrderDetail from '~/components/OrderDetail';
 import { getOrderDetails, getShippingInfor } from '~/utils/localStorage';
-// import { getCurrentDateTime } from '~/utils/dateFormat';
 import CartEmpty from '~/components/CartEmpty';
 import styles from './CheckoutDone.module.scss';
 

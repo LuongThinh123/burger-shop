@@ -1,4 +1,4 @@
-import routesConfig from '~/config/routes';
+import config from '~/config';
 
 import { AuthenLayout } from '~/components/Layout';
 
@@ -15,17 +15,17 @@ import UserProfile from '~/pages/UserProfile';
 import Contact from '~/pages/Contact';
 
 export const publicRoutes = [
-  { path: routesConfig.home, component: Home },
-  { path: routesConfig.login, component: Login, layout: AuthenLayout },
-  { path: routesConfig.register, component: Register, layout: AuthenLayout },
-  { path: routesConfig.products, component: Product },
-  { path: routesConfig.detail, component: Detail },
-  { path: routesConfig.cart, component: CartPage },
-  { path: routesConfig.checkoutDone, component: CheckoutDone },
-  { path: routesConfig.checkout, component: Checkout },
-  { path: routesConfig.userPurchase, component: UserPurchase },
-  { path: routesConfig.userAccount, component: UserProfile },
-  { path: routesConfig.contact, component: Contact },
+  { path: config.routes.home, component: Home },
+  { path: config.routes.login, component: Login, layout: AuthenLayout },
+  { path: config.routes.register, component: Register, layout: AuthenLayout },
+  { path: config.routes.products, component: Product },
+  { path: config.routes.detail, component: Detail },
+  { path: config.routes.cart, component: CartPage },
+  { path: config.routes.checkoutDone, component: CheckoutDone },
+  { path: config.routes.checkout, component: Checkout },
+  { path: config.routes.userPurchase, component: UserPurchase },
+  { path: config.routes.userAccount, component: UserProfile },
+  { path: config.routes.contact, component: Contact },
 ];
 
 export const privateRoutes = [];
