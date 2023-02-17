@@ -38,4 +38,10 @@
 
 .product-item {
   margin: 20px 17px;
+  height: 100%;
+  max-height: 490px;
+
+  .product-information {
+    margin-bottom: 0;
+  }
 }

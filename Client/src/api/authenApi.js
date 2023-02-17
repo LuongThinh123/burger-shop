@@ -41,6 +41,7 @@ export const logout = async (accessToken, dispatch, navigate) => {
     await request.post(`/auth/logout`, {
       headers: { token: `Bearer ${accessToken}` },
     });
+    localStorage.clear();
     dispatch(logoutSuccess());
     navigate('/login');
   } catch (err) {

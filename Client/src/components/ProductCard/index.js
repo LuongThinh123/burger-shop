@@ -8,8 +8,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { addNotification } from '~/reducers/actions/toastAction';
 import { getAccessToken } from '~/utils/localStorage';
 import * as cartApi from '~/api/cartApi';
+import Image from '~/components/Image';
 import styles from './ProductCard.module.scss';
-import image from '~/assets/images';
 
 const cx = classNames.bind(styles);
 
@@ -20,6 +20,10 @@ function ProductCard({ data, toastDispatch, className }) {
   let handleAddToCart = (productId) => {
     console.log('Add to cart');
     console.log(productId);
+    if (!accessToken) {
+      navigate('/login');
+      return;
+    }
 
     const product = {
       productId,
@@ -41,7 +45,8 @@ function ProductCard({ data, toastDispatch, className }) {
     <div className={cx('product-card', className)}>
       <Link to={`/detail/${data._id}`}>
         <div className={cx('product-img')}>
-          <img src={require(`../../assets/images/${data.image}`)} alt="" />
+          {/* <img /> */}
+          <Image src={require(`../../assets/images/${data.image}`)} alt="" />
         </div>
       </Link>
       <div className={cx('product-information')}>

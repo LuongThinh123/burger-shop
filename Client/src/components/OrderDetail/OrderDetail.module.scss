@@ -58,17 +58,25 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  margin-left: 5px;
 }
 
 .product-imgBox {
-  width: 146px;
-  height: 120px;
+  // width: 136px;
+  // height: 146px;
+  // border: 2px solid var(--lightGray);
+  // padding: 5px;
+  width: auto;
+  height: auto;
+  max-width: 146px;
+  max-height: 146px;
   flex: 1;
 }
 
 .product_img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 .product-name {
@@ -84,7 +92,7 @@
 }
 
 .product-price {
-  font-size: 1.7rem;
+  font-size: 1.75rem;
   font-weight: bold;
   color: var(--primary);
 }

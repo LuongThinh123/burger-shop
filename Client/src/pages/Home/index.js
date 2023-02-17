@@ -121,7 +121,9 @@ function Home() {
             </div>
           </div>
         </div>
+
         <HomeProduct />
+
         <div className={cx('menu-cointainer')}>
           <div className={cx('menu-board')}>
             <div className={cx('menu-blur-imgBox')}>

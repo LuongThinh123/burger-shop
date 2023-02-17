@@ -25,6 +25,7 @@ function CartPage() {
     const fetchProductList = async () => {
       try {
         const accessToken = getAccessToken();
+        if (!accessToken) return;
         const response = await cartApi.getCartProducts(accessToken);
         setCartItems(response);
         setCartProducts(response);

@@ -148,9 +148,11 @@ const AuthenController = {
   },
 
   logout: async (req, res) => {
+    const userId = req.user.id;
     res.clearCookie("refreshToken");
-    await RefreshToken.deleteOne({
-      refreshToken: req.cookies.refreshToken,
+    await RefreshToken.deleteMany({
+      userId: userId,
+      // refreshToken: req.cookies.refreshToken,
     });
     res.status(200).json("Logout successfully");
   },

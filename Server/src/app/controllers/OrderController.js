@@ -43,7 +43,9 @@ const OrderController = {
 
       await newOrder.save();
 
-      await Cart.deleteMany({});
+      await Cart.deleteMany({
+        userId: userId,
+      });
 
       res.status(200).json("successfully add order");
     } catch (err) {

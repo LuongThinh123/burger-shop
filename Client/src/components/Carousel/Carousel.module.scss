@@ -11,6 +11,10 @@
   width: 100%;
 }
 
+.carouselProduct {
+  flex-shrink: 0;
+}
+
 .items-container {
   align-items: center;
   overflow: hidden;
