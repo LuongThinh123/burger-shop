@@ -38,7 +38,7 @@ function Login() {
 
   const handleLogin = (data) => {
     const newUser = {
-      username: data.username,
+      username: data.username.trim(' '),
       password: data.password,
     };
     authenApi.login(newUser, authenDispatch, navigate);

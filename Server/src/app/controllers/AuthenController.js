@@ -70,14 +70,18 @@ const AuthenController = {
     try {
       const user = await User.findOne({ username: req.body.username });
       if (!user) {
-        return res.status(404).json("Wrong username");
+        return res
+          .status(200)
+          .json({ errorMessage: "Wrong username", error: true });
       }
       const validPassword = await bcrypt.compare(
         req.body.password,
         user.password
       );
       if (!validPassword) {
-        return res.status(404).json("Wrong password");
+        return res
+          .status(200)
+          .json({ errorMessage: "Wrong username", error: true });
       }
       if (user && validPassword) {
         const accessToken = AuthenController.generateAccessToken(user);

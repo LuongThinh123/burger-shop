@@ -20,6 +20,10 @@ function Header() {
   const navigate = useNavigate();
   const accessToken = getAccessToken();
 
+  const handleLogout = () => {
+    authenApi.logout(accessToken, authenDispatch, navigate);
+  };
+
   const MENU_ITEMS = accessToken
     ? [
         {
@@ -35,6 +39,7 @@ function Header() {
         {
           icon: <FontAwesomeIcon icon={faRightToBracket} />,
           title: 'Logout',
+          onClick: handleLogout,
           separate: true,
         },
       ]
@@ -50,10 +55,6 @@ function Header() {
           to: `/register`,
         },
       ];
-
-  const handleLogout = () => {
-    authenApi.logout(accessToken, authenDispatch, navigate);
-  };
 
   return (
     <header className={cx('wrapper')}>

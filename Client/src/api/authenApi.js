@@ -12,6 +12,10 @@ import {
 export const login = async (user, dispatch, navigate) => {
   try {
     const res = await request.post(`/auth/login`, user);
+    if (res.error) {
+      alert('Password or Username is incorrect');
+      return;
+    }
     dispatch(loginSuccess(res));
     localStorage.clear();
     setUser(res);
@@ -38,13 +42,13 @@ export const register = async (user, dispatch, navigate) => {
 
 export const logout = async (accessToken, dispatch, navigate) => {
   try {
-    await request.post(`/auth/logout`, {
-      headers: { token: `Bearer ${accessToken}` },
-    });
+    const result = await request.post(`/auth/logout`, {}, { headers: { token: `Bearer ${accessToken}` } });
     localStorage.clear();
     dispatch(logoutSuccess());
     navigate('/login');
+    return result;
   } catch (err) {
     dispatch(logoutFailed(err));
+    console.log(err);
   }
 };
