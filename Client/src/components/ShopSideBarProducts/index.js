@@ -34,7 +34,7 @@ function ShopSideBarProducts() {
           <div key={product._id} className={cx('recomend-item')}>
             <div className={cx('recomend-img')}>
               <Link to={`/detail/${product._id}`}>
-                <img src={image.test} alt="" />
+                <img src={require(`../../assets/images/${product.image}`)} alt="" />
               </Link>
             </div>
             <div className={cx('item-information')}>

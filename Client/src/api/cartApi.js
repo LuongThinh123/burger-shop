@@ -20,7 +20,6 @@ export const getCartProducts = async (accessToken) => {
 };
 
 export const updateCartItem = async (accessToken, product) => {
-  // console.log(product);
   try {
     const result = await request.post(`/cart/update`, product, { headers: { token: `Bearer ${accessToken}` } });
     return result;

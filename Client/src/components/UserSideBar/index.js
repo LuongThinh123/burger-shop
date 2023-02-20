@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,8 +10,10 @@ import styles from './UserSideBar.module.scss';
 
 const cx = classNames.bind(styles);
 
-function UserSideBar() {
-  const userInfor = getUser();
+function UserSideBar({ userInformation }) {
+  // const [authenState] = useAuthenContext();
+  // console.log(authenState);
+  const userInfor = userInformation || getUser();
   return (
     <div className={cx('user-options')}>
       <div className={cx('user-display')}>
@@ -46,4 +49,4 @@ function UserSideBar() {
   );
 }
 
-export default UserSideBar;
+export default memo(UserSideBar);

@@ -12,9 +12,7 @@ import { useToastContext } from '~/customHook';
 const cx = classNames.bind(styles);
 
 function ProductList({ filterState, filterDispatch }) {
-  // const [currentPage, setCurrentPage] = useState(1);
   const [productListInfor, setProductListInfor] = useState({});
-  // const [filterState, filterDispatch] = useFilterContext();
   const [, toastDispatch] = useToastContext();
 
   console.log('re-render product list');
@@ -24,19 +22,12 @@ function ProductList({ filterState, filterDispatch }) {
         const response = await productApi.getProducts(filterState);
         console.log(response);
         setProductListInfor(response);
-        // setCurrentPage(response.page);
-        // console.log(response);
       } catch (error) {
         console.error('lỗi rồi');
       }
     };
     fetchProductList();
   }, [filterState]);
-  // const currentData = useMemo(() => {
-  //   const firstPageIndex = (currentPage - 1) * PageSize;
-  //   const lastPageIndex = firstPageIndex + PageSize;
-  //   return data.slice(firstPageIndex, lastPageIndex);
-  // }, [currentPage]);
 
   const handleOnPageChange = useCallback(
     (currentPage) => {
@@ -44,7 +35,7 @@ function ProductList({ filterState, filterDispatch }) {
     },
     [filterDispatch],
   );
-  // (currentPage) => filterDispatch(changePage(currentPage))
+
   return (
     <div className={cx('products-box')}>
       <SortBar
@@ -55,7 +46,6 @@ function ProductList({ filterState, filterDispatch }) {
         filterDispatch={filterDispatch}
       />
       <div className={cx('product-list')}>
-        {/* {console.log(productListInfor.page)} */}
         {productListInfor.products
           ? productListInfor.products.map((data) => {
               return <ProductCard key={data._id} data={data} toastDispatch={toastDispatch} />;

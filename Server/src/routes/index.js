@@ -4,7 +4,7 @@ const coursesRouter = require("./courses");
 const moviesRouter = require("./movies");
 
 const authenRouter = require("./authen");
-const usersRouter = require("./users");
+const userRouter = require("./users");
 const categoriesRouter = require("./categories");
 const productsRouter = require("./products");
 const cartRouter = require("./cart");
@@ -12,7 +12,7 @@ const orderRouter = require("./order");
 
 function route(app) {
   app.use("/auth", authenRouter);
-  app.use("/users", usersRouter);
+  app.use("/user", userRouter);
   app.use("/categories", categoriesRouter);
   app.use("/products", productsRouter);
   app.use("/cart", cartRouter);

@@ -1,5 +1,3 @@
-import { priceFormat } from './priceFormat';
-
 export const getAccessToken = () => {
   const accessToken = localStorage.getItem('accessToken');
   return accessToken ? JSON.parse(accessToken) : '';
@@ -56,7 +54,7 @@ export const getTotalCartProducts = () => {
     sum += Number(product.sale) * Number(product.quantity);
   }
 
-  return priceFormat(sum);
+  return sum;
 };
 
 //Order ShippingInfor

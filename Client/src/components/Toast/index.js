@@ -1,4 +1,4 @@
-import { useState, useCallBack, useEffect, memo } from 'react';
+import { useRef, memo } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck, faCircleExclamation, faCircleInfo, faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -9,8 +9,10 @@ import styles from './Toast.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Toast({ position }) {
+function Toast({ position, timeAutoDelete }) {
   const [toastState, toastDispatch] = useToastContext();
+
+  const toastRef = useRef();
 
   const generateIcon = (type) => {
     switch (type) {
@@ -43,8 +45,13 @@ function Toast({ position }) {
   return (
     <div className={cx('notification-container', position)}>
       {toastState.map((notification, i) => {
+        setTimeout(() => {
+          // toastRef.current.remove();
+          toastDispatch(deleteNotification(notification.id));
+        }, timeAutoDelete || 1250);
         return (
           <div
+            ref={toastRef}
             style={{ backgroundColor: generateBackgroundColor(notification.type) }}
             key={notification.id}
             className={cx('notification', 'toast', position)}

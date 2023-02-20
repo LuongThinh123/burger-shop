@@ -12,7 +12,6 @@ import {
   removeCartProductsItem,
   getTotalCartProducts,
 } from '~/utils/localStorage';
-import image from '~/assets/images';
 import { priceFormat } from '~/utils/priceFormat';
 const cx = classNames.bind(styles);
 
@@ -28,8 +27,10 @@ function CartPageProduct({ data, subTotalRef, totalRef, ...passProp }) {
 
     removeCartProductsItem(productId);
     passProp.onUpdateRemoveChange();
-    subTotalRef.current.innerHTML = `$${getTotalCartProducts()}`;
-    totalRef.current.innerHTML = `$${getTotalCartProducts()}`;
+
+    const productTotalPrice = priceFormat(getTotalCartProducts());
+    subTotalRef.current.innerHTML = `$${productTotalPrice}`;
+    totalRef.current.innerHTML = `$${productTotalPrice}`;
 
     cartApi.deleteCartItem(getAccessToken(), productId);
   };
@@ -40,8 +41,9 @@ function CartPageProduct({ data, subTotalRef, totalRef, ...passProp }) {
 
     totalAmountRef.current.innerHTML = `$${priceFormat(amount * data.sale)}`;
     updateCartProductsItem(productId, amount);
-    subTotalRef.current.innerHTML = `$${getTotalCartProducts()}`;
-    totalRef.current.innerHTML = `$${getTotalCartProducts()}`;
+    const productTotalPrice = priceFormat(getTotalCartProducts());
+    subTotalRef.current.innerHTML = `$${productTotalPrice}`;
+    totalRef.current.innerHTML = `$${productTotalPrice}`;
 
     const product = {
       productId,

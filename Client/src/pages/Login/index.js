@@ -16,6 +16,7 @@ import styles from './Login.module.scss';
 const cx = classNames.bind(styles);
 
 function Login() {
+  // console.log('re-render login');
   const validationSchema = yup
     .object({
       username: yup.string().required('This field is required'),

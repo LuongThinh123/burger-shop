@@ -7,11 +7,16 @@ const authenMiddleWare = require("../app/middleware/AuthenMiddleWare");
 //usersController.index
 // router.get("/:slug", usersController.show);
 router.get("/", authenMiddleWare.verifyToken, usersController.getAllUsers);
-
-router.delete(
-  "/:id",
-  authenMiddleWare.verifyTokenAndAminAuth,
-  usersController.deleteUser
+router.post(
+  "/update",
+  authenMiddleWare.verifyToken,
+  usersController.updateUser
 );
+
+// router.delete(
+//   "/:id",
+//   authenMiddleWare.verifyTokenAndAminAuth,
+//   usersController.deleteUser
+// );
 
 module.exports = router;

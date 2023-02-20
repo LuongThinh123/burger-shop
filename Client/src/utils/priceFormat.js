@@ -3,6 +3,7 @@ export const priceFormat = (price) => {
   const USDollar = new Intl.NumberFormat('en-US', {
     // style: 'currency',
     // currency: 'USD',
+    // useGrouping: 'currency',
   });
 
   return USDollar.format(price);

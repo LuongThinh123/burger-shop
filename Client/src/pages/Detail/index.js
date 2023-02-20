@@ -65,7 +65,7 @@ function Detail() {
         <DetailTabUI />
         <div className={cx('recommend-food')}>
           <h1 className={cx('recommend-food-title')}>YOU MAY ALSO LIKE</h1>
-          <Carousel amountItemAppear={4} marginLeftRight={15}>
+          <Carousel amountItemAppear={4} marginLeftRight={15} surfingNumber={2}>
             {recommendProducts.map((product) => (
               <ProductCard key={product._id} data={product} className={cx('product')} />
             ))}

@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 import Banner from '~/components/Banner';
 import OrderDetail from '~/components/OrderDetail';
 import { getOrderDetails, getShippingInfor } from '~/utils/localStorage';
+import { priceFormat } from '~/utils/priceFormat';
 import CartEmpty from '~/components/CartEmpty';
 import styles from './CheckoutDone.module.scss';
 
@@ -31,7 +32,7 @@ function CheckoutDone() {
                 </li>
                 <li className={cx('infor', 'order-total')}>
                   <span>Total:</span>
-                  <strong>${shippingInfor.totalPrice}</strong>
+                  <strong>${priceFormat(shippingInfor.totalPrice)}</strong>
                 </li>
                 <li className={cx('infor', ' order-payment')}>
                   <span>Payment method:</span>

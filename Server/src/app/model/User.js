@@ -14,6 +14,10 @@ const User = new Schema(
       unique: true,
     },
     email: { type: String, maxLength: 255, unique: true },
+    phone: {
+      type: String,
+      default: "",
+    },
     password: { type: String, min: 6, maxLength: 255, required: true },
     avatar: { type: String, default: "" },
     admin: { type: Boolean, default: false },
