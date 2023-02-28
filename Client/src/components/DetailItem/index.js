@@ -6,16 +6,15 @@ import Image from '~/components/Image';
 import * as cartApi from '~/api/cartApi';
 import { getAccessToken } from '~/utils/localStorage';
 import InputQuantity from '~/components/InputQuantity';
-import { useToastContext } from '~/customHook';
 import { addNotification } from '~/reducers/actions/toastAction';
 import { v4 as uuidv4 } from 'uuid';
 import styles from './DetailItem.module.scss';
 
 const cx = classNames.bind(styles);
 
-function DetailItem({ data }) {
+function DetailItem({ data, toastDispatch }) {
   const navigate = useNavigate();
-  const [, toastDispatch] = useToastContext();
+  // const [, toastDispatch] = useToastContext();
   const inputQuantityRef = useRef();
   console.log('re-renderr detail item');
 

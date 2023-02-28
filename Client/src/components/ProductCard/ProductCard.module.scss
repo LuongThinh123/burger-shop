@@ -101,3 +101,26 @@
     }
   }
 }
+
+.skeleton {
+  animation: skeleton-loading 0.3s linear;
+}
+
+.skeleton-text {
+  width: 100%;
+  height: 0.5rem;
+  margin-bottom: 0.25rem;
+  border-radius: 0.125rem;
+  // animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    opacity: 0;
+    // background-color: hs1(200, 20%, 70%);
+  }
+  100% {
+    opacity: 1;
+    // background-color: hs1(200, 20%, 95%);
+  }
+}

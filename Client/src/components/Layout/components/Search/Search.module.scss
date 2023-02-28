@@ -88,3 +88,17 @@
   font-weight: bold;
   text-align: center;
 }
+
+.view-all-result-btn {
+  cursor: pointer;
+  width: 100%;
+  // padding: 18px 0;
+  height: 56px;
+  font-size: 1.8rem;
+  color: var(--primary);
+  text-align: center;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

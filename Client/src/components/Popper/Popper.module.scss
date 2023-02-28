@@ -1,9 +1,32 @@
 .wrapper {
   width: 100%;
-  max-height: min((100vh - 96px) - 60px, 734px);
+  // max-height: min((100vh - 96px) - 60px, 734px);
+  max-height: 500px;
+  overflow-y: auto;
   min-height: 100px;
   padding-top: 8px;
   background: rgba(255, 255, 255);
   box-shadow: rgba(0 0 0 / 12%) 0px 2px 12px;
   border-radius: 8px;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 8px;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--lightOrange-color);
+    border-radius: 8px;
+  }
+
+  /* Handle on hover */
+  // &::-webkit-scrollbar-thumb:hover {
+  //   background-color: var(--primaryActive);
+  // }
 }

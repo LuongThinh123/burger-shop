@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react/headless';
-import { useState, useEffect, useRef, useContext } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
@@ -13,6 +13,7 @@ import { setSearchTitle } from '~/reducers/actions/filterAction';
 import { useFilterContext } from '~/customHook';
 
 import styles from './Search.module.scss';
+import Button from '~/components/Button';
 const cx = classNames.bind(styles);
 
 function Search() {
@@ -86,6 +87,9 @@ function Search() {
             {searchResult.map((result, index) => (
               <SearchItem key={index} data={result} onClick={handleClear} />
             ))}
+            <Button className={cx('view-all-result-btn')} onClick={handleSearchBtnClick}>
+              View all results
+            </Button>
           </PopperWrapper>
         </div>
       )}

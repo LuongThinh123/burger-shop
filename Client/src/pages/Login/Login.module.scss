@@ -1,4 +1,9 @@
+// .login_container {
+//   padding: 100px 50px;
+// }
+
 .login_form {
+  // padding: 100px 100px;
   width: 330px;
   display: flex;
   flex-direction: column;
@@ -7,6 +12,7 @@
 
   h1 {
     margin-bottom: 20px;
+    font-size: 3.8rem;
   }
 }
 
@@ -17,7 +23,7 @@
   align-items: center;
 
   .signIn_btn {
-    margin-top: 18px;
+    margin-top: 14px;
     width: 160px;
     border-radius: 50px;
     span {
@@ -74,6 +80,7 @@
 }
 
 .register_navigate {
+  margin-top: 26px;
   .question {
     font-size: 1.8rem;
   }

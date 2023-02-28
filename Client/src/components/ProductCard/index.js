@@ -16,7 +16,7 @@ const cx = classNames.bind(styles);
 function ProductCard({ data, toastDispatch, className }) {
   const navigate = useNavigate();
   const accessToken = getAccessToken();
-
+  console.log('re-render product');
   let handleAddToCart = (productId) => {
     console.log('Add to cart');
     console.log(productId);

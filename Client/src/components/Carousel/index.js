@@ -10,7 +10,7 @@ const cx = classNames.bind(styles);
 function Carousel(props) {
   const [displayItems, setDisplayItems] = useState([]);
   const { children, amountItemAppear = 4, marginLeftRight = 0, prevBtnClass, nextBtnClass, surfingNumber = 1 } = props;
-
+  console.log('re-render carousel');
   const countSpace = useRef(0);
   const widthItem = useRef(0);
   const spacing = useRef(0);

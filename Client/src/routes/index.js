@@ -5,6 +5,7 @@ import { AuthenLayout } from '~/components/Layout';
 import Home from '~/pages/Home';
 import Login from '~/pages/Login';
 import Register from '~/pages/Register';
+import About from '~/pages/About';
 import Product from '~/pages/Product';
 import Detail from '~/pages/Detail';
 import CartPage from '~/pages/CartPage';
@@ -26,6 +27,7 @@ export const publicRoutes = [
   { path: config.routes.userPurchase, component: UserPurchase },
   { path: config.routes.userAccount, component: UserProfile },
   { path: config.routes.contact, component: Contact },
+  { path: config.routes.about, component: About },
 ];
 
 export const privateRoutes = [];

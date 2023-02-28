@@ -145,5 +145,4 @@ function UserProfileInfor({ userInfor, setUserInfor, toastDispatch }) {
     </>
   );
 }
-
 export default memo(UserProfileInfor);

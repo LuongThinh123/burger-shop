@@ -1,22 +1,12 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { memo, useState } from 'react';
 import classNames from 'classnames/bind';
 
 import CheckoutOrderDetails from '../CheckoutOrderDetails';
 import images from '~/assets/images';
 import Image from '~/components/Image';
 import Button from '~/components/Button';
-import { getCurrentDateTime } from '~/utils/dateFormat';
-import * as orderApi from '~/api/orderApi';
 import styles from './CheckoutOrder.module.scss';
-import {
-  getCartProducts,
-  setShippingInfor,
-  getTotalCartProducts,
-  setOrderDetails,
-  getAccessToken,
-  setCartProducts,
-} from '~/utils/localStorage';
+import { getCartProducts } from '~/utils/localStorage';
 
 const cx = classNames.bind(styles);
 
@@ -32,71 +22,67 @@ function CheckoutOrder({
   postCodeRef,
   phoneRef,
   emailRef,
+  register,
 }) {
   const [radioChecked, setRadioChecked] = useState(1);
-  const navigate = useNavigate();
 
-  const randomNumber = (max, min) => {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  };
+  // const handlePlaceOrder = (e) => {
+  //   e.preventDefault();
 
-  const handlePlaceOrder = (e) => {
-    e.preventDefault();
+  //   let payment = '';
+  //   switch (radioChecked) {
+  //     case 1:
+  //       payment = 'Direct bank transfer';
+  //       break;
+  //     case 2:
+  //       payment = 'Check payments';
+  //       break;
+  //     case 3:
+  //       payment = 'Cash on delivery';
+  //       break;
+  //     case 4:
+  //       payment = 'PayPal';
+  //       break;
+  //     default:
+  //   }
 
-    let payment = '';
-    switch (radioChecked) {
-      case 1:
-        payment = 'Direct bank transfer';
-        break;
-      case 2:
-        payment = 'Check payments';
-        break;
-      case 3:
-        payment = 'Cash on delivery';
-        break;
-      case 4:
-        payment = 'PayPal';
-        break;
-      default:
-    }
+  //   const orderNumber = randomNumber(99999999, 10000000);
+  //   const orderDate = getCurrentDateTime();
 
-    const orderNumber = randomNumber(99999999, 10000000);
-    const orderDate = getCurrentDateTime();
+  //   const shippingInfor = {
+  //     firstName: fristNameRef.current.value,
+  //     lastNameRef: lastNameRef.current.value,
+  //     companyRef: companyRef.current.value,
+  //     regionRef: regionRef.current.value,
+  //     streetAddressRef: streetAddressRef.current.value,
+  //     streetAddress2Ref: streetAddress2Ref.current.value,
+  //     cityRef: cityRef.current.value,
+  //     countryRef: countryRef.current.value,
+  //     postCodeRef: postCodeRef.current.value,
+  //     phoneRef: phoneRef.current.value,
+  //     emailRef: emailRef.current.value,
+  //     payment: payment,
+  //     orderDate,
+  //     orderNumber,
+  //   };
 
-    const shippingInfor = {
-      firstName: fristNameRef.current.value,
-      lastNameRef: lastNameRef.current.value,
-      companyRef: companyRef.current.value,
-      regionRef: regionRef.current.value,
-      streetAddressRef: streetAddressRef.current.value,
-      streetAddress2Ref: streetAddress2Ref.current.value,
-      cityRef: cityRef.current.value,
-      countryRef: countryRef.current.value,
-      postCodeRef: postCodeRef.current.value,
-      phoneRef: phoneRef.current.value,
-      emailRef: emailRef.current.value,
-      payment: payment,
-      orderDate,
-      orderNumber,
-    };
+  //   const products = getCartProducts();
+  //   const totalPrice = getTotalCartProducts();
 
-    const products = getCartProducts();
-    const totalPrice = getTotalCartProducts();
+  //   setShippingInfor({ ...shippingInfor, totalPrice: totalPrice });
+  //   setOrderDetails(products);
+  //   setCartProducts([]);
 
-    setShippingInfor({ ...shippingInfor, totalPrice: totalPrice });
-    setOrderDetails(products);
-    setCartProducts([]);
+  //   const orderInfor = {
+  //     products,
+  //     totalPrice,
+  //     shippingInfor,
+  //   };
 
-    const orderInfor = {
-      products,
-      totalPrice,
-      shippingInfor,
-    };
+  //   orderApi.addOrder(getAccessToken(), orderInfor);
 
-    orderApi.addOrder(getAccessToken(), orderInfor);
-
-    navigate('/checkout-done');
-  };
+  //   navigate('/checkout-done');
+  // };
 
   return (
     <div className={cx('your-order')}>
@@ -110,7 +96,9 @@ function CheckoutOrder({
                 checked={radioChecked === 1}
                 className={cx('input-radio')}
                 id="payment-direct"
+                value="Direct bank transfer"
                 type="radio"
+                {...register('payment')}
                 onChange={() => setRadioChecked(1)}
               />
               <label htmlFor="payment-direct" onClick={() => setRadioChecked(1)}>
@@ -129,6 +117,8 @@ function CheckoutOrder({
                 className={cx('input-radio')}
                 id="payment-check"
                 type="radio"
+                value="Check payments"
+                {...register('payment')}
                 onChange={() => setRadioChecked(2)}
               />
               <label htmlFor="payment-check" onClick={() => setRadioChecked(2)}>
@@ -146,6 +136,8 @@ function CheckoutOrder({
                 className={cx('input-radio')}
                 id="payment-delivery"
                 type="radio"
+                value="Cash on delivery"
+                {...register('payment')}
                 onChange={() => setRadioChecked(3)}
               />
               <label htmlFor="payment-delivery" onClick={() => setRadioChecked(3)}>
@@ -161,6 +153,8 @@ function CheckoutOrder({
                 className={cx('input-radio')}
                 id="payment-paypal"
                 type="radio"
+                value="PayPal"
+                {...register('payment')}
                 onChange={() => setRadioChecked(4)}
               />
               <label htmlFor="payment-paypal" onClick={() => setRadioChecked(4)}>
@@ -174,7 +168,7 @@ function CheckoutOrder({
               </div>
             </li>
           </ul>
-          <Button primary className={cx('place-order-btn')} onClick={handlePlaceOrder}>
+          <Button primary className={cx('place-order-btn')}>
             Place order
           </Button>
         </div>
@@ -183,4 +177,4 @@ function CheckoutOrder({
   );
 }
 
-export default CheckoutOrder;
+export default memo(CheckoutOrder);

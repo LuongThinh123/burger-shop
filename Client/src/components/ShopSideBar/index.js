@@ -9,7 +9,7 @@ import ShopSideBarProducts from '../ShopSideBarProducts';
 
 const cx = classNames.bind(styles);
 
-function ShopSideBar({ filterState, filterDispatch }) {
+function ShopSideBar({ filterState, filterDispatch, ...passProps }) {
   // const [, filterDispatch] = useFilterContext();
   // const { categoryIdList } = filterState;
   console.log('re-render shop side bar');
