@@ -169,7 +169,7 @@ function Checkout() {
                 {...register('streetAddress')}
                 error={errors.streetAddress}
                 type={'text'}
-                placeholder="Street address"
+                placeholder="House number and street name"
               />
               <Input
                 ref={streetAddress2Ref}
@@ -177,6 +177,7 @@ function Checkout() {
                 className={cx('input-form')}
                 inputClass={cx('bill-input')}
                 errors={'hello'}
+                placeholder="Apartment, suite, unit, etc. (optional)"
               />
               <Input
                 className={cx('input-form')}

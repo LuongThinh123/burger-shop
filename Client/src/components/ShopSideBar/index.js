@@ -1,5 +1,7 @@
 import { memo } from 'react';
 import classNames from 'classnames/bind';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 import styles from './ShopSideBar.module.scss';
 import CategoryList from '../CategoryList';
@@ -21,14 +23,6 @@ function ShopSideBar({ filterState, filterDispatch, ...passProps }) {
       <CategoryList categoryFilter={filterState.categoryIdList} filterDispatch={filterDispatch} />
       <PriceFilter priceFilter={filterState.price} filterDispatch={filterDispatch} />
       <ShopSideBarProducts />
-      {/* <div className={cx('shop-filter_price')}>
-        <h3 className={cx('price_title')}>Filter by price</h3>
-        <div className={cx('filter_price')}>
-          <div className={cx('slider-track')}></div>
-          <input type="range" min="1" max="9999" className={cx('range-input')} />
-          <input type="range" min="1" max="9999" className={cx('range-input')} />
-        </div>
-      </div> */}
     </div>
   );
 }

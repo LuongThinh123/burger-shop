@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 import styles from './ProductList.module.scss';
 import SortBar from '~/components/SortBar';
 import ProductCard from '~/components/ProductCard';
+import ProductSkeleton from '~/components/ProductSkeleton';
 import Pagination from '~/components/Pagination';
 import { changePage } from '~/reducers/actions/filterAction';
 import * as productApi from '~/api/productApi';
@@ -46,11 +47,13 @@ function ProductList({ filterState, filterDispatch }) {
         filterDispatch={filterDispatch}
       />
       <div className={cx('product-list')}>
-        {productListInfor.products
-          ? productListInfor.products.map((data) => {
-              return <ProductCard key={data._id} data={data} toastDispatch={toastDispatch} />;
-            })
-          : []}
+        {productListInfor.products ? (
+          productListInfor.products.map((data) => {
+            return <ProductCard key={data._id} data={data} toastDispatch={toastDispatch} />;
+          })
+        ) : (
+          <ProductSkeleton cards={6} />
+        )}
       </div>
       <Pagination
         className="pagination-bar"

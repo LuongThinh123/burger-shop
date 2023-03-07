@@ -1,5 +1,6 @@
-// import { useState } from 'react';
+import { useRef } from 'react';
 import classNames from 'classnames/bind';
+import { useInView } from 'react-intersection-observer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBacon, faBowlFood } from '@fortawesome/free-solid-svg-icons';
 
@@ -14,6 +15,14 @@ import Toast from '~/components/Toast';
 const cx = classNames.bind(styles);
 
 function Home() {
+  const { ref: elementor, inView: elementorIsVisible } = useInView({ triggerOnce: 1 });
+  const { ref: imgBlur, inView: imgBlurIsVisible } = useInView({ triggerOnce: 1 });
+  const { ref: tasteElement, inView: tasteElementIsVisible } = useInView({ triggerOnce: 1 });
+  const { ref: tasteMenu, inView: tasteMenuIsVisible } = useInView({ triggerOnce: 1 });
+  const { ref: tasteMenu2, inView: tasteMenu2IsVisible } = useInView({ triggerOnce: 1 });
+  const { ref: tasteMenu3, inView: tasteMenu3IsVisible } = useInView({ triggerOnce: 1 });
+  const { ref: tasteMenu4, inView: tasteMenu4IsVisible } = useInView({ triggerOnce: 1 });
+
   return (
     <>
       <div className={cx('homeInner')}>
@@ -68,33 +77,33 @@ function Home() {
           </div>
         </div>
         <div className={cx('elementor-inner')}>
-          <div className={cx('elementor-container')}>
+          <div ref={elementor} className={cx('elementor-container')}>
             <div className={cx('element')}>
               <div className={cx('element-item')}>
-                <div className={cx('element-title')}>
+                <div className={cx('element-title', `${elementorIsVisible ? 'element-title-animation' : ''}`)}>
                   <h2>SPECIAL FOR YOU MONSTER PIZZA</h2>
                 </div>
-                <div className={cx('element-button')}>
+                <div className={cx('element-button', `${elementorIsVisible ? 'element-btn-animation' : ''}`)}>
                   <Button primary className={cx('element-btn')}>
                     ORDER NOW
                   </Button>
                 </div>
-                <div className={cx('food-element-imgBox')}>
+                <div className={cx('food-element-imgBox', `${elementorIsVisible ? 'element-img-animation' : ''}`)}>
                   <Image className={cx('food-element-img')} src={images.element} />
                 </div>
               </div>
             </div>
             <div className={cx('element')}>
               <div className={cx('element-item')}>
-                <div className={cx('element-title')}>
+                <div className={cx('element-title', `${elementorIsVisible ? 'element-title-animation' : ''}`)}>
                   <h2>BURGER COMBO</h2>
                 </div>
-                <div className={cx('food-element-imgBox')}>
+                <div className={cx('food-element-imgBox', `${elementorIsVisible ? 'element-img2-animation' : ''}`)}>
                   <Image className={cx('food-element-img')} src={images.element2} />
                 </div>
                 <div className={cx('price-only')}>
                   <div className={cx('price')}>$6.90 ONLY</div>
-                  <div className={cx('element-button')}>
+                  <div className={cx('element-button', `${elementorIsVisible ? 'element-btn-animation' : ''}`)}>
                     <Button primary className={cx('element-btn')}>
                       ORDER NOW
                     </Button>
@@ -104,17 +113,17 @@ function Home() {
             </div>
             <div className={cx('element')}>
               <div className={cx('element-item')}>
-                <div className={cx('element-title')}>
+                <div className={cx('element-title', `${elementorIsVisible ? 'element-title-animation' : ''}`)}>
                   <h2>
                     Delicious FOOD MENU <span>This weekend only</span>
                   </h2>
                 </div>
-                <div className={cx('element-button')}>
+                <div className={cx('element-button', `${elementorIsVisible ? 'element-btn-animation' : ''}`)}>
                   <Button primary className={cx('element-btn')}>
                     ORDER NOW
                   </Button>
                 </div>
-                <div className={cx('food-element-imgBox')}>
+                <div className={cx('food-element-imgBox', `${elementorIsVisible ? 'element-img-animation' : ''}`)}>
                   <Image className={cx('food-element-img')} src={images.element3} />
                 </div>
               </div>
@@ -126,7 +135,11 @@ function Home() {
 
         <div className={cx('menu-cointainer')}>
           <div className={cx('menu-board')}>
-            <div className={cx('menu-blur-imgBox')}>
+            {/* .menu-blur-imgBox-animation */}
+            <div
+              ref={imgBlur}
+              className={cx('menu-blur-imgBox', `${imgBlurIsVisible ? 'menu-blur-imgBox-animation' : ''}`)}
+            >
               <Image className={cx('menu-blur')} src={images.blurImg} />
             </div>
             <div className={cx('menu-blur-imgBox2')}>
@@ -351,7 +364,13 @@ function Home() {
         <div className={cx('explore-taste-menu')}>
           <div className={cx('explore-taste-imgBox')}>
             <div className={cx('explore-overlay')}></div>
-            <div className={cx('explore-taste-elements')}>
+            <div
+              ref={tasteElement}
+              className={cx(
+                'explore-taste-elements',
+                `${tasteElementIsVisible ? 'explore-taste-elements-animation' : ''}`,
+              )}
+            >
               <h2 className={cx('explore-taste-heading')}>Explore the new taste</h2>
               <p className={cx('explore-taste-title')}>Enjoy our luscious dishes wherever you want</p>
               <Button primary className={cx('explore-taste-btn')}>
@@ -361,28 +380,40 @@ function Home() {
           </div>
           <div className={cx('taste-menu')}>
             <div className={cx('taste-menu-list')}>
-              <div className={cx('taste-menu-item')}>
+              <div
+                ref={tasteMenu}
+                className={cx('taste-menu-item', `${tasteMenuIsVisible ? 'taste-menu-animation' : ''}`)}
+              >
                 <div className={cx('taste-menu-header')}>
                   <span className={cx('taste-menu-name')}>Pizza Hut</span>
                   <span className={cx('taste-menu-price')}>$4.95</span>
                 </div>
                 <div className={cx('taste-menu-combo-list')}>Shrimp, Squid, Pineapple</div>
               </div>
-              <div className={cx('taste-menu-item')}>
+              <div
+                ref={tasteMenu2}
+                className={cx('taste-menu-item', `${tasteMenu2IsVisible ? 'taste-menu-animation' : ''}`)}
+              >
                 <div className={cx('taste-menu-header')}>
                   <span className={cx('taste-menu-name')}>Pepperoni Pizza</span>
                   <span className={cx('taste-menu-price')}>$5.95</span>
                 </div>
                 <div className={cx('taste-menu-combo-list')}>Shrimp, Squid, Pineapple</div>
               </div>
-              <div className={cx('taste-menu-item')}>
+              <div
+                ref={tasteMenu3}
+                className={cx('taste-menu-item', `${tasteMenu3IsVisible ? 'taste-menu-animation' : ''}`)}
+              >
                 <div className={cx('taste-menu-header')}>
                   <span className={cx('taste-menu-name')}>Apricot Chicken</span>
                   <span className={cx('taste-menu-price')}>$5.65</span>
                 </div>
                 <div className={cx('taste-menu-combo-list')}>Shrimp, Squid, Pineapple</div>
               </div>
-              <div className={cx('taste-menu-item')}>
+              <div
+                ref={tasteMenu4}
+                className={cx('taste-menu-item', `${tasteMenu4IsVisible ? 'taste-menu-animation' : ''}`)}
+              >
                 <div className={cx('taste-menu-header')}>
                   <span className={cx('taste-menu-name')}>Summer Pizza</span>
                   <span className={cx('taste-menu-price')}>$8.95</span>

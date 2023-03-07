@@ -1,4 +1,5 @@
 import { Fragment } from 'react';
+import { SkeletonTheme } from 'react-loading-skeleton';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { publicRoutes } from '~/routes';
 import { DefaultLayout } from '~/components/Layout';
@@ -6,6 +7,7 @@ import ScrollToTop from '~/components/ScrollToTop';
 
 function App() {
   return (
+    // <SkeletonTheme baseColor="#202020" highlightColor="#444">
     <Router>
       <ScrollToTop />
       <div className="App">
@@ -35,6 +37,7 @@ function App() {
         </Routes>
       </div>
     </Router>
+    // </SkeletonTheme>
   );
 }
 

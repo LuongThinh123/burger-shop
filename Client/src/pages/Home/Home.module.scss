@@ -52,7 +52,7 @@
   width: 50%;
   margin-bottom: 26px;
   position: relative;
-  animation: downToUpOpacity 1s ease;
+  // animation: downToUpOpacity 1s ease;
   z-index: 1;
 
   h2 {
@@ -68,9 +68,16 @@
   }
 }
 
+.element-title-animation {
+  animation: downToUpOpacity 1s ease;
+}
+
 .element-button {
   width: 100%;
   position: relative;
+}
+
+.element-btn-animation {
   animation: downToUpOpacity 1s ease;
 }
 
@@ -94,13 +101,16 @@
   bottom: -82px;
   width: 330px;
   height: 330px;
-  animation: rightToLeftOpacity 1s ease;
 
   .food-element-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
+}
+
+.element-img-animation {
+  animation: rightToLeftOpacity 1s ease;
 }
 
 .element:nth-child(2) {
@@ -120,6 +130,11 @@
     margin-bottom: 0;
   }
 
+  .food-element-imgBox.element-img2-animation {
+    animation: opactityScalceSmallToBig 1s ease-in-out;
+    display: block;
+  }
+
   .food-element-imgBox {
     text-align: center;
     top: 4px;
@@ -129,8 +144,8 @@
     margin: 0 auto;
     width: 280px;
     height: 280px;
-    animation: opactityScalceSmallToBig 1s ease-in-out;
     animation-delay: 100ms;
+    display: none;
 
     .food-element-img {
       object-fit: contain;
@@ -329,6 +344,9 @@
   position: absolute;
   top: 2%;
   left: -5%;
+}
+
+.menu-blur-imgBox-animation {
   animation: upToDownOpacity 1s ease;
 }
 
@@ -537,6 +555,7 @@
 .explore-taste-imgBox {
   position: relative;
   padding: 220px 0;
+  height: 100%;
   flex: 1;
   background-image: url('/assets/images/exploreTasteImg.png');
   background-position: center;
@@ -573,6 +592,28 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: absolute;
+  // top: 36%;
+  width: 100%;
+  height: 100%;
+  // animation: tasteElementAnimation 0.8s ease-in-out;
+}
+
+.explore-taste-elements-animation {
+  animation: tasteElementAnimation 1s ease-in-out;
+}
+
+@keyframes tasteElementAnimation {
+  from {
+    opacity: 0;
+    top: 350px;
+  }
+  to {
+    opacity: 1;
+    top: 38%;
+    // transform: translateY(0);
+    // top: 0px;
+  }
 }
 
 .explore-taste-heading,
@@ -610,7 +651,39 @@
 }
 
 .taste-menu-item {
+  // position: relative;
   margin-bottom: 36px;
+  // display: none;
+}
+
+.taste-menu-animation {
+  animation: tasteMenuAnimation 1s ease-in-out;
+}
+
+// .taste-menu-animation:nth-child(2) {
+//   // animation-duration: 0.82s;
+// }
+
+// .taste-menu-animation:nth-child(3) {
+//   // animation-duration: 0.84s;
+// }
+
+// .taste-menu-animation:nth-child(4) {
+//   // animation-duration: 0.86s;
+// }
+
+@keyframes tasteMenuAnimation {
+  from {
+    opacity: 0;
+    // filter: blur(5px);
+    transform: translateY(200%);
+    transition: all 1s;
+  }
+  to {
+    opacity: 1;
+    // filter: blur(0);
+    transform: translateY(0%);
+  }
 }
 
 .taste-menu-item:last-child {
@@ -766,7 +839,7 @@
 @keyframes rightToLeftOpacity {
   from {
     opacity: 0;
-    transform: translateX(100%);
+    transform: translateX(80%);
   }
   to {
     opacity: 1;

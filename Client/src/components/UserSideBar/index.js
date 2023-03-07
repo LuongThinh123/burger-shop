@@ -18,12 +18,7 @@ function UserSideBar({ userInformation }) {
     <div className={cx('user-options')}>
       <div className={cx('user-display')}>
         <div className={cx('user-imgBox')}>
-          <Image
-            className={cx('user-img')}
-            src={
-              'https://scontent.fsgn5-5.fna.fbcdn.net/v/t39.30808-6/308855318_1765329653819861_649421416552517202_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=OK9cSCH7ZVgAX9T1Cmc&_nc_ht=scontent.fsgn5-5.fna&oh=00_AfCTHwqq5fVFNIj2xl7sz86kcxP9a1A7O6SF7fGmuSgFHA&oe=63F06472'
-            }
-          />
+          <Image className={cx('user-img')} src={require('~/assets/images/defaultAvatar.png')} />
         </div>
         <div className={cx('mini-infor')}>
           <h4 className={cx('mini-nick-name')}>{userInfor.username}</h4>

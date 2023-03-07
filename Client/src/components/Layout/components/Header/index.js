@@ -86,11 +86,7 @@ function Header() {
         <div className={cx('nav_actions')}>
           <Menu items={MENU_ITEMS} menuItemClass={cx('menu_item')}>
             {accessToken ? (
-              <Image
-                className={cx('user-avatar')}
-                src="https://scontent.fsgn5-5.fna.fbcdn.net/v/t39.30808-6/308855318_1765329653819861_649421416552517202_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=6MDPEqim8SMAX-4iaOd&_nc_ht=scontent.fsgn5-5.fna&oh=00_AfCjbv3s4xMljrNqGwqMPc8CM00uLIZ63ZUsfk1khjSG-Q&oe=63D2BAB2"
-                alt="avatar"
-              />
+              <Image className={cx('user-avatar')} src={require('~/assets/images/defaultAvatar.png')} alt="avatar" />
             ) : (
               <div className={cx('nav_user')}>
                 <div className={cx('user_icon')}>

@@ -1,0 +1,120 @@
+.skeleton-card {
+  // height: 460px;
+  background-color: var(--chillYellow);
+  // overflow: hidden;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  // height: auto;
+  height: 460px;
+}
+
+.skeleton-img {
+  position: relative;
+  padding: 12px;
+  width: 100%;
+  height: 52%;
+  // overflow: hidden;
+
+  img {
+    min-height: 230px;
+    width: 100%;
+    height: 100%;
+    // border-radius: 5px;
+    object-fit: cover;
+  }
+}
+
+.skeleton-information {
+  height: 48%;
+  // flex: 1;
+  padding: 10px 26px 32px 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .name {
+    font-size: 1.8rem;
+    text-align: center;
+    white-space: nowrap;
+    height: 100%;
+    display: block;
+  }
+
+  .skeleton-description {
+    width: 100%;
+    margin: 15px 0;
+    text-align: center;
+    white-space: normal;
+    line-height: 1.4;
+
+    .description {
+      color: var(--gray);
+      display: inline-block;
+      width: 100%;
+      word-break: break-all;
+    }
+  }
+
+  .price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    color: var(--primary);
+  }
+
+  .addToCart-skeleton {
+    margin-top: 15px;
+    width: 80%;
+
+    .addToCart {
+      width: 100%;
+      padding: 15px 15px;
+      outline: none;
+      border: none;
+      background: var(--lightOrange-color);
+      border-radius: 13px;
+      cursor: pointer;
+    }
+
+    .addToCart-title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .cart-plus_icon {
+        font-size: 2rem;
+        color: var(--white);
+      }
+
+      .addToCart-text {
+        color: var(--white);
+        margin: 0 0 0 10px;
+        font-size: 1.8rem;
+      }
+    }
+  }
+}
+
+.skeleton {
+  animation: skeleton-loading 0.3s linear;
+}
+
+.skeleton-text {
+  width: 100%;
+  height: 0.5rem;
+  margin-bottom: 0.25rem;
+  border-radius: 0.125rem;
+  // animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    opacity: 0;
+    // background-color: hs1(200, 20%, 70%);
+  }
+  100% {
+    opacity: 1;
+    // background-color: hs1(200, 20%, 95%);
+  }
+}

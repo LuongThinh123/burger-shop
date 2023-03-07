@@ -1,5 +1,7 @@
 import { useState, useEffect, memo } from 'react';
 import classNames from 'classnames/bind';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 import * as categoryApi from '~/api/categoryApi';
 import { addCategory, deleteCategory } from '~/reducers/actions/filterAction';
@@ -33,22 +35,31 @@ function CategoryList({ categoryFilter, filterDispatch }) {
       </div>
       <div className={cx('categories_box')}>
         <ul className={cx('category_list')}>
-          {categories.map((category, index) => {
-            return (
-              <li key={category._id} className={cx('category')}>
-                <input
-                  className={cx('category-checkbox')}
-                  type="checkbox"
-                  id={`check-${index}`}
-                  onChange={(input) => handleCategoryChecked(input, category._id)}
-                  checked={categoryFilter.includes(category._id)}
-                />
-                <label htmlFor={`check-${index}`} className={cx('category-name')}>
-                  {category.title}
-                </label>
-              </li>
-            );
-          })}
+          {categories.length !== 0 ? (
+            categories.map((category, index) => {
+              return (
+                <li key={category._id} className={cx('category')}>
+                  <input
+                    className={cx('category-checkbox')}
+                    type="checkbox"
+                    id={`check-${index}`}
+                    onChange={(input) => handleCategoryChecked(input, category._id)}
+                    checked={categoryFilter.includes(category._id)}
+                  />
+                  <label htmlFor={`check-${index}`} className={cx('category-name')}>
+                    {category.title}
+                  </label>
+                </li>
+              );
+            })
+          ) : (
+            <>
+              <Skeleton height={40} />
+              <Skeleton height={40} style={{ marginTop: 15, marginBottom: 15 }} />
+              <Skeleton height={40} />
+              <Skeleton height={40} style={{ marginTop: 15 }} />
+            </>
+          )}
         </ul>
       </div>
     </div>
